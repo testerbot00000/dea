@@ -15,7 +15,7 @@ class Trivia extends patron.Command {
     const questions = Object.keys(msg.dbGuild.trivia);
 
     if (questions.length <= 0) {
-      return msg.channel.createErrorReply('This guild has no trivia questions set.');
+      return msg.createErrorReply('This guild has no trivia questions set.');
     }
     
     const question = Random.arrayElement(questions);

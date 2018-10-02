@@ -1,0 +1,33 @@
+{
+  "name": "dea",
+  "version": "2.3.3",
+  "description": "The most inflated bot on Discord.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "Luner#0059",
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "awesome-electron": "^2.5.0",
+    "colors": "^1.1.2",
+    "danbooru": "^2.0.3",
+    "discord.js": "^11.3.2",
+    "mongodb": "^2.2.33",
+    "patron.js": "github:lunerr/patron.js",
+    "pluralize": "^7.0.0",
+    "require-all": "^2.2.0"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^3.0.2",
+    "erlpack": "github:hammerandchisel/erlpack",
+    "uws": "^0.14.5"
+  },
+  "devDependencies": {
+    "electron": "1.7.9",
+    "eslint": "^4.10.0"
+  },
+  "eslintIgnore": [
+    "**/*.json"
+  ]
+}

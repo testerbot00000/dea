@@ -33,8 +33,11 @@ class CreateGang extends patron.Command {
       return msg.createErrorReply('You don\'t have enough money to make a gang, it costs ' + Constants.config.gang.creationCost.USD());
     }
 
+    const gangs = await db.gangRepo.findMany({ guildId: msg.guild.id });
+    const index = gangs.length + 1;
+
     await db.userRepo.modifyCash(msg.dbGuild, msg.member, -Constants.config.gang.creationCost);
-    await db.gangRepo.insertGang(msg.author.id, msg.guild.id, args.gangname);
+    await db.gangRepo.insertGang(index, msg.author.id, msg.guild.id, args.gangname);
     return msg.createReply('You\'ve successfully created a gang with the name ' + args.gangname.boldify() + '.');
   }
 }

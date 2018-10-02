@@ -67,7 +67,7 @@ client.on('message', (msg) => {
           break;
       }
 
-      await Logger.log('Unsuccessful command result: ' + msg.id + ' Guild: ' + msg.guild.name + ' Channel: ' + msg.channel.name + ' Content ' + msg.content + ' | Reason: ' + result.errorReason, 'DEBUG');
+      await Logger.log('Unsuccessful command result: ' + msg.id + ' User: ' + msg.author.tag + ' User ID: + ' + msg.author.id + ' Guild: ' + msg.guild.name + ' Channel: ' + msg.channel.name + ' Content ' + msg.content + ' | Reason: ' + result.errorReason, 'DEBUG');
 
       return msg.tryCreateErrorReply(message);
     }

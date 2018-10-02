@@ -1,6 +1,6 @@
 <div align="center">
     <a href="https://discord.gg/usXDFN4"><img src="https://discordapp.com/api/guilds/496493687476453377/embed.png" alt="Discord Server" /></a>
-    <a href="https://david-dm.org/RealBlazeIt/dea"><img src="https://david-dm.org/RealBlazeIt/dea.svg" alt="Dependencies" /></a>
+    <a href="https://david-dm.org/Lunerr/dea"><img src="https://david-dm.org/Lunerr/dea.svg" alt="Dependencies" /></a>
 </div>
 
 # DEA

@@ -12,7 +12,7 @@ class RemovePoll extends patron.Command {
           name: 'poll',
           key: 'poll',
           type: 'poll',
-          example: 'fags',
+          example: '4',
           remainder: true
         })
       ]

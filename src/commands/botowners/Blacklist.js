@@ -21,8 +21,7 @@ class Blacklist extends patron.Command {
 
   async run(msg, args) {
     await db.blacklistRepo.insertBlacklist(args.user.id, args.user.tag, args.user.avatarURL);
-    await msg.guild.ban(args.user);
-    return msg.createReply('Successfully blacklisted user' + args.user.tag + '.');
+    return msg.createReply('Successfully blacklisted user ' + args.user.tag + '.');
   }
 }
 

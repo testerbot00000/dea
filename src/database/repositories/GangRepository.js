@@ -7,8 +7,8 @@ class GangRepository extends BaseRepository {
     return this.any(new GangQuery(leaderId, guildId));
   }
 
-  insertGang(leaderId, guildId, gangName) {
-    return this.insertOne(new Gang(leaderId, guildId, gangName));
+  insertGang(index, leaderId, guildId, gangName) {
+    return this.insertOne(new Gang(index, leaderId, guildId, gangName));
   }
 
   updateGang(leaderId, guildId, update) {

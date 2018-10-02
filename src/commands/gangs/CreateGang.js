@@ -23,7 +23,7 @@ class CreateGang extends patron.Command {
   }
 
   async run(msg, args) {
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
 
     if (!/\w/g.test(args.gangname)) {
       return msg.createErrorReply('Your gang\'s name may only contain numbers, and letters.');
@@ -32,6 +32,10 @@ class CreateGang extends patron.Command {
     } else if (NumberUtil.realValue(msg.dbUser.cash) < Constants.config.gang.creationCost) {
       return msg.createErrorReply('You don\'t have enough money to make a gang, it costs ' + Constants.config.gang.creationCost.USD());
     }
+
+    const polls = await db.pollRepo.findMany({ guildId: guildId });
+
+    polls.length + 1;
 
     await db.userRepo.modifyCash(msg.dbGuild, msg.member, -Constants.config.gang.creationCost);
     await db.gangRepo.insertGang(msg.author.id, msg.guild.id, args.gangname);

@@ -11,7 +11,7 @@ const handler = new patron.Handler(registry);
 
 client.on('message', (msg) => {
   (async () => {
-    if (msg.author.bot) {
+    if (msg.author.bot || await db.blacklistRepo.findBlacklist(msg.author.id) !== null) {
       return;
     }
 

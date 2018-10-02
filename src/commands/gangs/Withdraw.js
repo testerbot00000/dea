@@ -25,7 +25,7 @@ class Withdraw extends patron.Command {
   }
 
   async run(msg, args) {
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
     const leader = msg.client.users.get(gang.leaderId);
     await db.userRepo.modifyCash(msg.dbGuild, msg.member, args.transfer);
     await db.gangRepo.updateGang(gang.leaderId, gang.guildId, new IncMoneyUpdate('wealth', -args.transfer));

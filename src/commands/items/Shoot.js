@@ -25,7 +25,7 @@ class Shoot extends patron.Command {
           key: 'item',
           type: 'item',
           example: 'intervention',
-          preconditions: ['donthave', { name: 'nottype', options: { types: ['gun'] } }],
+          preconditions: ['donthave', { name: 'nottype', options: { types: ['gun'] } }, 'allied'],
           remainder: true
         })
       ]

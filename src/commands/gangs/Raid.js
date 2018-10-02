@@ -34,7 +34,7 @@ class Raid extends patron.Command {
 
   async run(msg, args) {
     const roll = Random.roll();
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
     const gangLeader = msg.client.users.get(gang.leaderId);
     const raidedGangLeader = msg.client.users.get(args.gang.leaderId);
     const membersDeduction = args.gang.members.length * 5;

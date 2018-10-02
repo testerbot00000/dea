@@ -23,10 +23,12 @@ class Gang extends patron.Command {
 
   async run(msg, args) {
     let leader = '';
+    let elders = '';
     let members = '';
     let gang = args.gang;
+    
     if (String.isNullOrWhiteSpace(args.gang.name)) {
-      gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+      gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
       if (gang === null) {
         return msg.createErrorReply('You\'re not in a gang, therefore you must specify one.');
       }
@@ -46,7 +48,16 @@ class Gang extends patron.Command {
         members += grabMembers.user.tag + ', ';
       }
     }
-    return msg.channel.createMessage('**Gang:** ' + gang.name + '\n**Leader:** ' + leader + (gang.members !== undefined && gang.members !== null && gang.members.length > 0 ? '\n**Members:** ' + members.substring(0, members.length - 2) : '') + '\n**Wealth:** ' + NumberUtil.format(gang.wealth));
+
+    if (gang.elders.length > 0) {
+      for (let i = 0; i < gang.elders.length; i++) {
+        const elder = gang.elders[i];
+        const grabElder = await msg.guild.members.get(elder);
+        elders += grabElder.user.tag + ', ';
+      }
+    }
+
+    return msg.channel.createMessage('**Gang:** ' + gang.name + '\n**Leader:** ' + leader + (gang.elders !== undefined || gang.elders !== null && gang.elders.length > 0 ? '\n**Elders:** ' + elders.substring(0, elders.length - 2) : '') + (gang.members !== undefined || gang.members !== null && gang.members.length > 0 ? '\n**Members:** ' + members.substring(0, members.length - 2) : '') + '\n**Wealth:** ' + NumberUtil.format(gang.wealth));
   }
 }
 

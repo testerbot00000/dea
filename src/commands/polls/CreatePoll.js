@@ -16,7 +16,7 @@ class CreatePoll extends patron.Command {
           name: 'poll name',
           key: 'name',
           type: 'string',
-          example: 'is john gay',
+          example: '"is john gay" ',
           preconditions: [{ name: 'maximumlength', options: { length: Constants.config.poll.maxChar } }],
         }),
         new patron.Argument({

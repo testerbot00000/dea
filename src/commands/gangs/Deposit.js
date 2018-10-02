@@ -25,7 +25,7 @@ class Deposit extends patron.Command {
   async run(msg, args) {
     const transactionFee = args.transfer * Constants.config.transfer.cut;
     const received = args.transfer - transactionFee;
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
 
     if (gang === null) {
       return msg.createErrorReply('You\'re not in a gang.');
@@ -34,7 +34,7 @@ class Deposit extends patron.Command {
     const leader = msg.client.users.get(gang.leaderId);
     await db.userRepo.modifyCash(msg.dbGuild, msg.member, -args.transfer);
     await db.gangRepo.updateGang(gang.leaderId, gang.guildId, new IncMoneyUpdate('wealth', received));
-    const newGang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+    const newGang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
     await leader.tryDM(msg.author.tag.boldify() + ' has deposited ' + received.USD() + ' to your gang.', { guild: msg.guild });
     return msg.createReply('You have successfully deposited ' + received.USD() + ' to your gang. Transaction fee: ' + transactionFee.USD() + '. Wealth: ' + NumberUtil.format(newGang.wealth) + '.');
   }

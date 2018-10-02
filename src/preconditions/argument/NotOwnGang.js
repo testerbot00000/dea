@@ -9,7 +9,7 @@ class NotOwnGang extends patron.ArgumentPrecondition {
   }
 
   async run(command, msg, argument, args, value) {
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
     if (value.name !== gang.name) {
       return patron.PreconditionResult.fromSuccess();
     }

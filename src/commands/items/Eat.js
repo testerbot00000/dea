@@ -13,7 +13,7 @@ class Eat extends patron.Command {
           name: 'item',
           key: 'item',
           type: 'item',
-          example: 'dab',
+          example: '"beef"',
           preconditions: ['donthave', { name: 'nottype', options: { types: ['fish', 'meat'] } }],
           remainder: true
         })

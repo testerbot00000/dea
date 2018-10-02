@@ -14,7 +14,7 @@ class Shop extends patron.Command {
           name: 'item',
           key: 'item',
           type: 'item',
-          example: 'bear grylls meat',
+          example: '"gold crate"',
           preconditions: [{ name: 'nottype', options: { types: ['crate'] } }]
         }),
         new patron.Argument({

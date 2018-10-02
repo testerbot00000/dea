@@ -1,10 +1,12 @@
 class Gang {
-  constructor(leaderId, guildId, name) {
+  constructor(index, leaderId, guildId, name) {
+    this.index = index;
     this.leaderId = leaderId;
     this.guildId = guildId;
     this.name = name;
     this.wealth = 0;
     this.members = [];
+    this.elders = [];
   }
 }
 

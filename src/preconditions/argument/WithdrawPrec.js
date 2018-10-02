@@ -10,7 +10,7 @@ class WithdrawPrec extends patron.ArgumentPrecondition {
   }
 
   async run(command, msg, argument, args, value) {
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
     if (value <= Math.round(NumberUtil.realValue(gang.wealth) * 0.2, 2)) {
       return patron.PreconditionResult.fromSuccess();
     }

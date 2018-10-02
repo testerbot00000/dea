@@ -16,13 +16,13 @@ class Vote extends patron.Command {
           name: 'poll',
           key: 'poll',
           type: 'poll',
-          example: 'is john gay'
+          example: '6'
         }),
         new patron.Argument({
           name: 'choice',
           key: 'choice',
           type: 'choice',
-          example: 'yes',
+          example: '1',
           remainder: true
         })
       ]

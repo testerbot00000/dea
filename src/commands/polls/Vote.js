@@ -31,6 +31,7 @@ class Vote extends patron.Command {
 
   async run(msg, args) {
     const elderDays = NumberUtil.msToTime(Constants.config.polls.elderTimeRequired).days;
+
     if (args.poll.elderOnly === true && msg.member.joinedAt - Date.now() > Constants.config.polls.elderTimeRequired) {
       return msg.createErrorReply('You may not vote on this poll until you\'ve been in this server for ' + elderDays + ' days.');
     } else if (args.poll.modOnly === true && ModerationService.getPermLevel(msg.dbGuild, msg.member) < 1) {
@@ -39,7 +40,7 @@ class Vote extends patron.Command {
       return msg.createErrorReply('You\'ve already voted on this poll.');
     }
 
-    const votedChoice = 'choices.' + key;
+    const votedChoice = 'choices.' + args.choice;
     await db.pollRepo.updatePoll(args.poll.name, args.poll.creatorId, msg.guild.id, { $inc: { [votedChoice]: 1 } });
     await db.pollRepo.updatePoll(args.poll.name, args.poll.creatorId, msg.guild.id, { $push: { voters: msg.author.id } });
     return msg.createReply('You\'ve successfully voted `' + args.choice + '` on poll: ' + args.poll.name.boldify() + '.');

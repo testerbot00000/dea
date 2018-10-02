@@ -16,6 +16,10 @@ class Polls extends patron.Command {
     const polls = (await db.pollRepo.findMany({ guildId: msg.guild.id })).sort((a, b) => b.index - a.index);
     let message = '';
 
+    if (polls.length <= 0) {
+      return msg.createErrorReply('There\'s currently no active polls in this server.');
+    }
+
     for (let i = 0; i < polls.length; i++) {
       message += polls[i].index + '. ' + polls[i].name + '\n';
       if (i === 20) {

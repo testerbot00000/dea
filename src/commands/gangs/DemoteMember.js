@@ -26,8 +26,11 @@ class DemoteMember extends patron.Command {
       return msg.createErrorReply('You\'re not in a gang.');
     } else if (msg.author.id !== gang.leaderId) {
       return msg.createErrorReply('You\'re not the owner of this gang.');
+    } else if (gang.elders.some((v) => v === msg.author.id) === false) {
+      return msg.createErrorReply('This member isn\'t an elder.');
     }
 
+    await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $push: { members: args.member.id } });
     await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { elders: args.member.id } });
 
     return msg.createReply('You\'ve successfully demoted ' + args.member.user.tag + ' from an elder in your gang.');

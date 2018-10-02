@@ -26,9 +26,14 @@ class PromoteMember extends patron.Command {
       return msg.createErrorReply('You\'re not in a gang.');
     } else if (msg.author.id !== gang.leaderId) {
       return msg.createErrorReply('You\'re not the owner of this gang.');
+    } else if (msg.author.id === args.member.id) {
+      return msg.createErrorReply('You cannot make yourself an elder.');
+    } else if (gang.elders.some((v) => v === msg.author.id)) {
+      return msg.createErrorReply('This member is already an elder.');
     }
 
     await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $push: { elders: args.member.id } });
+    await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { members: args.member.id } });
 
     return msg.createReply('You\'ve successfully promoted ' + args.member.user.tag + ' as an elder in your gang.');
   }

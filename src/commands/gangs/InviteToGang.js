@@ -33,23 +33,21 @@ class InviteToGang extends patron.Command {
     } else if (msg.author.id !== gang.leaderId && gang.elders.some((v) => v === msg.author.id) === false) {
       return msg.createErrorReply('You cannot invite anyone top your gang, since you\'re not a leader, or elder of it.');
     }
-  
-    if (leader !== null) {
-      const key = Random.nextInt(0, 2147000000).toString();
+
+    const key = Random.nextInt(0, 2147000000).toString();
       
-      await args.user.tryDM(msg.author.tag.boldify() + ' is trying to invite you to his gang ' + gang.name.boldify() + ', reply with "' + key + '" within the next 5 minutes to accept this.', { guild: msg.guild });
-      await msg.createReply('The user has successfully been informed of your join request.');
+    await args.user.tryDM(msg.author.tag.boldify() + ' is trying to invite you to his gang ' + gang.name.boldify() + ', reply with "' + key + '" within the next 5 minutes to accept this.', { guild: msg.guild });
+    await msg.createReply('The user has successfully been informed of your join request.');
 
-      const result = await args.user.dmChannel.awaitMessages(m => m.author.id === args.user.id && m.content.includes(key), { time: 300000, maxMatches: 1 });
+    const result = await args.user.dmChannel.awaitMessages(m => m.author.id === args.user.id && m.content.includes(key), { time: 300000, maxMatches: 1 });
 
-      if (result.size >= 1) {
-        await db.gangRepo.updateGang(msg.author.id, msg.guild.id, { $push: { members: args.user.id } });
-        await msg.author.tryDM('You\'ve successfully let ' + msg.author.tag + ' join your gang.', { guild: msg.guild });
-        return args.user.tryDM('You\'ve successfully joined gang ' + gang.name.boldify() + '.', { guild: msg.guild });
-      }
-
-      return msg.author.tryDM(leader.tag.boldify() + ' didn\'t respond to your join request.', { guild: msg.guild });
+    if (result.size >= 1) {
+      await db.gangRepo.updateGang(msg.author.id, msg.guild.id, { $push: { members: args.user.id } });
+      await msg.author.tryDM('You\'ve successfully let ' + msg.author.tag + ' join your gang.', { guild: msg.guild });
+      return args.user.tryDM('You\'ve successfully joined gang ' + gang.name.boldify() + '.', { guild: msg.guild });
     }
+
+    return msg.author.tryDM(leader.tag.boldify() + ' didn\'t respond to your join request.', { guild: msg.guild });
   }
 }
 

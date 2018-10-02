@@ -28,7 +28,7 @@ class PromoteMember extends patron.Command {
       return msg.createErrorReply('You\'re not the owner of this gang.');
     } else if (msg.author.id === args.member.id) {
       return msg.createErrorReply('You cannot make yourself an elder.');
-    } else if (gang.elders.some((v) => v === msg.author.id)) {
+    } else if (gang.elders.some((v) => v === args.member.id)) {
       return msg.createErrorReply('This member is already an elder.');
     }
 

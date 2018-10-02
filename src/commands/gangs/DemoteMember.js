@@ -26,7 +26,7 @@ class DemoteMember extends patron.Command {
       return msg.createErrorReply('You\'re not in a gang.');
     } else if (msg.author.id !== gang.leaderId) {
       return msg.createErrorReply('You\'re not the owner of this gang.');
-    } else if (gang.elders.some((v) => v === msg.author.id) === false) {
+    } else if (gang.elders.some((v) => v === args.member.id) === false) {
       return msg.createErrorReply('This member isn\'t an elder.');
     }
 

@@ -67,12 +67,12 @@ client.on('message', (msg) => {
           break;
       }
 
-      await Logger.log('Unsuccessful command result: ' + msg.id + ' | Reason: ' + result.errorReason, 'DEBUG');
+      await Logger.log('Unsuccessful command result: ' + msg.id + ' Guild: ' + msg.guild.name + ' Channel: ' + msg.channel.name + ' Content ' + msg.content + ' | Reason: ' + result.errorReason, 'DEBUG');
 
       return msg.tryCreateErrorReply(message);
     }
 
-    return Logger.log('Successful command result: ' + msg.id, 'DEBUG');
+    return Logger.log('Successful command result: ' + msg.id + ' Guild: ' + msg.guild.name + ' Channel: ' + msg.channel.name + ' Content ' + msg.content, 'DEBUG');
   })()
     .catch((err) => Logger.handleError(err));
 });

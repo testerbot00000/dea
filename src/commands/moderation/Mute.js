@@ -41,8 +41,6 @@ class Mute extends patron.Command {
   async run(msg, args) {
     const role = msg.guild.roles.get(msg.dbGuild.roles.muted);
 
-    const welcomerole = msg.guild.roles.get(msg.dbGuild.roles.welcome);
-
     const formattedHours = args.hours + ' hour' + (args.hours === 1 ? '' : 's');
 
     if (msg.dbGuild.roles.muted === null) {

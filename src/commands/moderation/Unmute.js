@@ -29,19 +29,12 @@ class Unmute extends patron.Command {
   }
 
   async run(msg, args) {
-    const welcomerole = msg.guild.roles.get(msg.dbGuild.roles.welcome);
     const role = msg.guild.roles.get(msg.dbGuild.roles.muted);
 
     if (msg.dbGuild.roles.muted === null) {
       return msg.createErrorReply('You must set a muted role with the `' + Constants.data.misc.prefix + 'setmute @Role` command before you can unmute users.');
     } else if (args.member.roles.has(msg.dbGuild.roles.muted) === false) {
       return msg.createErrorReply('This user is not muted.');
-    } else if (welcomerole !== null) {
-      await args.member.addRole(welcomerole);
-      await args.member.removeRole(role);
-      await msg.createReply('You have successfully unmuted ' + args.member.user.tag + '.');
-      await ModerationService.tryInformUser(msg.guild, msg.author, 'unmuted', args.member.user, args.reason);
-      return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Unmute', Constants.data.colors.unmute, args.reason, msg.author, args.member.user);
     }
 
     if (role === undefined) {

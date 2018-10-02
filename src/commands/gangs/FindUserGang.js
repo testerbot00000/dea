@@ -52,7 +52,7 @@ class FindUserGang extends patron.Command {
       }
     }
 
-    return msg.channel.createMessage('**Gang:** ' + gang.name + '\n**Leader:** ' + leader + (gang.elders !== undefined || gang.elders !== null && gang.elders.length > 0 ? '\n**Elders:** ' + elders.substring(0, elders.length - 2) : '') + (gang.members !== undefined || gang.members !== null && gang.members.length > 0 ? '\n**Members:** ' + members.substring(0, members.length - 2) : '') + '\n**Wealth:** ' + NumberUtil.format(gang.wealth));
+    return msg.channel.createMessage('**Gang:** ' + gang.name + '\n**Leader:** ' + leader + (gang.elders !== undefined || gang.elders !== null || gang.elders.length > 0 ? '\n**Elders:** ' + elders.substring(0, elders.length - 2) : '') + (gang.members !== undefined || gang.members !== null || gang.members.length > 0 ? '\n**Members:** ' + members.substring(0, members.length - 2) : '') + '\n**Wealth:** ' + NumberUtil.format(gang.wealth));
   }
 }
 

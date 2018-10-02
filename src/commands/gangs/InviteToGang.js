@@ -43,7 +43,7 @@ class InviteToGang extends patron.Command {
 
     if (result.size >= 1) {
       await db.gangRepo.updateGang(msg.author.id, msg.guild.id, { $push: { members: args.user.id } });
-      await msg.author.tryDM('You\'ve successfully let ' + msg.author.tag + ' join your gang.', { guild: msg.guild });
+      await msg.author.tryDM('You\'ve successfully let ' + args.user.tag + ' join your gang.', { guild: msg.guild });
       return args.user.tryDM('You\'ve successfully joined gang ' + gang.name.boldify() + '.', { guild: msg.guild });
     }
 

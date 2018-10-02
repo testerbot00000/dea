@@ -72,7 +72,7 @@ client.on('message', (msg) => {
       return msg.tryCreateErrorReply(message);
     }
 
-    return Logger.log('Successful command result: ' + msg.id + ' Guild: ' + msg.guild.name + ' Channel: ' + msg.channel.name + ' Content ' + msg.content, 'DEBUG');
+    return Logger.log('Successful command result: ' + msg.id + ' User: ' + msg.author.tag + ' User ID: + ' + msg.author.id + ' Guild: ' + msg.guild.name + ' Channel: ' + msg.channel.name + ' Content ' + msg.content, 'DEBUG');
   })()
     .catch((err) => Logger.handleError(err));
 });

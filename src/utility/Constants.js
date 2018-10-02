@@ -30,8 +30,8 @@ class Constants {
       },
 
       links: {
-        botInvite: 'https://discordapp.com/oauth2/authorize?client_id=419920535791730688&scope=bot&permissions=8',
-        serverInvite: 'https://discord.gg/mpy46Mh'
+        botInvite: 'https://discordapp.com/oauth2/authorize?client_id=496520437514371072&scope=bot&permissions=8',
+        serverInvite: 'https://discord.gg/usXDFN4'
       },
 
       messages: {

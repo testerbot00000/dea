@@ -28,7 +28,13 @@ class OpenAll extends patron.Command {
     let reply = '';
     let openAmount = 0;
 
-    openAmount = msg.dbUser.inventory[args.item.names[0]];
+    if (msg.dbUser.inventory[args.item.names[0]] > 100000) {
+      const botLagReply = await msg.createReply('To reduce bot lag, we\'re only opening 100000 of your crates');
+      botLagReply.delete(5000);
+      openAmount = 1000;
+    } else {
+      openAmount = msg.dbUser.inventory[args.item.names[0]];
+    }
     
     const item = await ItemService.massOpenCrate(openAmount, args.item, msg.dbGuild.items);
 

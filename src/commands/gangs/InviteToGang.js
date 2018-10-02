@@ -47,7 +47,7 @@ class InviteToGang extends patron.Command {
       return args.user.tryDM('You\'ve successfully joined gang ' + gang.name.boldify() + '.', { guild: msg.guild });
     }
 
-    return msg.author.tryDM(leader.tag.boldify() + ' didn\'t respond to your join request.', { guild: msg.guild });
+    return msg.author.tryDM(args.user.tag.boldify() + ' didn\'t respond to your join request.', { guild: msg.guild });
   }
 }
 

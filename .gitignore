@@ -1,0 +1,9 @@
+# Packages
+node_modules/
+
+# Authentication
+
+# Miscellaneous
+.vscode/
+logs/
+TODO

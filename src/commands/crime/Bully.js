@@ -9,7 +9,7 @@ class Bully extends patron.Command {
       names: ['bully'],
       groupName: 'crime',
       description: 'Bully any user by changing their nickname.',
-      coooldown: Constants.config.bully.cooldown,
+      cooldown: Constants.config.bully.cooldown,
       args: [
         new patron.Argument({
           name: 'member',

@@ -30,7 +30,7 @@ class Rape extends patron.Command {
       const cost = msg.dbUser.cash * Constants.config.rape.cost;
       await db.userRepo.modifyCash(msg.dbGuild, msg.member, -cost);
       
-      await msg.createReply('MAYDAY MY NIGGA! **MAYDAY!** ' + member.user.tag.boldify() + ' counter-raped you, forcing you to spend ' + NumberUtil.format(cost) + ' on rectal repairs.');
+      await msg.createReply('MAYDAY MY NIGGA! **MAYDAY!** ' + args.member.user.tag.boldify() + ' counter-raped you, forcing you to spend ' + NumberUtil.format(cost) + ' on rectal repairs.');
     } else {
       const dbUser = await db.userRepo.getUser(args.member.id, msg.guild.id);
       const cost = dbUser.cash * Constants.config.rape.cost;
@@ -38,7 +38,7 @@ class Rape extends patron.Command {
       
       await db.userRepo.modifyCash(msg.dbGuild, msg.member, -cost);
       await args.member.user.tryDM('Listen here bucko, ' + msg.author.tag.boldify() + ' just raped your fucking asshole and forced you to spend ' + costStr  + ' on rectal repairs.');
-      await msg.createReply('You raped his **GODDAMN ASSHOLE** :joy:! ' + member.user.tag.boldify() + ' needed to spend ' + costStr + ' just to get his anus working again!');
+      await msg.createReply('You raped his **GODDAMN ASSHOLE** :joy:! ' + args.member.user.tag.boldify() + ' needed to spend ' + costStr + ' just to get his anus working again!');
     }
   }
 }

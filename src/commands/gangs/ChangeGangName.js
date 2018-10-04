@@ -24,6 +24,7 @@ class ChangeGangName extends patron.Command {
 
   async run(msg, args) {
     const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+    
     if (!/\w/g.test(args.name)) {
       return msg.createErrorReply('Your gang\'s name may only contain numbers, and letters.');
     } else if (gang === null) {

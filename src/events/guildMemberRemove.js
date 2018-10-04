@@ -8,7 +8,7 @@ client.on('guildMemberRemove', (member) => {
     
     if (gang !== null) {
       if (gang.leaderId !== member.id) {
-        await db.gangRepo.updateGang(gang.leaderId, member.guild.id, { $pull: { members: args.user.id } });
+        await db.gangRepo.updateGang(gang.leaderId, member.guild.id, { $pull: { members: msg.user.id } });
         await db.gangRepo.updateGang(gang.leaderId, member.guild.id, { $pull: { elders: member.author.id } });
       } else {
         const newLeader = gang.members[0];

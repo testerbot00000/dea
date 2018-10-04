@@ -2,8 +2,8 @@ const client = require('../singletons/client.js');
 const Logger = require('../utility/Logger.js');
 const db = require('../database');
 
-client.on('guildMemberRemove', () => {
-  (async (member) => {
+client.on('guildMemberRemove', (member) => {
+  (async () => {
     const gang = await db.gangRepo.findOne( { $or: [{ members: member.id }, { leaderId: member.id }, { elders: member.id }], $and: [{ guildId: member.guild.id }] } );
     
     if (gang !== null) {

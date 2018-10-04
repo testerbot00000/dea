@@ -23,7 +23,7 @@ class FindUserGang extends patron.Command {
   async run(msg, args) {
     let leader = '';
     let members = '';
-    const gang = await db.gangRepo.findOne( { $or: [{ members: args.member.id }, { leaderId: args.member.id }], $and: [{ guildId: msg.guild.id }] } );
+    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
 
     if (gang === null) {
       return msg.createErrorReply('This user is not in a gang.');

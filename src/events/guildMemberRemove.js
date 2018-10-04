@@ -8,13 +8,13 @@ client.on('guildMemberRemove', (member) => {
     
     if (gang !== null) {
       if (gang.leaderId !== member.id) {
-        await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { members: args.user.id } });
-        await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { elders: msg.author.id } });
+        await db.gangRepo.updateGang(gang.leaderId, member.guild.id, { $pull: { members: args.user.id } });
+        await db.gangRepo.updateGang(gang.leaderId, member.guild.id, { $pull: { elders: member.author.id } });
       } else {
         const newLeader = gang.members[0];
-        await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { members: newLeader } });
-        await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { elders: newLeader } });
-        await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $set: { leaderId: newLeader } });
+        await db.gangRepo.updateGang(gang.leaderId, member.guild.id, { $pull: { members: newLeader } });
+        await db.gangRepo.updateGang(gang.leaderId, member.guild.id, { $pull: { elders: newLeader } });
+        await db.gangRepo.updateGang(gang.leaderId, member.guild.id, { $set: { leaderId: newLeader } });
       }
     }
   })()

@@ -19,7 +19,8 @@ class LeaveGang extends patron.Command {
       return msg.createErrorReply('You cannot leave you\'re the leader of the gang, please pass membership to another member of the gang or destroy the gang.');
     }
 
-    const leader = await msg.client.users.get(gang.leaderId);
+    const leader = await msg.guild.members.get(gang.leaderId);
+    
     await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { members: msg.author.id } });
     await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { elders: msg.author.id } });
     await leader.tryDM(msg.author.tag.boldify() + ' has left your gang ' + gang.name.boldify() + '.', { guild: msg.guild });

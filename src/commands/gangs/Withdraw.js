@@ -26,10 +26,13 @@ class Withdraw extends patron.Command {
 
   async run(msg, args) {
     const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
-    const leader = await msg.client.users.get(gang.leaderId);
+    const leader = await msg.guild.members.get(gang.leaderId);
+
     await db.userRepo.modifyCash(msg.dbGuild, msg.member, args.transfer);
     await db.gangRepo.updateGang(gang.leaderId, gang.guildId, new IncMoneyUpdate('wealth', -args.transfer));
+
     const newGang = await db.gangRepo.findOne({ guildId: msg.guild.id, name: gang.name });
+    
     await leader.tryDM(msg.author.tag.boldify() + ' has withdrawn ' + args.transfer.USD() + ' from your gang.', { guild: msg.guild });
     return msg.createReply('You have successfully withdrawn ' + args.transfer.USD() + ' from your gang. ' + newGang.name + '\'s Wealth: ' + NumberUtil.format(newGang.wealth) + '.');
   }

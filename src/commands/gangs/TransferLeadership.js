@@ -28,8 +28,6 @@ class TransferLeadership extends patron.Command {
       return msg.createErrorReply('You cannot transfer gang leadership, since you\'re not leader of it.');
     }
 
-    const user = msg.client.users.get(args.user.id);
-
     const userGang = await db.gangRepo.findOne( { $or: [{ members: args.user.id }, { elders: args.user.id }, { leaderId: args.user.id }], $and: [{ guildId: msg.guild.id }] } );
 
     if (userGang === null || userGang.name !== gang.name) {
@@ -42,7 +40,7 @@ class TransferLeadership extends patron.Command {
     await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { elders: args.user.id } });
     await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $push: { elders: msg.author.id } });
     await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $set: { leaderId: args.user.id } });
-    await user.tryDM('You\'ve been transfered leadership of gang ' + gang.name + '.', { guild: msg.guild });
+    await args.user.tryDM('You\'ve been transfered leadership of gang ' + gang.name + '.', { guild: msg.guild });
     return msg.createReply('You\'ve successfully transfered gang leadership to ' + args.user.tag.boldify() + '.');
   }
 }

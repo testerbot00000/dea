@@ -22,13 +22,14 @@ class JoinGang extends patron.Command {
 
   async run(msg, args) {
     const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+
     if (gang !== null) {
       return msg.createErrorReply('You\'re already in a gang.');
     } else if (args.gang.members.length + args.gang.elders.length >= 10) {
       return msg.createErrorReply('Sorry, this gang is too full.');
     }
 
-    const leader = await msg.client.users.get(args.gang.leaderId);
+    const leader = await msg.guild.members.get(args.gang.leaderId);
   
     if (leader !== null) {
       const key = Random.nextInt(0, 2147000000).toString();

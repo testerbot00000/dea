@@ -28,8 +28,6 @@ class KickGangMember extends patron.Command {
       return msg.createErrorReply('You cannot kick anyone from your gang, since you\'re not a leader, or elder of it.');
     }
 
-    const user = msg.client.users.get(args.user.id);
-
     const userGang = await db.gangRepo.findOne( { $or: [{ members: args.user.id }, { elders: args.user.id }, { leaderId: args.user.id }], $and: [{ guildId: msg.guild.id }] } );
 
     if (userGang === null || userGang.name !== gang.name) {
@@ -38,8 +36,8 @@ class KickGangMember extends patron.Command {
 
     await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { members: args.user.id } });
     await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { elders: msg.author.id } });
-    await user.tryDM('You\'ve been kicked from your gang ' + gang.name.boldify() + '.', { guild: msg.guild });
-    return msg.createReply('You\'ve successfully kicked ' + user.tag.boldify() + ' from your gang.');
+    await args.user.tryDM('You\'ve been kicked from your gang ' + gang.name.boldify() + '.', { guild: msg.guild });
+    return msg.createReply('You\'ve successfully kicked ' + args.user.tag.boldify() + ' from your gang.');
   }
 }
 

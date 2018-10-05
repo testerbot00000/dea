@@ -29,6 +29,7 @@ class Gang extends patron.Command {
     
     if (String.isNullOrWhiteSpace(args.gang.name)) {
       gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+      
       if (gang === null) {
         return msg.createErrorReply('You\'re not in a gang, therefore you must specify one.');
       }

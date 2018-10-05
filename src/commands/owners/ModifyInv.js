@@ -33,7 +33,7 @@ class ModifyInv extends patron.Command {
 
   async run(msg, args) {
     if (args.amount !== Infinity && Number.isInteger(args.amount) === false) {
-      msg.createErrorReply('You have provided an invalid amount.');
+      return msg.createErrorReply('You have provided an invalid amount.');
     }
     
     const inventory = 'inventory.' + args.item.names[0];

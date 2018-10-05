@@ -35,6 +35,10 @@ class InviteToGang extends patron.Command {
     }
 
     const key = Random.nextInt(0, 2147000000).toString();
+
+    if (args.user.dmChannel === null) {
+      await args.user.createDM();
+    }
       
     await args.user.tryDM(msg.author.tag.boldify() + ' is trying to invite you to his gang ' + gang.name.boldify() + ', reply with "' + key + '" within the next 5 minutes to accept this.', { guild: msg.guild });
     await msg.createReply('The user has successfully been informed of your join request.');

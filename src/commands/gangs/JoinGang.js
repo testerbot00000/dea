@@ -30,6 +30,10 @@ class JoinGang extends patron.Command {
     }
 
     const leader = await msg.guild.members.get(args.gang.leaderId);
+
+    if (leader.dmChannel === null) {
+      await leader.createDM();
+    }
   
     if (leader !== null) {
       const key = Random.nextInt(0, 2147000000).toString();

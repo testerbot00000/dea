@@ -60,8 +60,8 @@ class Trade extends patron.Command {
     await user.tryDM(msg.author.tag.boldify() + ' is asking to trade you ' + args.amount + ' of ' + ItemService.capitializeWords(args.item.names[0]) + ' for ' + args.amount2 + ' of ' + ItemService.capitializeWords(args.item2.names[0]) + ' reply with "' + key + '" within the next 5 minutes to accept this trade.', { guild: msg.guild });
     await msg.createReply('The user has been informed of this trade.');
 
-    if (leader.dmChannel === null) {
-      await leader.createDM();
+    if (user.dmChannel === null) {
+      await user.createDM();
     }
 
     const result = await user.dmChannel.awaitMessages((m) => m.author.id === user.id && m.content.includes(key), { time: 300000, maxMatches: 1 });
@@ -78,10 +78,12 @@ class Trade extends patron.Command {
 
       const exchangedItem = 'inventory.' + args.item.names[0];
       const wantedItem = 'inventory.' + args.item2.names[0];
+
       await db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [exchangedItem]: -args.amount } });
       await db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [wantedItem]: args.amount2 } });
       await db.userRepo.updateUser(args.member.id, msg.guild.id, { $inc: { [wantedItem]: -args.amount2 } });
       await db.userRepo.updateUser(args.member.id, msg.guild.id, { $inc: { [exchangedItem]: args.amount } });
+      
       await user.tryDM('You\'ve successfully traded with ' + msg.author.tag.boldify() + '.', { guild: msg.guild });
       return msg.author.tryDM('You\'ve successfully traded with ' + user.tag.boldify() + '.', { guild: msg.guild });
     }

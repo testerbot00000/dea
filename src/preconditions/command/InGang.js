@@ -9,10 +9,12 @@ class InGang extends patron.Precondition {
   }
 
   async run(command, msg) {
-    const gang = await db.gangRepo.any( { $or: [{ members: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
-    if (gang === true) {
+    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+      
+    if (gang !== null) {
       return patron.PreconditionResult.fromSuccess();
     }
+    
     return patron.PreconditionResult.fromError(command, 'You aren\'t in a gang.');
   }
 }

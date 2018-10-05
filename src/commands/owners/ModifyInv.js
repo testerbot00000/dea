@@ -11,7 +11,7 @@ class ModifyInv extends patron.Command {
         new patron.Argument({
           name: 'amount',
           key: 'amount',
-          type: 'int',
+          type: 'quantity',
           example: '5'
         }),
         new patron.Argument({

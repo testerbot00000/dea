@@ -35,7 +35,7 @@ class Chill extends patron.Command {
   async run(msg, args) {
     const defaultPerms = msg.channel.permissionOverwrites.get(msg.guild.id);
 
-    if (defaultPerms.deny.has('SEND_MESSAGES') && !defaultPerms.allow.has('SEND_MESSAGES')) {
+    if (defaultPerms && defaultPerms.deny.has('SEND_MESSAGES') && !defaultPerms.allow.has('SEND_MESSAGES')) {
       return msg.createErrorReply('this channel is already chilled.');
     }
 

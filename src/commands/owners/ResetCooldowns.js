@@ -4,7 +4,7 @@ class ResetCooldowns extends patron.Command {
   constructor() {
     super({
       names: ['resetcooldowns', 'deletecooldowns', 'resetcds', 'resetcd'],
-      groupName: 'administration',
+      groupName: 'owners',
       description: 'Reset any member\'s cooldowns',
       args: [
         new patron.Argument({

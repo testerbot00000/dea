@@ -16,7 +16,7 @@ class CashPercent extends patron.ArgumentPrecondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'The maximum percent of ' + argument.name + ' is ' + options.percent * 100 + '%. That is ' + (cashValue * options.percent).USD() + '.');
+    return patron.PreconditionResult.fromError(command, 'The maximum percent of ' + argument.name + ' is ' + options.percent * 100 + '%, that is ' + (cashValue * options.percent).USD() + '.');
   }
 }
 

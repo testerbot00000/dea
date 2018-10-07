@@ -11,10 +11,8 @@ const Logger = require('./utility/Logger.js');
   await patron.RequireAll(path.join(__dirname, 'events'));
   await IntervalService.initiate(client);
 
-  //  BOT_TOKEN=MzQwNjE0NDc3ODc3NjA4NDU4.DpltdA.yrmJd3wG2v3uUai1YjToXsmXrjM
-  //  MONGO_DB_URL=mongodb://dea:deadea1@ds123603.mlab.com:23603/rewrite
-  await client.db.connect('mongodb://dea:deadea1@ds123603.mlab.com:23603/rewrite');
-  await client.login('MzQwNjE0NDc3ODc3NjA4NDU4.DpltdA.yrmJd3wG2v3uUai1YjToXsmXrjM');
+  await client.db.connect(process.env.MONGO_DB_URL);
+  await client.login(process.env.BOT_TOKEN);
 })()
   .catch(e => Logger.handleError(e));
 

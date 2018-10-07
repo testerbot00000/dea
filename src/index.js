@@ -5,7 +5,7 @@ const Logger = require('./utility/Logger.js');
 (async () => {
   await require('./extensions');
 
-  const client = require('./structures/client.js');
+  const client = require('./structures/Client.js');
   const IntervalService = require('./services/IntervalService.js');
 
   await patron.RequireAll(path.join(__dirname, 'events'));

@@ -10,7 +10,7 @@ class ModifyInv extends patron.Command {
         new patron.Argument({
           name: 'amount',
           key: 'amount',
-          type: 'float',
+          type: 'int',
           example: '5'
         }),
         new patron.Argument({
@@ -31,10 +31,6 @@ class ModifyInv extends patron.Command {
   }
 
   async run(msg, args) {
-    if (!Number.isFinite(args.amount) && Number.isInteger(args.amount)) {
-      return msg.createErrorReply('Yyu have provided an invalid amount.');
-    }
-
     const inventory = 'inventory.' + args.item.names[0];
 
     await msg.client.db.userRepo.updateUser(args.member.id, msg.guild.id, { $inc: { [inventory]: args.amount } });

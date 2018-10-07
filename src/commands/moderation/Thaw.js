@@ -25,7 +25,7 @@ class Thaw extends patron.Command {
   async run(msg, args) {
     const defaultPerms = msg.channel.permissionsFor(msg.guild.id);
 
-    if (defaultPerms && defaultPerms.has('SEND_MESSAGES')) {
+    if (defaultPerms.has('SEND_MESSAGES')) {
       return msg.createErrorReply('this channel is already thawed.');
     }
 

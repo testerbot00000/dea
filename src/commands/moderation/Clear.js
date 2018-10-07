@@ -38,7 +38,17 @@ class Clear extends patron.Command {
 
     const reply = await msg.createReply('You have successfully deleted ' + args.quantity + ' messages.');
 
-    ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Clear', Constants.data.colors.clear, args.reason, msg.author, null, 'Quantity', args.quantity);
+    ModerationService.tryModLog(
+      msg.dbGuild,
+      msg.guild,
+      'Clear',
+      Constants.data.colors.clear,
+      args.reason,
+      msg.author,
+      null,
+      'Quantity',
+      args.quantity + '**Channel:** ' + msg.channel.name + ' (' + msg.channel.toString() + ')'
+    );
 
     return reply.delete(3000);
   }

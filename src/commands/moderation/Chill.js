@@ -46,12 +46,15 @@ class Chill extends patron.Command {
 
     await msg.createReply('the channel has been chilled and won\'t be heated up until ' + args.time.toLocaleString() + ' seconds have passed.');
     await PromiseUtil.delay(args.time * 1000);
-    await msg.createReply('the channel has been heated up.');
 
-    await msg.channel.updateOverwrite(msg.guild.id, {
-      SEND_MESSAGES: null,
-      ADD_REACTIONS: null
-    });
+    if (!msg.channel.permissionsFor(msg.guild.id).has('SEND_MESSAGES')) {
+      await msg.createReply('the channel has been heated up.');
+
+      await msg.channel.updateOverwrite(msg.guild.id, {
+        SEND_MESSAGES: null,
+        ADD_REACTIONS: null
+      });
+    }
 
     return ModerationService.tryModLog(
       msg.dbGuild,
@@ -61,7 +64,8 @@ class Chill extends patron.Command {
       args.reason,
       msg.author,
       null,
-      'Duration', args.time.toLocaleString() + ' seconds\n**Channel:** ' + msg.channel.name + ' (' + msg.channel.toString() + ')'
+      'Duration',
+      args.time.toLocaleString() + ' seconds\n**Channel:** ' + msg.channel.name + ' (' + msg.channel.toString() + ')'
     );
   }
 }

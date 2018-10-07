@@ -20,6 +20,7 @@ class Guild {
     };
     this.autoTrivia = false;
     this.trivia = {};
+    this.regenHealth = 5;
     this.items = items;
   }
 }

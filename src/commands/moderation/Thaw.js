@@ -36,7 +36,17 @@ class Thaw extends patron.Command {
 
     await msg.createReply('the channel has been thawed.');
 
-    return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Thaw', Constants.data.colors.chill, args.reason, msg.author);
+    return ModerationService.tryModLog(
+      msg.dbGuild,
+      msg.guild,
+      'Thaw',
+      Constants.data.colors.chill,
+      args.reason,
+      msg.author,
+      null,
+      'Channel',
+      msg.channel.name + ' (' + msg.channel.toString() + ')'
+    );
   }
 }
 

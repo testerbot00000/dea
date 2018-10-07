@@ -53,7 +53,16 @@ class Chill extends patron.Command {
       ADD_REACTIONS: null
     });
 
-    return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Chill', Constants.data.colors.chill, args.reason, msg.author, null, 'Duration', args.time.toLocaleString() + ' seconds');
+    return ModerationService.tryModLog(
+      msg.dbGuild,
+      msg.guild,
+      'Chill',
+      Constants.data.colors.chill,
+      args.reason,
+      msg.author,
+      null,
+      'Duration', args.time.toLocaleString() + ' seconds\n**Channel:** ' + msg.channel.name + ' (' + msg.channel.toString() + ')'
+    );
   }
 }
 

@@ -43,7 +43,7 @@ class JoinGang extends patron.Command {
     const dm = await leader.tryDM(msg.author.tag.boldify() + ' is trying to join your gang, reply with "' + key + '" within the next 5 minutes to accept this.', { guild: msg.guild });
 
     if (!dm) {
-      return msg.createErrorReply('I am unable to inform ' + leader.user.tag + ' of your join request.');
+      return msg.createErrorReply('I am unable to inform ' + leader.user.tag.boldify() + ' of your join request.');
     }
 
     await msg.createReply('the leader of this gang has successfully been informed of your join request.');

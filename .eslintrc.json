@@ -85,7 +85,7 @@
     "func-name-matching": "error",
     "func-names": ["error", "never"],
     "eol-last": ["error"],
-    "function-paren-newline": ["error", "never"],
+    "function-paren-newline": ["error"],
     "implicit-arrow-linebreak": "error",
     "indent": [ "error", 2, { "SwitchCase": 1 }],
     "max-statements-per-line": ["error", { "max": 3 }],

@@ -208,7 +208,8 @@ class Constants {
       intervals: {
         autoUnmute: 60000,
         autoRemovePoll: 60000,
-        autoTrivia: 300000
+        autoTrivia: 300000,
+        autoRegenHealth: 3600000
       },
 
       jump: {

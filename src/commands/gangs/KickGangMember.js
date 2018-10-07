@@ -36,7 +36,7 @@ class KickGangMember extends patron.Command {
 
     await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update('members', args.user.id));
     await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update('elders', msg.author.id));
-    await args.user.tryDM('you\'ve been kicked from your gang ' + gang.name.boldify() + '.', { guild: msg.guild });
+    await args.user.tryDM('You\'ve been kicked from the gang ' + gang.name.boldify() + '.', { guild: msg.guild });
 
     return msg.createReply('you\'ve successfully kicked ' + args.user.user.tag.boldify() + ' from your gang.');
   }

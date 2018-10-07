@@ -41,7 +41,7 @@ class Unmute extends patron.Command {
       return msg.createErrorReply('the set muted role has been deleted. Please set a new one with the `' + Constants.data.misc.prefix + 'setmute Role` command.');
     }
 
-    await args.member.removeRole(role);
+    await args.member.roles.remove(role);
     await msg.createReply('you have successfully unmuted ' + args.member.user.tag + '.');
     await ModerationService.tryInformUser(msg.guild, msg.author, 'unmuted', args.member.user, args.reason);
 

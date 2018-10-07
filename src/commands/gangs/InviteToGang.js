@@ -7,6 +7,7 @@ class InviteToGang extends patron.Command {
       names: ['invitetogang', 'invitegang'],
       groupName: 'gangs',
       description: 'Invites member to join your gang.',
+      preconditions: ['ingang'],
       args: [
         new patron.Argument({
           name: 'user',
@@ -21,14 +22,12 @@ class InviteToGang extends patron.Command {
 
   async run(msg, args) {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
-    const userGang = await msg.client.db.gangRepo.findOne({ $or: [{ members: args.user.id }, { leaderId: args.user.id }], $and: [{ guildId: msg.guild.id }] });
+    const userGang = await msg.client.db.gangRepo.findOne({ $or: [{ members: args.user.id }, { elders: args.user.id }, { leaderId: args.user.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (!gang) {
-      return msg.createErrorReply('you\'re not in a gang.');
-    } else if (userGang) {
+    if (userGang) {
       return msg.createErrorReply('this user is already in a gang.');
     } else if (gang.members.length + gang.elders.length >= 10) {
-      return msg.createErrorReply('sorry, your gang is too full.');
+      return msg.createErrorReply('sorry, your gang is full.');
     } else if (msg.author.id !== gang.leaderId && gang.elders.some(v => v === msg.author.id)) {
       return msg.createErrorReply('you cannot invite anyone to your gang since you\'re not a leader or elder of it.');
     }

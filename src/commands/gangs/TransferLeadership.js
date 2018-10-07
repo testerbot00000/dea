@@ -6,6 +6,7 @@ class TransferLeadership extends patron.Command {
       names: ['transferleadership', 'transferleader'],
       groupName: 'gangs',
       description: 'Transfers leadership of your gang to another gang member.',
+      preconditions: ['ingang'],
       args: [
         new patron.Argument({
           name: 'user',
@@ -21,9 +22,7 @@ class TransferLeadership extends patron.Command {
   async run(msg, args) {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (!gang) {
-      return msg.createErrorReply('you\'re not in a gang.');
-    } else if (msg.author.id !== gang.leaderId) {
+    if (msg.author.id !== gang.leaderId) {
       return msg.createErrorReply('you cannot transfer gang leadership, since you\'re not leader of it.');
     }
 

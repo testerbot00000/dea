@@ -8,6 +8,7 @@ class ChangeGangName extends patron.Command {
       names: ['changegangname', 'changegangsname', 'changegangname'],
       groupName: 'gangs',
       description: 'Changes your gang\'s name.',
+      preconditions: ['ingang'],
       args: [
         new patron.Argument({
           name: 'gang name',
@@ -23,13 +24,11 @@ class ChangeGangName extends patron.Command {
   }
 
   async run(msg, args) {
-    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
     const gangs = await msg.client.db.gangRepo.findMany({ guildId: msg.guild.id });
+    const gang = gangs.find(x => x.members.includes(msg.author.id) || x.elders.includes(msg.author.id) || x.leaderId === msg.author.id);
 
     if (!/\w/g.test(args.name)) {
       return msg.createErrorReply('your gang\'s name may only contain numbers, and letters.');
-    } else if (!gang) {
-      return msg.createErrorReply('you\'re not in a gang.');
     } else if (gangs.some(x => x.name === args.name)) {
       return msg.createErrorReply('a gang by the name `' + args.name + '` already exists.');
     } else if (msg.author.id !== gang.leaderId) {

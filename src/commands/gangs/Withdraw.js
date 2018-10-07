@@ -9,6 +9,7 @@ class Withdraw extends patron.Command {
       groupName: 'gangs',
       description: 'Withdraw money from your gang.',
       cooldown: Constants.config.gang.cooldownWithdraw,
+      preconditions: ['ingang'],
       args: [
         new patron.Argument({
           name: 'amount',
@@ -24,10 +25,6 @@ class Withdraw extends patron.Command {
 
   async run(msg, args) {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
-
-    if (!gang) {
-      return msg.createErrorReply('you\'re not in a gang.');
-    }
 
     const leader = msg.guild.members.get(gang.leaderId);
 

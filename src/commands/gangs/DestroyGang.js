@@ -5,16 +5,15 @@ class DestroyGang extends patron.Command {
     super({
       names: ['destroygang', 'desgang'],
       groupName: 'gangs',
-      description: 'Destroy your gang.'
+      description: 'Destroy your gang.',
+      preconditions: ['ingang']
     });
   }
 
   async run(msg) {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (!gang) {
-      return msg.createErrorReply('you\'re not in a gang.');
-    } else if (msg.author.id !== gang.leaderId) {
+    if (msg.author.id !== gang.leaderId) {
       return msg.createErrorReply('you\'re not the leader of your gang.');
     }
 

@@ -9,7 +9,7 @@ class CashPercent extends patron.ArgumentPrecondition {
   }
 
   async run(command, msg, argument, args, value, options) {
-    const dbUser = await msg.client.db.userRepo.getUser(msg.memberArg.id, msg.guild.id);
+    const dbUser = await msg.client.db.userRepo.getUser(args.member.id, msg.guild.id);
     const cashValue = NumberUtil.realValue(dbUser.cash);
 
     if (cashValue * options.percent >= value) {

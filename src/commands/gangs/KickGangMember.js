@@ -6,6 +6,7 @@ class KickGangMember extends patron.Command {
       names: ['kickgangmember'],
       groupName: 'gangs',
       description: 'Kick\'s a member from your gang.',
+      preconditions: ['ingang'],
       args: [
         new patron.Argument({
           name: 'user',
@@ -21,9 +22,7 @@ class KickGangMember extends patron.Command {
   async run(msg, args) {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (!gang) {
-      return msg.createErrorReply('you\'re not in a gang.');
-    } else if (msg.author.id !== gang.leaderId && !gang.elders.some(v => v === msg.author.id)) {
+    if (msg.author.id !== gang.leaderId && !gang.elders.some(v => v === msg.author.id)) {
       return msg.createErrorReply('you cannot kick anyone from your gang since you\'re not a leader or elder of it.');
     }
 

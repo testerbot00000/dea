@@ -8,6 +8,7 @@ class Deposit extends patron.Command {
       names: ['deposit'],
       groupName: 'gangs',
       description: 'Deposit into a gangs wealth.',
+      preconditions: ['ingang'],
       args: [
         new patron.Argument({
           name: 'amount',
@@ -25,10 +26,6 @@ class Deposit extends patron.Command {
     const transactionFee = args.transfer * Constants.config.transfer.cut;
     const received = args.transfer - transactionFee;
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
-
-    if (!gang) {
-      return msg.createErrorReply('you\'re not in a gang.');
-    }
 
     const leader = msg.guild.members.get(gang.leaderId);
 

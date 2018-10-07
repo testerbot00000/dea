@@ -6,6 +6,7 @@ class DemoteMember extends patron.Command {
       names: ['demotemember'],
       groupName: 'gangs',
       description: 'Demotes member in your gang.',
+      preconditions: ['ingang'],
       args: [
         new patron.Argument({
           name: 'member',
@@ -21,9 +22,7 @@ class DemoteMember extends patron.Command {
   async run(msg, args) {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (!gang) {
-      return msg.createErrorReply('you\'re not in a gang.');
-    } else if (msg.author.id !== gang.leaderId) {
+    if (msg.author.id !== gang.leaderId) {
       return msg.createErrorReply('you\'re not the owner of this gang.');
     } else if (!gang.elders.some(v => v === args.member.id)) {
       return msg.createErrorReply('this member isn\'t an elder.');

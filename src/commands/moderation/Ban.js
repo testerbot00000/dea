@@ -33,7 +33,7 @@ class Ban extends patron.Command {
       await ModerationService.tryInformUser(msg.guild, msg.author, 'banned', args.user, args.reason);
     }
 
-    await msg.guild.ban(args.user);
+    await msg.guild.members.ban(args.user);
     await msg.createReply('you have successfully banned ' + args.user.tag + '.');
 
     return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Ban', Constants.data.colors.ban, args.reason, msg.author, args.user);

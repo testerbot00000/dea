@@ -5,16 +5,15 @@ class LeaveGang extends patron.Command {
     super({
       names: ['leavegang'],
       groupName: 'gangs',
-      description: 'Leave\'s gang.'
+      description: 'Leave\'s gang.',
+      preconditions: ['ingang']
     });
   }
 
   async run(msg) {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (!gang) {
-      return msg.createErrorReply('you\'re not in a gang.');
-    } else if (msg.author.id === gang.leaderId) {
+    if (msg.author.id === gang.leaderId) {
       return msg.createErrorReply('you cannot leave you\'re the leader of the gang, please pass membership to another member of the gang or destroy the gang.');
     }
 

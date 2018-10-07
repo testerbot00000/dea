@@ -15,15 +15,15 @@ class Rob extends patron.Command {
           type: 'member',
           key: 'member',
           example: 'ThiccJoe#7777',
-          preconditions: ['assignmemberarg']
+          preconditions: ['noself']
         }),
         new patron.Argument({
           name: 'resources',
           type: 'quantity',
           key: 'resources',
           example: '500',
-          preconditionOptions: [{ percent: Constants.config.rob.max }],
-          preconditions: ['cashpercent', 'cash']
+          preconditionOptions: [{ percent: Constants.config.rob.max }, { minimum: Constants.config.rob.min }],
+          preconditions: ['cashpercent', 'minimumcash', 'cash']
         })
       ]
     });

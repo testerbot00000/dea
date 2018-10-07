@@ -32,7 +32,7 @@ class Clear extends patron.Command {
   }
 
   async run(msg, args) {
-    const messages = await msg.channel.fetchMessages({ limit: args.quantity });
+    const messages = await msg.channel.messages.fetch({ limit: args.quantity });
 
     await msg.channel.bulkDelete(messages);
 

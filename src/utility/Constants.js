@@ -168,7 +168,7 @@ class Constants {
       },
 
       rob: {
-        cooldown: 2880000,
+        cooldown: 28800000,
         max: 0.2,
         min: 500,
         odds: 60

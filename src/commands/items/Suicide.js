@@ -12,7 +12,7 @@ class Suicide extends patron.Command {
 
   async run(msg) {
     if (msg.dbUser.cash < Constants.items.suicide.cost) {
-      return msg.createErrorReply('You need ' + Constants.items.suicide.cost + ' to buy yourself a good noose.');
+      return msg.createErrorReply('You need ' + Constants.items.suicide.cost.USD() + ' to buy yourself a good noose.');
     }
 
     await msg.client.db.userRepo.deleteUser(msg.member.id, msg.guild.id);

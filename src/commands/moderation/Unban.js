@@ -29,7 +29,7 @@ class Unban extends patron.Command {
   }
 
   async run(msg, args) {
-    await msg.guild.unban(args.user);
+    await msg.guild.members.unban(args.user);
     await msg.createReply('you have successfully unbanned ' + args.user.tag + '.');
     await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Unban', Constants.data.colors.unban, args.reason, msg.author, args.user);
 

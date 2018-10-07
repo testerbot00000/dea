@@ -36,7 +36,7 @@ class RankService {
     if (rolesToAdd.length > 0) {
       return member.roles.add(rolesToAdd);
     } else if (rolesToRemove.length > 0) {
-      return member.removeRoles(rolesToRemove);
+      return member.roles.remove(rolesToRemove);
     }
   }
 

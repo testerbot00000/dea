@@ -10,7 +10,8 @@ class Guild {
     };
     this.channels = {
       modLog: null,
-      gamble: []
+      gamble: [],
+      ignore: []
     };
     this.settings = {
       messageMultiplier: 1

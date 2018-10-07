@@ -33,7 +33,7 @@ class Unmute extends patron.Command {
 
     if (!msg.dbGuild.roles.muted) {
       return msg.createErrorReply('you must set a muted role with the `' + Constants.data.misc.prefix + 'setmute @Role` command before you can unmute users.');
-    } else if (args.member.roles.has(msg.dbGuild.roles.muted)) {
+    } else if (!args.member.roles.has(msg.dbGuild.roles.muted)) {
       return msg.createErrorReply('this user is not muted.');
     }
 

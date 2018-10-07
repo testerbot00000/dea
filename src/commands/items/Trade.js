@@ -71,7 +71,7 @@ class Trade extends patron.Command {
 
       if (!dbUserNew.inventory[args.item2.names[0]] || dbUserNew.inventory[args.item2.names[0]] <= 0 || dbUserNew.inventory[args.item2.names[0]] < args.amount2 || dbUserNew.inventory[args.item2.names[0]] - args.amount2 < 0) {
         return user.tryDM('You don\'t own ' + args.amount2 + ItemService.capitializeWords(args.item2.names[0]) + ' anymore');
-      } else if (authorDbUserNew.inventory[args.item.names[0]] || authorDbUserNew.inventory[args.item.names[0]] <= 0 || authorDbUserNew.inventory[args.item.names[0]] < args.amount || authorDbUserNew.inventory[args.item.names[0]] - args.amount < 0) {
+      } else if (!authorDbUserNew.inventory[args.item.names[0]] || authorDbUserNew.inventory[args.item.names[0]] <= 0 || authorDbUserNew.inventory[args.item.names[0]] < args.amount || authorDbUserNew.inventory[args.item.names[0]] - args.amount < 0) {
         return user.tryDM(msg.author.tag + ' does not own ' + args.amount + ItemService.capitializeWords(args.item.names[0]) + ' anymore.');
       }
 

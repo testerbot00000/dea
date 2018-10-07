@@ -20,11 +20,10 @@ class Item extends patron.Command {
   }
 
   async run(msg, args) {
-    const unwantedKeys = ['names', 'description', 'type'];
     let description = '';
 
     for (const key in args.item) {
-      if (args.item[key] !== null) {
+      if (args.item[key]) {
         switch (key) {
           case 'price':
             description += '**Price:** ' + args.item[key].USD() + '\n';
@@ -32,7 +31,7 @@ class Item extends patron.Command {
           case 'names':
             break;
           default:
-            description += '**' + ItemService.capitializeWords(key) + ':** ' + ItemService.capitializeWords(args.item[key]) + '\n';
+            description += '**' + ItemService.capitializeWords(key) + ':** ' + args.item[key] + '\n';
         }
       }
     }

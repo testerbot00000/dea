@@ -4,6 +4,7 @@ const formatter = Intl.NumberFormat('en-US', {
   minimumFractionDigits: 2
 });
 
+/* eslint-disable no-extend-native */
 Number.prototype.USD = function () {
   return formatter.format(this);
 };
@@ -11,3 +12,5 @@ Number.prototype.USD = function () {
 Number.prototype.isEven = function () {
   return this % 2 === 0;
 };
+
+/* eslint-enable no-extend-native */

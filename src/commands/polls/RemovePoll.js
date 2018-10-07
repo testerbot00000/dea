@@ -1,4 +1,3 @@
-const db = require('../../database');
 const patron = require('patron.js');
 
 class RemovePoll extends patron.Command {
@@ -21,11 +20,12 @@ class RemovePoll extends patron.Command {
 
   async run(msg, args) {
     if (msg.author.id !== args.poll.creatorId) {
-      return msg.createErrorReply('You\'re not the creator of this poll.');
+      return msg.createErrorReply('you\'re not the creator of this poll.');
     }
 
-    await db.pollRepo.deletePoll(args.poll.name, args.poll.creatorId, msg.guild.id);
-    return msg.createReply('Successfully destroyed your poll ' + args.poll.name.boldify() + '.');
+    await msg.client.db.pollRepo.deletePoll(args.poll.name, args.poll.creatorId, msg.guild.id);
+
+    return msg.createReply('successfully destroyed your poll ' + args.poll.name.boldify() + '.');
   }
 }
 

@@ -10,7 +10,7 @@ class OpenAll extends patron.Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg) {
     const itemsObj = {};
     let reply = '';
 
@@ -22,7 +22,7 @@ class OpenAll extends patron.Command {
       reply += ItemService.capitializeWords(key.replace('bullet', 'ammo').boldify()) + '\n' + itemsObj[key].substring(0, itemsObj[key].length - 2).replace('undefined', '') + '.\n';
     }
 
-    return msg.channel.createMessage(reply, { title: 'All Items For This Guild'});
+    return msg.channel.createMessage(reply, { title: 'All Items For This Server' });
   }
 }
 

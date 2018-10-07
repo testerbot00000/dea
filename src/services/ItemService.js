@@ -1,15 +1,13 @@
-const db = require('../database');
 const Random = require('../utility/Random.js');
 const Constants = require('../utility/Constants.js');
 
 class ItemService {
-
   async openCrate(crate, items) {
     const roll = Random.roll();
-    const weapons = items.filter(x => x.type === 'gun' || x.type === 'knife').filter(x => x.crate_odds !== undefined).sort((a, b) => a.crate_odds - b.crate_odds);
+    const weapons = items.filter(x => x.type === 'gun' || x.type === 'knife').filter(x => x.crate_odds).sort((a, b) => a.crate_odds - b.crate_odds);
     const fullWeaponOdds = weapons.map(x => x.crate_odds).reduce((accumulator, currentValue) => accumulator + currentValue);
     const rollWeapon = Random.nextInt(1, fullWeaponOdds);
-    const ammunation = items.filter(x => x.type === 'bullet' && x.crate_odds !== undefined).filter(x => x.crate_odds !== undefined).sort((a, b) => a.crate_odds - b.crate_odds);
+    const ammunation = items.filter(x => x.type === 'bullet' && x.crate_odds).filter(x => x.crate_odds).sort((a, b) => a.crate_odds - b.crate_odds);
     const fullAmmunationOdds = ammunation.map(x => x.crate_odds).reduce((accumulator, currentValue) => accumulator + currentValue);
     const rollAmmo = Random.nextInt(1, fullAmmunationOdds);
     let cumulativeWeapons = 0;
@@ -40,7 +38,7 @@ class ItemService {
     for (let i = 0; i < quanity; i++) {
       const item = await this.openCrate(crate, items);
 
-      if (itemsWon.hasOwnProperty(item.names[0]) === false) {
+      if (!Object.prototype.hasOwnProperty.call(itemsWon, item.names[0])) {
         itemsWon[item.names[0]] = 0;
       }
 
@@ -51,7 +49,7 @@ class ItemService {
 
   fish(weapon, items) {
     const roll = Random.roll();
-    const food = items.filter(x => x.type === 'fish').filter(x => x.acquire_odds !== undefined).sort((a, b) => a.acquire_odds - b.acquire_odds);
+    const food = items.filter(x => x.type === 'fish').filter(x => x.acquire_odds).sort((a, b) => a.acquire_odds - b.acquire_odds);
     const fullFoodOdds = food.map(x => x.acquire_odds).reduce((accumulator, currentValue) => accumulator + currentValue);
     const rollOdds = Random.nextInt(1, fullFoodOdds);
     let cumulative = 0;
@@ -69,7 +67,7 @@ class ItemService {
 
   hunt(weapon, items) {
     const roll = Random.roll();
-    const food = items.filter(x => x.type === 'meat').filter(x => x.acquire_odds !== undefined).sort((a, b) => a.acquire_odds - b.acquire_odds);
+    const food = items.filter(x => x.type === 'meat').filter(x => x.acquire_odds).sort((a, b) => a.acquire_odds - b.acquire_odds);
     const fullFoodOdds = food.map(x => x.acquire_odds).reduce((accumulator, currentValue) => accumulator + currentValue);
     const rollOdds = Random.nextInt(1, fullFoodOdds);
     let cumulative = 0;
@@ -88,9 +86,9 @@ class ItemService {
   reduceDamage(dbUser, damage, items) {
     const armours = items.filter(x => x.type === 'armour');
     let reduce = damage;
-    
+
     for (let i = 0; i < armours.length; i++) {
-      if (dbUser.inventory[armours[i].names[0]] !== undefined || dbUser.inventory[armours[i].names[0]] > 0) {
+      if (dbUser.inventory[armours[i].names[0]] || dbUser.inventory[armours[i].names[0]] > 0) {
         reduce *= (100 - armours[i].damageReduction) / 100;
       }
     }
@@ -98,18 +96,20 @@ class ItemService {
     return reduce;
   }
 
-  async takeInv(KillerId, DeadUserId, GuildId) {
-    const dbUser = await db.userRepo.getUser(DeadUserId, GuildId);
+  async takeInv(killerId, deadUserId, guildId, db) {
+    const dbUser = await db.userRepo.getUser(deadUserId, guildId);
+
     for (const key in dbUser.inventory) {
       const itemsGained = 'inventory.' + key;
       const amount = dbUser.inventory[key];
-      await db.userRepo.updateUser(KillerId, GuildId, { $inc: { [itemsGained]: amount } });
+
+      await db.userRepo.updateUser(killerId, guildId, { $inc: { [itemsGained]: amount } });
     }
   }
 
   capitializeWords(str) {
     if (isNaN(str)) {
-      return str.replace('_', ' ').replace(Constants.data.regexes.capitalize, (x) => x.charAt(0).toUpperCase() + x.substr(1));
+      return str.replace('_', ' ').replace(Constants.data.regexes.capitalize, x => x.charAt(0).toUpperCase() + x.substr(1));
     }
 
     return str;

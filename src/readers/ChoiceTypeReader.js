@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../database');
 
 class ChoiceTypeReader extends patron.TypeReader {
   constructor() {

@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class TransferLeadership extends patron.Command {
   constructor() {
@@ -20,28 +19,31 @@ class TransferLeadership extends patron.Command {
   }
 
   async run(msg, args) {
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (gang === null) {
-      return msg.createErrorReply('You\'re not in a gang.');
+    if (!gang) {
+      return msg.createErrorReply('you\'re not in a gang.');
     } else if (msg.author.id !== gang.leaderId) {
-      return msg.createErrorReply('You cannot transfer gang leadership, since you\'re not leader of it.');
+      return msg.createErrorReply('you cannot transfer gang leadership, since you\'re not leader of it.');
     }
 
-    const userGang = await db.gangRepo.findOne( { $or: [{ members: args.user.id }, { elders: args.user.id }, { leaderId: args.user.id }], $and: [{ guildId: msg.guild.id }] } );
+    const userGang = await msg.client.db.gangRepo.findOne({ $or: [{ members: args.user.id }, { elders: args.user.id }, { leaderId: args.user.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (userGang === null || userGang.name !== gang.name) {
-      return msg.createErrorReply('This user isn\'t in your gang.');
+    if (!userGang || userGang.name !== gang.name) {
+      return msg.createErrorReply('this user isn\'t in your gang.');
     } else if (args.user.id === gang.leaderId) {
-      return msg.createErrorReply('You already own this gang.');
+      return msg.createErrorReply('you already own this gang.');
     }
 
-    await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { members: args.user.id } });
-    await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { elders: args.user.id } });
-    await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $push: { elders: msg.author.id } });
-    await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $set: { leaderId: args.user.id } });
+    const update = (x, y, z) => new msg.client.db.updates[x](y, z);
+
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update('Pull', 'members', args.user.id));
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update('Pull', 'elders', args.user.id));
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update('Push', 'members', msg.author.id));
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $set: { leaderId: args.user.id } });
     await args.user.tryDM('You\'ve been transfered leadership of gang ' + gang.name + '.', { guild: msg.guild });
-    return msg.createReply('You\'ve successfully transfered gang leadership to ' + args.user.tag.boldify() + '.');
+
+    return msg.createReply('you\'ve successfully transfered gang leadership to ' + args.user.tag.boldify() + '.');
   }
 }
 

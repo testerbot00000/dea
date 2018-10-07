@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class SetMutedRole extends patron.Command {
   constructor() {
@@ -22,8 +21,9 @@ class SetMutedRole extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'roles.muted': args.role.id } });
-    return msg.createReply('You have successfully set the muted role to ' + args.role + '.');
+    await msg.client.db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'roles.muted': args.role.id } });
+
+    return msg.createReply('you have successfully set the muted role to ' + args.role.toString() + '.');
   }
 }
 

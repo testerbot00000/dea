@@ -1,10 +1,9 @@
-const db = require('../../database');
 const patron = require('patron.js');
 
 class ModifyInv extends patron.Command {
   constructor() {
     super({
-      names: ['modifyinv'],
+      names: ['modifyinv', 'modinv'],
       groupName: 'owners',
       description: 'Allows you to modify the inventory of any member.',
       args: [
@@ -32,14 +31,15 @@ class ModifyInv extends patron.Command {
   }
 
   async run(msg, args) {
-    if (args.amount !== Infinity && Number.isInteger(args.amount) === false) {
-      return msg.createErrorReply('You have provided an invalid amount.');
+    if (!Number.isFinite(args.amount) && Number.isInteger(args.amount)) {
+      return msg.createErrorReply('Yyu have provided an invalid amount.');
     }
-    
+
     const inventory = 'inventory.' + args.item.names[0];
 
-    await db.userRepo.updateUser(args.member.id, msg.guild.id, { $inc: { [inventory]: args.amount } });
-    return msg.createReply('You have successfully modifed ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag.boldify() + '\'s') + ' inventory.');
+    await msg.client.db.userRepo.updateUser(args.member.id, msg.guild.id, { $inc: { [inventory]: args.amount } });
+
+    return msg.createReply('you have successfully modifed ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag.boldify() + '\'s') + ' inventory.');
   }
 }
 

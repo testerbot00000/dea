@@ -1,30 +1,29 @@
-const db = require('../database');
 const Constants = require('../utility/Constants.js');
 
-module.exports = async (client) => {
+module.exports = async client => {
   client.setInterval(async () => {
-    const polls = await db.pollRepo.findMany();
+    const polls = await client.db.pollRepo.findMany();
 
     for (let i = 0; i < polls.length; i++) {
       const pollLength = polls[i].length;
       const pollCreatedAt = polls[i].createdAt;
       let choices = '';
 
-      if ((Date.now() - pollCreatedAt) - pollLength <= 0) {
+      if (Date.now() - pollCreatedAt - pollLength <= 0) {
         continue;
       }
 
-      await db.pollRepo.deleteById(polls[i]._id);
+      await client.db.pollRepo.deleteById(polls[i]._id);
 
       const guild = client.guilds.get(polls[i].guildId);
 
-      if (guild === undefined) {
+      if (!guild) {
         continue;
       }
 
       const creator = guild.member(polls[i].creatorId);
 
-      if (creator === null) {
+      if (!creator) {
         continue;
       }
 

@@ -8,4 +8,3 @@ class Mute {
 }
 
 module.exports = Mute;
-

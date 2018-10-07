@@ -1,6 +1,5 @@
 const patron = require('patron.js');
 const Constants = require('../../utility/Constants.js');
-const db = require('../../database');
 
 class BotOwner extends patron.Precondition {
   constructor() {
@@ -10,9 +9,7 @@ class BotOwner extends patron.Precondition {
   }
 
   async run(command, msg) {
-    const botOwner = await db.botownerRepo.findBotOwner(msg.author.id);
-
-    if (botOwner !== null ||  Constants.data.misc.ownerIds.some((v) => v === msg.author.id)) {
+    if (Constants.data.misc.ownerIds.includes(msg.author.id)) {
       return patron.PreconditionResult.fromSuccess();
     }
 

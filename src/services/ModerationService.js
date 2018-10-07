@@ -1,5 +1,4 @@
 const Constants = require('../utility/Constants.js');
-const db = require('../database');
 
 class ModerationService {
   getPermLevel(dbGuild, member) {
@@ -15,26 +14,26 @@ class ModerationService {
       }
     }
 
-    return member.hasPermission('ADMINISTRATOR') === true && permLevel < 2 ? 2 : permLevel;
+    return member.hasPermission('ADMINISTRATOR') && permLevel < 2 ? 2 : permLevel;
   }
 
   tryInformUser(guild, moderator, action, user, reason = '') {
-    return user.tryDM(moderator.tag.boldify() + ' has ' + action + ' you' + (String.isNullOrWhiteSpace(reason) ? '.' : ' for the following reason: ' + reason + '.'), { guild: guild });
+    return user.tryDM(moderator.tag.boldify() + ' has ' + action + ' you' + (String.isNullOrWhiteSpace(reason) ? '.' : ' for the following reason: ' + reason + '.'), { guild });
   }
 
   async tryModLog(dbGuild, guild, action, color, reason = '', moderator = null, user = null, extraInfoType = '', extraInfo = '') {
-    if (dbGuild.channels.modLog === null) {
+    if (!dbGuild.channels.modLog) {
       return false;
     }
 
     const channel = guild.channels.get(dbGuild.channels.modLog);
 
-    if (channel === undefined) {
+    if (!channel) {
       return false;
     }
 
     const options = {
-      color: color,
+      color,
       footer: {
         text: 'Case #' + dbGuild.misc.caseNumber,
         icon: 'http://i.imgur.com/BQZJAqT.png'
@@ -42,7 +41,7 @@ class ModerationService {
       timestamp: true
     };
 
-    if (moderator !== null) {
+    if (moderator) {
       options.author = {
         name: moderator.tag,
         icon: moderator.avatarURL,
@@ -52,19 +51,20 @@ class ModerationService {
 
     let description = '**Action:** ' + action + '\n';
 
-    if (String.isNullOrWhiteSpace(extraInfoType) === false) {
-      description += '**'+ extraInfoType + ':** ' + extraInfo + '\n';
+    if (!String.isNullOrWhiteSpace(extraInfoType)) {
+      description += '**' + extraInfoType + ':** ' + extraInfo + '\n';
     }
 
-    if (user !== null) {
+    if (user) {
       description += '**User:** ' + user.tag + ' (' + user.id + ')\n';
     }
 
-    if (String.isNullOrWhiteSpace(reason) === false) {
+    if (!String.isNullOrWhiteSpace(reason)) {
       description += '**Reason:** ' + reason + '\n';
     }
 
-    await db.guildRepo.upsertGuild(dbGuild.guildId, { $inc: { 'misc.caseNumber': 1 } });
+    await guild.client.db.guildRepo.upsertGuild(dbGuild.guildId, { $inc: { 'misc.caseNumber': 1 } });
+
     return channel.tryCreateMessage(description, options);
   }
 }

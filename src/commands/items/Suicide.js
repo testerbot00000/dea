@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const Constants = require('../../utility/Constants.js');
 
 class Suicide extends patron.Command {
@@ -11,12 +10,12 @@ class Suicide extends patron.Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg) {
     if (msg.dbUser.cash < Constants.items.suicide.cost) {
       return msg.createErrorReply('You need ' + Constants.items.suicide.cost + ' to buy yourself a good noose.');
     }
 
-    await db.userRepo.deleteUser(msg.member.id, msg.guild.id);
+    await msg.client.db.userRepo.deleteUser(msg.member.id, msg.guild.id);
     return msg.createReply('You\'ve successfully killed yourself.');
   }
 }

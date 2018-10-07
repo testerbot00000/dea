@@ -1,20 +1,19 @@
-const db = require('../database');
 const Constants = require('../utility/Constants.js');
 const PromiseUtil = require('../utility/PromiseUtil.js');
 const Random = require('../utility/Random.js');
 
-module.exports = async (client) => {
+module.exports = async client => {
   client.setInterval(async () => {
-    const guilds = await db.guildRepo.findMany();
+    const guilds = await client.db.guildRepo.findMany();
 
     for (let i = 0; i < guilds.length; i++) {
-      if (Object.keys(guilds[i].trivia).length <= 0 || guilds[i].autoTrivia === false) {
+      if (Object.keys(guilds[i].trivia).length <= 0 || !guilds[i].autoTrivia) {
         continue;
       }
 
       const guild = client.guilds.get(guilds[i].guildId);
 
-      if (guild.mainChannel === undefined) {
+      if (!guild.mainChannel) {
         continue;
       }
 
@@ -25,14 +24,15 @@ module.exports = async (client) => {
 
       await guild.mainChannel.createMessage(question, { title: 'Trivia!' });
 
-      const result = await guild.mainChannel.awaitMessages((m) => m.content.toLowerCase().includes(answer.toLowerCase()), { time: 90000, maxMatches: 1 });
+      const result = await guild.mainChannel.awaitMessages(m => m.content.toLowerCase().includes(answer.toLowerCase()), { time: 90000, max: 1 });
 
       if (result.size >= 1) {
         const prize = Random.nextInt(500, 10000);
-        await db.userRepo.modifyCash(guilds[i], result.first().member, prize);
+
+        await client.db.userRepo.modifyCash(guilds[i], result.first().member, prize);
         await guild.mainChannel.createMessage('Congratulations ' + result.first().author.tag.boldify() + ' for winning ' + prize.USD() + ' in trivia!');
       } else {
-        await guild.mainChannel.createMessage('Damn you fuckers were that slow and retarded FINE I\'ll give you the answer it\'s: ' + answer.boldify());
+        await guild.mainChannel.createMessage('Damn you fuckers were that slow and retarded.\nFINE I\'ll give you the answer, it\'s: ' + answer.boldify());
       }
     }
 

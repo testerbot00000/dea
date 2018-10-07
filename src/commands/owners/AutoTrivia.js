@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class AutoTrivia extends patron.Command {
   constructor() {
@@ -10,15 +9,12 @@ class AutoTrivia extends patron.Command {
     });
   }
 
-  async run(msg, args) {
-    let autoTrivia = true;
+  async run(msg) {
+    const autoTrivia = !msg.dbGuild.autoTrivia;
 
-    if (msg.dbGuild.autoTrivia === true) {
-      autoTrivia = false;
-    }
+    await msg.client.db.guildRepo.updateGuild(msg.guild.id, { $set: { autoTrivia } });
 
-    await db.guildRepo.updateGuild(msg.guild.id, { $set: { autoTrivia: autoTrivia } });
-    return msg.createReply('You\'ve successfully set this guild\'s auto trivia to **' + autoTrivia + '**.');
+    return msg.createReply('you\'ve successfully set this server\'s auto trivia to **' + autoTrivia + '**.');
   }
 }
 

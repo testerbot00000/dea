@@ -1,7 +1,6 @@
-const db = require('../../database');
 const patron = require('patron.js');
 
-class UnBlacklist extends patron.Command {
+class RemoveBlacklist extends patron.Command {
   constructor() {
     super({
       names: ['unblacklist', 'removeblacklist'],
@@ -20,9 +19,14 @@ class UnBlacklist extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.blacklistRepo.deleteBlacklist(args.user.id);
-    return msg.createReply('Successfully removed ' + args.user.tag + '\'s blacklist.');
+    if (!await msg.client.db.blacklistRepo.anyBlacklist(args.user.id)) {
+      return msg.createErrorReply('this user isn\'t blacklisted.');
+    }
+
+    await msg.client.db.blacklistRepo.deleteBlacklist(args.user.id);
+
+    return msg.createReply('successfully removed ' + args.user.tag + '\'s blacklist.');
   }
 }
 
-module.exports = new UnBlacklist();
+module.exports = new RemoveBlacklist();

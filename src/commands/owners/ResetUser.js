@@ -1,4 +1,3 @@
-const db = require('../../database');
 const patron = require('patron.js');
 
 class ResetUser extends patron.Command {
@@ -21,9 +20,9 @@ class ResetUser extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.userRepo.deleteUser(args.member.id, msg.guild.id);
+    await msg.client.db.userRepo.deleteUser(args.member.id, msg.guild.id);
 
-    return msg.createReply('You have successfully reset all of ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag + '\'s') + ' data.');
+    return msg.createReply('you have successfully reset all of ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag + '\'s') + ' data.');
   }
 }
 

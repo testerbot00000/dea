@@ -9,11 +9,11 @@ class TopRole extends patron.Precondition {
   }
 
   async run(command, msg) {
-    if (msg.guild.roles.has(msg.dbGuild.roles['top' + this.numb]) === true) {
+    if (msg.guild.roles.has(msg.dbGuild.roles['top' + this.numb])) {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'The Top ' + this.numb + ' role must be set with `' + Constants.data.misc.prefix +'SetTop' + this.numb +'` before this command may be used.');
+    return patron.PreconditionResult.fromError(command, 'The Top ' + this.numb + ' role must be set with `' + Constants.data.misc.prefix + 'SetTop' + this.numb + '` before this command may be used.');
   }
 }
 

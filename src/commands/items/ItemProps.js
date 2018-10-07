@@ -1,6 +1,5 @@
 const patron = require('patron.js');
 const Constants = require('../../utility/Constants.js');
-const ItemService = require('../../services/ItemService.js');
 
 class ItemProps extends patron.Command {
   constructor() {
@@ -11,15 +10,15 @@ class ItemProps extends patron.Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg) {
     let reply = '';
     const itemProps = Constants.items.props;
 
     for (let i = 0; i < itemProps.length; i++) {
-     reply += '`' + itemProps[i] + '` ';
+      reply += '`' + itemProps[i] + '` ';
     }
-    
-    return msg.channel.createMessage(reply, { title: 'All Item Properties Within ' + msg.client.user.username + '.'});
+
+    return msg.channel.createMessage(reply, { title: 'All Item Properties Within ' + msg.client.user.username + '.' });
   }
 }
 

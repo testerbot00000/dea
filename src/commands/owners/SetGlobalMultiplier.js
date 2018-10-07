@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class SetGlobalMultiplier extends patron.Command {
   constructor() {
@@ -19,8 +18,9 @@ class SetGlobalMultiplier extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'settings.messageMultiplier': args.amount } });
-    return msg.createReply('You have successfully set the global multiplier to ' + args.amount + '.');
+    await msg.client.db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'settings.messageMultiplier': args.amount } });
+
+    return msg.createReply('you have successfully set the global multiplier to ' + args.amount + '.');
   }
 }
 

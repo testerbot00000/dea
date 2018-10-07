@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../database');
 
 class PollTypeReader extends patron.TypeReader {
   constructor() {
@@ -7,9 +6,9 @@ class PollTypeReader extends patron.TypeReader {
   }
 
   async read(command, message, argument, args, input) {
-    const poll = await db.pollRepo.findOne({ guildId: message.guild.id, index: Number.parseFloat(input) });
+    const poll = await message.client.db.pollRepo.findOne({ guildId: message.guild.id, index: Number.parseFloat(input) });
 
-    if (poll !== null) {
+    if (poll) {
       return patron.TypeReaderResult.fromSuccess(poll);
     }
 

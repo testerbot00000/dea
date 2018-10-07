@@ -10,38 +10,38 @@ class NotType extends patron.ArgumentPrecondition {
   async run(command, msg, argument, args, value, options) {
     if (options.types.includes(value.type)) {
       if (value.type === 'gun') {
-        if (value.damage !== undefined && Number.isInteger(value.damage) === false) {
+        if (value.damage && !Number.isInteger(value.damage)) {
           return patron.TypeReaderResult.fromError(command, 'This weapon has an invalid damage.');
-        } else if (value.damage === undefined) {
+        } else if (!value.damage) {
           return patron.TypeReaderResult.fromError(command, 'This weapon has an invalid damage.');
         }
 
-        if (value.accuracy !== undefined && Number.isInteger(value.accuracy) === false) {
+        if (value.accuracy && !Number.isInteger(value.accuracy)) {
           return patron.TypeReaderResult.fromError(command, 'This weapon has an invalid accuracy.');
-        } else if (value.accuracy === undefined) {
+        } else if (!value.accuracy) {
           return patron.TypeReaderResult.fromError(command, 'This weapon has an invalid accuracy.');
         }
 
-        if (value.bullet === undefined) {
+        if (!value.bullet) {
           return patron.TypeReaderResult.fromError(command, 'This weapon has no set bullets');
         }
 
-        if (msg.dbUser.inventory[value.bullet] === undefined || msg.dbUser.inventory[value.bullet] <= 0) {
+        if (!msg.dbUser.inventory[value.bullet] || msg.dbUser.inventory[value.bullet] <= 0) {
           return patron.PreconditionResult.fromError(command, 'You have no ' + value.bullet + '(s) to shoot with.');
         }
 
         msg.bullet = 'inventory.' + value.bullet;
       }
       if (value.type === 'knife') {
-        if (value.damage !== undefined && Number.isInteger(value.damage) === false) {
+        if (value.damage && !Number.isInteger(value.damage)) {
           return patron.TypeReaderResult.fromError(command, 'This weapon has an invalid damage.');
-        } else if (value.damage === undefined) {
+        } else if (!value.damage) {
           return patron.TypeReaderResult.fromError(command, 'This weapon has an invalid damage.');
         }
 
-        if (value.accuracy !== undefined && Number.isInteger(value.accuracy) === false) {
+        if (value.accuracy && !Number.isInteger(value.accuracy)) {
           return patron.TypeReaderResult.fromError(command, 'This weapon has an invalid accuracy.');
-        } else if (value.accuracy === undefined) {
+        } else if (!value.accuracy) {
           return patron.TypeReaderResult.fromError(command, 'This weapon has an invalid accuracy.');
         }
       }

@@ -1,6 +1,5 @@
 const patron = require('patron.js');
 const ItemService = require('../../services/ItemService.js');
-const db = require('../../database');
 const Constants = require('../../utility/Constants.js');
 
 class OpenAll extends patron.Command {
@@ -16,7 +15,8 @@ class OpenAll extends patron.Command {
           key: 'item',
           type: 'item',
           example: 'bronze crate',
-          preconditions: [{ name: 'nottype', options: { types: ['crate'] } }, 'donthave'],
+          preconditionOptions: [{ types: ['crate'] }],
+          preconditions: ['nottype', 'donthave'],
           remainder: true
         })
       ]
@@ -29,25 +29,25 @@ class OpenAll extends patron.Command {
     let openAmount = 0;
 
     if (msg.dbUser.inventory[args.item.names[0]] > 100000) {
-      const botLagReply = await msg.createReply('To reduce bot lag, we\'re only opening 100000 of your crates');
-      botLagReply.delete(5000);
+      const botLagReply = await msg.createReply('to reduce bot lag, we\'re only opening 100000 of your crates');
+      await botLagReply.delete(5000);
       openAmount = 100000;
     } else {
       openAmount = msg.dbUser.inventory[args.item.names[0]];
     }
-    
+
     const item = await ItemService.massOpenCrate(openAmount, args.item, msg.dbGuild.items);
 
-    await db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [cases]: -openAmount } });
+    await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [cases]: -openAmount } });
 
     for (const key in item) {
-      const s = (item[key] > 1 ? 's' : '');
+      const s = item[key] > 1 ? 's' : '';
       reply += ItemService.capitializeWords(key) + s + ': ' + item[key] + '\n';
       const gained = 'inventory.' + key;
-      await db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [gained]: item[key] } });
+      await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [gained]: item[key] } });
     }
 
-    return msg.channel.createMessage(reply, { title: msg.author.tag + ' has won'});
+    return msg.channel.createMessage(reply, { title: msg.author.tag + ' has won' });
   }
 }
 

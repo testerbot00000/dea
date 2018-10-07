@@ -1,4 +1,3 @@
-const db = require('../../database');
 const patron = require('patron.js');
 const Constants = require('../../utility/Constants.js');
 const NumberUtil = require('../../utility/NumberUtil.js');
@@ -14,7 +13,8 @@ class AddBounty extends patron.Command {
           name: 'bounty',
           key: 'bounty',
           type: 'quantity',
-          preconditions: ['cash', { name: 'minimumcash', options: { minimum: Constants.config.bounty.min } }, 'noself'],
+          preconditionOptions: [{ minimum: Constants.config.bounty.min }],
+          preconditions: ['minimumcash', 'cash', 'noself'],
           example: '500'
         }),
         new patron.Argument({
@@ -28,9 +28,11 @@ class AddBounty extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.userRepo.modifyCash(msg.dbGuild, msg.member, -args.bounty);
-    const newDbUser = await db.userRepo.modifyBounty(msg.dbGuild, args.member, args.bounty);
-    return msg.createReply('You\'ve successfully added a bounty of ' + args.bounty.USD() + ' to ' + args.member.user.tag + ' making his total bounty ' + NumberUtil.format(newDbUser.bounty) + '.');
+    await msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, -args.bounty);
+
+    const newDbUser = await msg.client.db.userRepo.modifyBounty(msg.dbGuild, args.member, args.bounty);
+
+    return msg.createReply('you\'ve successfully added a bounty of ' + args.bounty.USD() + ' to ' + args.member.user.tag + ', making his total bounty ' + NumberUtil.format(newDbUser.bounty) + '.');
   }
 }
 

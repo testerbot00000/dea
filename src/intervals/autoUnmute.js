@@ -1,38 +1,37 @@
-const db = require('../database');
 const Constants = require('../utility/Constants.js');
 const ModerationService = require('../services/ModerationService.js');
 
-module.exports = async (client) => {
+module.exports = async client => {
   client.setInterval(async () => {
-    const mutes = await db.muteRepo.findMany();
+    const mutes = await client.db.muteRepo.findMany();
 
     for (let i = 0; i < mutes.length; i++) {
       if (mutes[i].mutedAt + mutes[i].muteLength > Date.now()) {
         continue;
       }
 
-      await db.muteRepo.deleteById(mutes[i]._id);
+      await client.db.muteRepo.deleteById(mutes[i]._id);
 
       const guild = client.guilds.get(mutes[i].guildId);
 
-      if (guild === undefined) {
+      if (!guild) {
         continue;
       }
 
       const member = guild.member(mutes[i].userId);
 
-      if (member === null) {
+      if (!member) {
         continue;
       }
 
-      const dbGuild = await db.guildRepo.getGuild(guild.id);
+      const dbGuild = await client.db.guildRepo.getGuild(guild.id);
       const role = guild.roles.get(dbGuild.roles.muted);
 
-      if (role === undefined) {
+      if (!role) {
         continue;
       }
 
-      if (guild.me.hasPermission('MANAGE_ROLES') === false || role.position >= guild.me.highestRole.position) {
+      if (!guild.me.hasPermission('MANAGE_ROLES') || role.position >= guild.me.roles.highest.position) {
         continue;
       }
 

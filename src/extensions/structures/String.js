@@ -2,6 +2,7 @@ String.isNullOrWhiteSpace = function (input) {
   return typeof input !== 'string' || input.replace(/\s+/g, '').length === 0;
 };
 
+/* eslint-disable no-extend-native */
 String.prototype.boldify = function () {
   return '**' + this.replace(/(\*|~|`)+/g, '').replace(/_/g, ' ') + '**';
 };
@@ -21,7 +22,6 @@ String.prototype.upperString = function () {
 String.prototype.format = function () {
   const args = arguments;
 
-  return this.replace(/{(\d+)}/g, (match, number) => {
-    return typeof args[number] !== 'undefined' ? args[number] : match;
-  });
+  return this.replace(/{(\d+)}/g, (match, number) => typeof args[number] !== 'undefined' ? args[number] : match);
 };
+/* eslint-enable no-extend-native */

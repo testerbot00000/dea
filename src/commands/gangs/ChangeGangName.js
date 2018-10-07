@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const Constants = require('../../utility/Constants.js');
 const NumberUtil = require('../../utility/NumberUtil.js');
 
@@ -15,7 +14,8 @@ class ChangeGangName extends patron.Command {
           key: 'name',
           type: 'string',
           example: 'Cloud9Swags',
-          preconditions: [{ name:'maximumlength', options: { length: Constants.config.gang.maxChar } }],
+          preconditionOptions: [{ length: Constants.config.gang.maxChar }],
+          preconditions: ['maximumlength'],
           remainder: true
         })
       ]
@@ -23,21 +23,25 @@ class ChangeGangName extends patron.Command {
   }
 
   async run(msg, args) {
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
-    
+    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
+    const gangs = await msg.client.db.gangRepo.findMany({ guildId: msg.guild.id });
+
     if (!/\w/g.test(args.name)) {
-      return msg.createErrorReply('Your gang\'s name may only contain numbers, and letters.');
-    } else if (gang === null) {
-      return msg.createErrorReply('You\'re not in a gang.');
+      return msg.createErrorReply('your gang\'s name may only contain numbers, and letters.');
+    } else if (!gang) {
+      return msg.createErrorReply('you\'re not in a gang.');
+    } else if (gangs.some(x => x.name === args.name)) {
+      return msg.createErrorReply('a gang by the name `' + args.name + '` already exists.');
     } else if (msg.author.id !== gang.leaderId) {
-      return msg.createErrorReply('You cannot change your gang\'s name you\'re not leader of it.');
+      return msg.createErrorReply('you cannot change your gang\'s name you\'re not leader of it.');
     } else if (NumberUtil.realValue(msg.dbUser.cash) < Constants.config.gang.nameChange) {
-      return msg.createErrorReply('You don\'t have enough money to change your gang\'s name, it costs ' + Constants.config.gang.nameChange.USD() + '.');
+      return msg.createErrorReply('you don\'t have enough money to change your gang\'s name, it costs ' + Constants.config.gang.nameChange.USD() + '.');
     }
 
-    await db.userRepo.modifyCash(msg.dbGuild, msg.member, -Constants.config.gang.nameChange);
-    await db.gangRepo.updateGang(gang.leaderId, gang.guildId, { $set: { name: args.name } });
-    return msg.createReply('You\'ve successfully changed your gang\'s name from ' + gang.name + ' to ' + args.name + '.');
+    await msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, -Constants.config.gang.nameChange);
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, gang.guildId, { $set: { name: args.name } });
+
+    return msg.createReply('you\'ve successfully changed your gang\'s name from ' + gang.name + ' to ' + args.name + '.');
   }
 }
 

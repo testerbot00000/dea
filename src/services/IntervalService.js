@@ -1,12 +1,12 @@
 const path = require('path');
-const requireAll = require('require-all');
+const { RequireAll } = require('patron.js');
 
 class IntervalService {
-  initiate(client) {
-    const obj = requireAll(path.join(__dirname, '../intervals'));
+  async initiate(client) {
+    const obj = await RequireAll(path.join(__dirname, '../intervals'));
 
     for (const key in obj) {
-      if (obj.hasOwnProperty(key) === true) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
         obj[key](client);
       }
     }

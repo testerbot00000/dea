@@ -1,8 +1,6 @@
-const db = require('../database');
-
 class PollService {
-  async findLatestPoll(guildId) {
-    const polls = await db.pollRepo.findMany({ guildId: guildId });
+  async findLatestPoll(guildId, db) {
+    const polls = await client.db.pollRepo.findMany({ guildId });
 
     return polls.length + 1;
   }

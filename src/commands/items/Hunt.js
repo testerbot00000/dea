@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const ItemService = require('../../services/ItemService.js');
 const Constants = require('../../utility/Constants.js');
 
@@ -16,7 +15,8 @@ class Hunt extends patron.Command {
           key: 'item',
           type: 'item',
           example: 'intervention',
-          preconditions: ['donthave', { name: 'nottype', options: { types: ['gun', 'knife'] } }],
+          preconditionOptions: [{ types: ['gun',' knife'] }],
+          preconditions: ['nottype', 'donthave'],
           remainder: true
         })
       ]
@@ -27,16 +27,16 @@ class Hunt extends patron.Command {
     const caught = await ItemService.hunt(args.item, msg.dbGuild.items);
     let reply = '';
 
-    if (caught !== undefined) {
+    if (caught) {
       const gained = 'inventory.' + caught.names[0];
-      await db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [gained]: 1 } });
+      await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [gained]: 1 } });
       reply = 'Clean kill. Boss froth. Smooth beans. You got: ' + ItemService.capitializeWords(caught.names[0]) + '.';
     } else {
       reply = 'Nigga you just about had that deer but then he did that hoof kick thing and fucked up your buddy Chuck, so then you had to go bust a nut all over him and the GODDAMN deer got away.';
     }
 
     if (args.item.type === 'gun') {
-      await db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [bullet]: -1 } });
+      await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [args.item.bullet]: -1 } });
     }
 
     return msg.createReply(reply);

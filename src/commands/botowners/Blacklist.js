@@ -1,4 +1,3 @@
-const db = require('../../database');
 const patron = require('patron.js');
 
 class Blacklist extends patron.Command {
@@ -20,8 +19,13 @@ class Blacklist extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.blacklistRepo.insertBlacklist(args.user.id, args.user.tag, args.user.avatarURL);
-    return msg.createReply('Successfully blacklisted user ' + args.user.tag + '.');
+    if (await msg.client.db.blacklistRepo.anyBlacklist(args.user.id)) {
+      return msg.createErrorReply('this user is already blacklisted.');
+    }
+
+    await msg.client.db.blacklistRepo.insertBlacklist(args.user.id, args.user.tag, args.user.avatarURL);
+
+    return msg.createReply('successfully blacklisted ' + args.user.tag + '.');
   }
 }
 

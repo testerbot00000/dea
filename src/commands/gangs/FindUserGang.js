@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const NumberUtil = require('../../utility/NumberUtil.js');
 
 class FindUserGang extends patron.Command {
@@ -21,39 +20,43 @@ class FindUserGang extends patron.Command {
   }
 
   async run(msg, args) {
+    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: args.member.id }, { elders: args.member.id }, { leaderId: args.member.id }], $and: [{ guildId: msg.guild.id }] });
+
+    if (!gang) {
+      return msg.createErrorReply('this user is not in a gang.');
+    }
+
     let leader = '';
     let members = '';
     let elders = '';
-    const gang = await db.gangRepo.findOne( { $or: [{ members: args.member.id }, { elders: args.member.id }, { leaderId: args.member.id }], $and: [{ guildId: msg.guild.id }] } );
 
-    if (gang === null) {
-      return msg.createErrorReply('This user is not in a gang.');
-    }
+    if (gang.leaderId && gang.leaderId) {
+      const getLeader = msg.guild.members.get(gang.leaderId);
 
-    if (gang.leaderId !== null && gang.leaderId !== undefined) {
-      const getLeader = await msg.guild.members.get(gang.leaderId);
       leader = getLeader.user.tag;
     } else {
       leader = 'Nobody';
     }
 
-    if (gang.members.length > 0) {
+    if (gang.members.length) {
       for (let i = 0; i < gang.members.length; i++) {
         const member = gang.members[i];
-        const grabMembers = await msg.guild.members.get(member);
+        const grabMembers = msg.guild.members.get(member);
+
         members += grabMembers.user.tag + ', ';
       }
     }
 
-    if (gang.elders.length > 0) {
+    if (gang.elders.length) {
       for (let i = 0; i < gang.elders.length; i++) {
         const elder = gang.elders[i];
-        const grabElder = await msg.guild.members.get(elder);
+        const grabElder = msg.guild.members.get(elder);
+
         elders += grabElder.user.tag + ', ';
       }
     }
 
-    return msg.channel.createMessage('**Gang:** ' + gang.name + '\n**Leader:** ' + leader + (gang.elders !== undefined && gang.elders !== null && gang.elders.length > 0 ? '\n**Elders:** ' + elders.substring(0, elders.length - 2) : '') + (gang.members !== undefined && gang.members !== null && gang.members.length > 0 ? '\n**Members:** ' + members.substring(0, members.length - 2) : '') + '\n**Wealth:** ' + NumberUtil.format(gang.wealth));
+    return msg.channel.createMessage('**Gang:** ' + gang.name + '\n**Leader:** ' + leader + (gang.elders && gang.elders && gang.elders.length ? '\n**Elders:** ' + elders.substring(0, elders.length - 2) : '') + (gang.members && gang.members && gang.members.length ? '\n**Members:** ' + members.substring(0, members.length - 2) : '') + '\n**Wealth:** ' + NumberUtil.format(gang.wealth));
   }
 }
 

@@ -10,7 +10,7 @@ class Guild {
     };
     this.channels = {
       modLog: null,
-      gamble: null
+      gamble: []
     };
     this.settings = {
       messageMultiplier: 1
@@ -18,7 +18,7 @@ class Guild {
     this.misc = {
       caseNumber: 1
     };
-    this.autoTrivia = true;
+    this.autoTrivia = false;
     this.trivia = {};
     this.items = items;
   }

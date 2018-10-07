@@ -1,18 +1,14 @@
-const db = require('../database');
-const client = require('../singletons/client.js');
-const Logger = require('../utility/Logger.js');
+const client = require('../structures/client.js');
 
-client.on('roleDelete', (role) => {
-  (async () => {
-    const dbGuild = await db.guildRepo.getGuild(role.guild.id);
+client.on('roleDelete', async role => {
+  const dbGuild = await role.client.db.guildRepo.getGuild(role.guild.id);
+  const update = x => new role.client.db.updates.Pull(x, { id: role.id });
 
-    if (dbGuild.roles.rank.some((v) => v.id === role.id)) {
-      return db.guildRepo.upsertGuild(role.guild.id, new db.updates.Pull('roles.rank', { id: role.id }));
-    }
+  if (dbGuild.roles.rank.some(v => v.id === role.id)) {
+    return role.client.db.guildRepo.upsertGuild(role.guild.id, update('roles.rank'));
+  }
 
-    if (dbGuild.roles.mod.some((v) => v.id === role.id)) {
-      return db.guildRepo.upsertGuild(role.guild.id, new db.updates.Pull('roles.mod', { id: role.id }));
-    }
-  })()
-    .catch((err) => Logger.handleError(err));
+  if (dbGuild.roles.mod.some(v => v.id === role.id)) {
+    return role.client.db.guildRepo.upsertGuild(role.guild.id, update('roles.mod'));
+  }
 });

@@ -1,4 +1,3 @@
-const db = require('../../database');
 const patron = require('patron.js');
 
 class RemoveModRole extends patron.Command {
@@ -20,13 +19,15 @@ class RemoveModRole extends patron.Command {
   }
 
   async run(msg, args) {
-    if (msg.dbGuild.roles.mod.some((role) => role.id === args.role.id) === false) {
-      return msg.createErrorReply('You may not remove a moderation role that has no been set.');
+    if (!msg.dbGuild.roles.mod.some(role => role.id === args.role.id)) {
+      return msg.createErrorReply('you may not remove a moderation role that has no been set.');
     }
 
-    await db.guildRepo.upsertGuild(msg.guild.id, new db.updates.Pull('roles.mod', { id: args.role.id }));
+    const update = new msg.client.db.updates.Pull('roles.mod', { id: args.role.id });
 
-    return msg.createReply('You have successfully removed the mod role ' + args.role + '.');
+    await msg.client.db.guildRepo.upsertGuild(msg.guild.id, update);
+
+    return msg.createReply('you have successfully removed the mod role ' + args.role.toString() + '.');
   }
 }
 

@@ -4,7 +4,7 @@ class Random {
   }
 
   static nextFloat(min, max) {
-    return this.nextInt(min * 100, (max * 100) + 1) / 100;
+    return this.nextInt(min * 100, max * 100 + 1) / 100;
   }
 
   static roll() {
@@ -15,12 +15,8 @@ class Random {
     return array[this.nextInt(0, array.length)];
   }
 
-  static arrayTest(array) {
-    return array[(0)];
-  }
-
   static objectProp(object) {
-    return Object.keys(object)[Math.floor(Math.random()*Object.keys(object).length)];
+    return Object.keys(object)[Math.floor(Math.random() * Object.keys(object).length)];
   }
 }
 

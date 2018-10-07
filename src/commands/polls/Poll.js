@@ -1,7 +1,5 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const NumberUtil = require('../../utility/NumberUtil.js');
-const ItemService = require('../../services/ItemService.js');
 
 class Poll extends patron.Command {
   constructor() {
@@ -25,11 +23,12 @@ class Poll extends patron.Command {
     let creator = '';
     let choices = '';
     let choiceNum = 1;
-    const timeLeft = NumberUtil.msToTime((args.poll.length - (Date.now() - args.poll.createdAt)));
+    const timeLeft = NumberUtil.msToTime(args.poll.length - (Date.now() - args.poll.createdAt));
 
-    if (args.poll.creatorId !== null && args.poll.creatorId !== undefined) {
-      const getCreator = await msg.guild.members.get(args.poll.creatorId);
-      creator = getCreator.user.tag;
+    if (args.poll.creatorId && args.poll.creatorId) {
+      const getCreator = msg.client.users.get(args.poll.creatorId);
+
+      creator = getCreator.tag;
     } else {
       creator = 'Nobody';
     }
@@ -38,7 +37,7 @@ class Poll extends patron.Command {
       choices += choiceNum++ + '. ' + key + ': ' + args.poll.choices[key] + ',\n';
     }
 
-    return msg.channel.createMessage('**Index:** ' + args.poll.index + '\n**Creator:** ' + creator + '\n**Answers:** \n' + choices.substring(0, choices.length - 2) + '\n**Ending:** ' + timeLeft.days + ' days, ' + timeLeft.hours + ' hours, ' + timeLeft.minutes + ' minutes, ' + timeLeft.seconds + ' seconds' + '\n**Elder Only:** ' + (args.poll.elderOnly === true ? 'Yes' : 'No') + '\n**Mod Only:** ' + (args.poll.modOnly === true ? 'Yes' : 'No'), { title: args.poll.name });
+    return msg.channel.createMessage('**Index:** ' + args.poll.index + '\n**Creator:** ' + creator + '\n**Answers:** \n' + choices.substring(0, choices.length - 2) + '\n**Ending:** ' + timeLeft.days + ' days, ' + timeLeft.hours + ' hours, ' + timeLeft.minutes + ' minutes, ' + timeLeft.seconds + ' seconds\n**Elder Only:** ' + (args.poll.elderOnly ? 'Yes' : 'No') + '\n**Mod Only:** ' + (args.poll.modOnly ? 'Yes' : 'No'), { title: args.poll.name });
   }
 }
 

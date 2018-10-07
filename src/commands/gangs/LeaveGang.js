@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class LeaveGang extends patron.Command {
   constructor() {
@@ -10,21 +9,23 @@ class LeaveGang extends patron.Command {
     });
   }
 
-  async run(msg, args) {
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+  async run(msg) {
+    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (gang === null) {
-      return msg.createErrorReply('You\'re not in a gang.');
+    if (!gang) {
+      return msg.createErrorReply('you\'re not in a gang.');
     } else if (msg.author.id === gang.leaderId) {
-      return msg.createErrorReply('You cannot leave you\'re the leader of the gang, please pass membership to another member of the gang or destroy the gang.');
+      return msg.createErrorReply('you cannot leave you\'re the leader of the gang, please pass membership to another member of the gang or destroy the gang.');
     }
 
-    const leader = await msg.guild.members.get(gang.leaderId);
-    
-    await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { members: msg.author.id } });
-    await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { elders: msg.author.id } });
+    const leader = msg.guild.members.get(gang.leaderId);
+    const update = x => new msg.client.db.updates.Pull(x, msg.author.id);
+
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update('members'));
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update('elders'));
     await leader.tryDM(msg.author.tag.boldify() + ' has left your gang ' + gang.name.boldify() + '.', { guild: msg.guild });
-    return msg.createReply('You\'ve successfully left ' + gang.name + '.');
+
+    return msg.createReply('you\'ve successfully left ' + gang.name + '.');
   }
 }
 

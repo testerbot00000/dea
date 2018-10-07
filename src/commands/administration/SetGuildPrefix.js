@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const Constants = require('../../utility/Constants.js');
 
 class SetGuildPrefix extends patron.Command {
@@ -14,7 +13,8 @@ class SetGuildPrefix extends patron.Command {
           key: 'prefix',
           type: 'string',
           example: '$',
-          preconditions: [{ name: 'maximumlength', options: { length: Constants.guildSettings.maxPrefix } }],
+          preconditionOptions: [{ length: Constants.guildSettings.maxPrefix }],
+          preconditions: ['maximumlength'],
           remainder: true
         })
       ]
@@ -22,9 +22,9 @@ class SetGuildPrefix extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'settings.prefix': args.prefix } });
+    await msg.client.db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'settings.prefix': args.prefix } });
 
-    return msg.createReply('You\'ve successfully set the guild\'s prefix to `' + args.prefix + '`.');
+    return msg.createReply('you\'ve successfully set the guild\'s prefix to `' + args.prefix + '`.');
   }
 }
 

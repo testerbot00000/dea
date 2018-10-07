@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class UpdateUser extends patron.Command {
   constructor() {
@@ -32,8 +31,9 @@ class UpdateUser extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.userRepo.updateUser(args.user.id, args.guild.id, eval('(' + args.update + ')'));
-    return msg.createReply('You have updated the user ' + args.user.id + '.');
+    await msg.client.db.userRepo.updateUser(args.user.id, args.guild.id, eval('(' + args.update + ')'));
+
+    return msg.createReply('you have updated the user ' + args.user.id + '.');
   }
 }
 

@@ -16,7 +16,7 @@ class PollRepository extends BaseRepository {
   }
 
   findPoll(name, creatorId, guildId) {
-    return this.findOne(( { $and: [{ creatorId: creatorId }, { guildId: guildId }] } ));
+    return this.findOne({ $and: [{ creatorId }, { guildId }] });
   }
 
   deletePoll(name, creatorId, guildId) {
@@ -24,8 +24,8 @@ class PollRepository extends BaseRepository {
   }
 
   deletePolls(guildId) {
-    return this.deleteMany({ guildId: guildId });
-  }  
+    return this.deleteMany({ guildId });
+  }
 }
 
 module.exports = PollRepository;

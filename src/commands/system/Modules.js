@@ -20,7 +20,7 @@ class Modules extends patron.Command {
   }
 
   async run(msg, args) {
-    if (String.isNullOrWhiteSpace(args.module) === true) {
+    if (String.isNullOrWhiteSpace(args.module)) {
       let message = '';
 
       for (let i = 0; i < msg.client.registry.groups.length; i++) {
@@ -32,10 +32,10 @@ class Modules extends patron.Command {
 
     const lowerInput = args.module.toLowerCase();
 
-    const module = msg.client.registry.groups.find((x) => x.name === lowerInput);
+    const module = msg.client.registry.groups.find(x => x.name === lowerInput);
 
-    if (module === undefined) {
-      return msg.createErrorReply('This module does not exist.');
+    if (!module) {
+      return msg.createErrorReply('this module does not exist.');
     }
 
     let message = '**Description**: ' + module.description + '\n**Commands:** ';

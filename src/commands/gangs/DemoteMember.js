@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class DemoteMember extends patron.Command {
   constructor() {
@@ -20,18 +19,20 @@ class DemoteMember extends patron.Command {
   }
 
   async run(msg, args) {
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (gang === null) {
-      return msg.createErrorReply('You\'re not in a gang.');
+    if (!gang) {
+      return msg.createErrorReply('you\'re not in a gang.');
     } else if (msg.author.id !== gang.leaderId) {
-      return msg.createErrorReply('You\'re not the owner of this gang.');
-    } else if (gang.elders.some((v) => v === args.member.id) === false) {
-      return msg.createErrorReply('This member isn\'t an elder.');
+      return msg.createErrorReply('you\'re not the owner of this gang.');
+    } else if (!gang.elders.some(v => v === args.member.id)) {
+      return msg.createErrorReply('this member isn\'t an elder.');
     }
 
-    await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $push: { members: args.member.id } });
-    await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { elders: args.member.id } });
+    const update = (x, y) => new msg.client.db.updates[x](y, args.member.id);
+
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update('Push', 'members'));
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update('Pull', 'elders'));
 
     return msg.createReply('You\'ve successfully demoted ' + args.member.user.tag + ' from an elder in your gang.');
   }

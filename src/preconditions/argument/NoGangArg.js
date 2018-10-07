@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class NoGangArg extends patron.ArgumentPrecondition {
   constructor() {
@@ -10,12 +9,13 @@ class NoGangArg extends patron.ArgumentPrecondition {
 
   async run(command, msg, argument, args, value) {
     if (String.isNullOrWhiteSpace(value)) {
-      const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
-      if (gang !== null) {
+      const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
+
+      if (gang) {
         return patron.PreconditionResult.fromSuccess(gang);
       }
     }
-    return patron.PreconditionResult.fromError(command, 'You aren\'t in a gang, therefor must specify one.');
+    return patron.PreconditionResult.fromError(command, 'You aren\'t in a gang so you must specify one.');
   }
 }
 

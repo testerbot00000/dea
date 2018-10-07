@@ -31,8 +31,9 @@ class Kick extends patron.Command {
 
   async run(msg, args) {
     await args.member.kick(args.reason);
-    await msg.createReply('You have successfully kicked ' + args.member.user.tag + '.');
+    await msg.createReply('you have successfully kicked ' + args.member.user.tag + '.');
     await ModerationService.tryInformUser(msg.guild, msg.author, 'kicked', args.member.user, args.reason);
+
     return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Kick', Constants.data.colors.kick, args.reason, msg.author, args.member.user);
   }
 }

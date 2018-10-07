@@ -1,7 +1,5 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const NumberUtil = require('../../utility/NumberUtil.js');
-const ItemService = require('../../services/ItemService.js');
 
 class Shop extends patron.Command {
   constructor() {
@@ -15,7 +13,8 @@ class Shop extends patron.Command {
           key: 'item',
           type: 'item',
           example: '"gold crate"',
-          preconditions: [{ name: 'nottype', options: { types: ['crate'] } }]
+          preconditionOptions: [{ types: ['crate'] }],
+          preconditions: ['nottype']
         }),
         new patron.Argument({
           name: 'amount',
@@ -23,6 +22,8 @@ class Shop extends patron.Command {
           type: 'quantity',
           example: '2',
           defaultValue: 1,
+          preconditionOptions: [{ minimum: 1 }],
+          preconditions: ['minimum'],
           remainder: true
         })
       ]
@@ -31,15 +32,16 @@ class Shop extends patron.Command {
 
   async run(msg, args) {
     const item = 'inventory.' + args.item.names[0];
-    let totalCaseAmount = args.item.price * args.amount;
+    const totalCaseAmount = args.item.price * args.amount;
 
     if (NumberUtil.realValue(msg.dbUser.cash) < totalCaseAmount) {
-      return msg.createErrorReply('You don\'t have enough money to buy ' + (args.amount > 1 ? args.amount + ' ' + args.item.names[0] + 's' : 'a ' + args.item.names[0]) + ', it costs ' + totalCaseAmount.USD() + '.');
+      return msg.createErrorReply('you don\'t have enough money to buy ' + (args.amount > 1 ? args.amount + ' ' + args.item.names[0] + 's' : 'a ' + args.item.names[0]) + ', it costs ' + totalCaseAmount.USD() + '.');
     }
 
-    await db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [item]: args.amount } });
-    await db.userRepo.modifyCash(msg.dbGuild, msg.member, -totalCaseAmount);
-    return msg.createReply('You have successfully purchased ' + args.amount + ' of ' + (args.amount > 1 ? args.item.names[0] + 's' : args.item.names[0]) + '.');
+    await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [item]: args.amount } });
+    await msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, -totalCaseAmount);
+
+    return msg.createReply('you have successfully purchased ' + args.amount + ' of ' + (args.amount > 1 ? args.item.names[0] + 's' : args.item.names[0]) + '.');
   }
 }
 

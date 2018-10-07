@@ -8,7 +8,7 @@ class NoTop10 extends patron.ArgumentPrecondition {
   }
 
   async run(command, msg, argument, args, value) {
-    if (value.roles.has(msg.dbGuild.roles.top10) === false) {
+    if (!value.roles.has(msg.dbGuild.roles.top10)) {
       return patron.PreconditionResult.fromSuccess();
     }
 

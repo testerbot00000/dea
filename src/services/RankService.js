@@ -1,17 +1,16 @@
 const NumberUtil = require('../utility/NumberUtil.js');
-const db = require('../database');
 
 class RankService {
   async handle(dbUser, dbGuild, member, users) {
-    await member.guild.fetchMember(member.client.user);
+    await member.guild.members.fetch(member.client.user);
 
-    if (member.guild.me.hasPermission('MANAGE_ROLES') === false) {
+    if (!member.guild.me.hasPermission('MANAGE_ROLES')) {
       return;
     }
 
     const sortedUsers = users.sort((a, b) => b.cash - a.cash);
-    const position = sortedUsers.findIndex((v) => v.userId === dbUser.userId) + 1;
-    const highsetRolePosition = member.guild.me.highestRole.position;
+    const position = sortedUsers.findIndex(v => v.userId === dbUser.userId) + 1;
+    const highsetRolePosition = member.guild.me.roles.highest.position;
     const rolesToAdd = [];
     const rolesToRemove = [];
     const cash = NumberUtil.realValue(dbUser.cash);
@@ -19,8 +18,8 @@ class RankService {
     for (const rank of dbGuild.roles.rank) {
       const role = member.guild.roles.get(rank.id);
 
-      if (role !== undefined && role.position < highsetRolePosition) {
-        if (member.roles.has(role.id) === false) {
+      if (role && role.position < highsetRolePosition) {
+        if (!member.roles.has(role.id)) {
           if (cash >= rank.cashRequired) {
             rolesToAdd.push(role);
           }
@@ -35,7 +34,7 @@ class RankService {
     this.topHandle(position, 50, dbGuild, highsetRolePosition, member, rolesToAdd, rolesToRemove);
 
     if (rolesToAdd.length > 0) {
-      return member.addRoles(rolesToAdd);
+      return member.roles.add(rolesToAdd);
     } else if (rolesToRemove.length > 0) {
       return member.removeRoles(rolesToRemove);
     }
@@ -57,8 +56,8 @@ class RankService {
   topHandle(position, numb, dbGuild, highsetRolePosition, member, rolesToAdd, rolesToRemove) {
     const role = member.guild.roles.get(dbGuild.roles['top' + numb]);
 
-    if (role !== undefined && role.position < highsetRolePosition) {
-      if (member.roles.has(role.id) === false) {
+    if (role && role.position < highsetRolePosition) {
+      if (!member.roles.has(role.id)) {
         if (position <= numb) {
           rolesToAdd.push(role);
         }

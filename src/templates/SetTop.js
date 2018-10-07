@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../database');
 
 class SetTop extends patron.Command {
   constructor(numb) {
@@ -24,8 +23,9 @@ class SetTop extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.guildRepo.upsertGuild(msg.guild.id, { $set: { ['roles.top' + this.numb]: args.role.id } });
-    return msg.createReply('You have successfully set the Top ' + this.numb + ' role to ' + args.role + '.');
+    await msg.client.db.guildRepo.upsertGuild(msg.guild.id, { $set: { ['roles.top' + this.numb]: args.role.id } });
+
+    return msg.createReply('you have successfully set the Top ' + this.numb + ' role to ' + args.role.toString() + '.');
   }
 }
 

@@ -19,14 +19,14 @@ class ResetCooldowns extends patron.Command {
     });
   }
 
-  run(msg, args, sender) {
-    const commands = msg.client.registry.commands.filter((command) => command.hasCooldown === true);
+  run(msg, args) {
+    const commands = msg.client.registry.commands.filter(command => command.hasCooldown);
 
     for (let i = 0; i < commands.length; i++) {
       delete commands[i].cooldowns[args.member.id + '-' + msg.guild.id];
     }
 
-    return msg.createReply('You have successfully reset all of ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag.boldify() + '\'s') + ' cooldowns.');
+    return msg.createReply('you have successfully reset all of ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag.boldify() + '\'s') + ' cooldowns.');
   }
 }
 

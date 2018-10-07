@@ -1,7 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
-const NumberUtil = require('../../utility/NumberUtil.js');
-const ItemService = require('../../services/ItemService.js');
 
 class Polls extends patron.Command {
   constructor() {
@@ -12,24 +9,27 @@ class Polls extends patron.Command {
     });
   }
 
-  async run(msg, args) {
-    const polls = (await db.pollRepo.findMany({ guildId: msg.guild.id })).sort((a, b) => b.index - a.index);
+  async run(msg) {
+    const polls = (await msg.client.db.pollRepo.findMany({ guildId: msg.guild.id })).sort((a, b) => b.index - a.index);
     let message = '';
 
     if (polls.length <= 0) {
-      return msg.createErrorReply('There\'s currently no active polls in this server.');
+      return msg.createErrorReply('there\'s currently no active polls in this server.');
     }
 
     for (let i = 0; i < polls.length; i++) {
       message += polls[i].index + '. ' + polls[i].name + '\n';
+
       if (i === 20) {
         await msg.author.DMFields(['Polls For Server: ' + msg.guild.name, '```\n' + message + '```'], false);
+
         message = '';
       }
     }
 
     await msg.author.DMFields(['Polls For Server: ' + msg.guild.name, '```\n' + message + '```'], false);
-    return msg.createReply('You have been DMed with all ' + msg.guild.name + ' polls.');
+
+    return msg.createReply('you have been DMed with all ' + msg.guild.name + ' polls.');
   }
 }
 

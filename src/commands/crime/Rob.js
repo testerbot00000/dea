@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const Random = require('../../utility/Random.js');
 const Constants = require('../../utility/Constants.js');
 
@@ -23,7 +22,8 @@ class Rob extends patron.Command {
           type: 'quantity',
           key: 'resources',
           example: '500',
-          preconditions: ['cash', { name: 'cashpercent', options: { percent: Constants.config.rob.max } }]
+          preconditionOptions: [{ percent: Constants.config.rob.max }],
+          preconditions: ['cashpercent', 'cash']
         })
       ]
     });
@@ -33,14 +33,14 @@ class Rob extends patron.Command {
     const roll = Random.roll();
 
     if (roll < Constants.config.rob.odds) {
-      await db.userRepo.modifyCash(msg.dbGuild, args.member, -args.resources);
-      await db.userRepo.modifyCash(msg.dbGuild, msg.member, args.resources);
+      await msg.client.db.userRepo.modifyCash(msg.dbGuild, args.member, -args.resources);
+      await msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, args.resources);
 
-      return msg.createReply('Whilst your target was at the bank, you disguised yourself as a clerk and offered to help him with his deposit. Luckily, you managed to snipe some cash from his account and the dude walked away without noticing. You robbed ' + args.resources.USD() + '.');
+      return msg.createReply('whilst your target was at the bank, you disguised yourself as a clerk and offered to help him with his deposit. Luckily, you managed to snipe some cash from his account and the dude walked away without noticing. You robbed ' + args.resources.USD() + '.');
     }
-    await db.userRepo.modifyCash(msg.dbGuild, msg.member, -args.resources);
+    await msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, -args.resources);
 
-    return msg.createReply('You snuck up behind the dude at the bank and surprised his fatass. Unfortunately for you, he was a SWAT agent and sent you to jail. You lost all the resources in the process.');
+    return msg.createReply('you snuck up behind the dude at the bank and surprised his fatass. Unfortunately for you, he was a SWAT agent and sent you to jail. You lost all the resources in the process.');
   }
 }
 

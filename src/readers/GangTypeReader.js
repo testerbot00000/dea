@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../database');
 
 class GangTypeReader extends patron.TypeReader {
   constructor() {
@@ -7,9 +6,9 @@ class GangTypeReader extends patron.TypeReader {
   }
 
   async read(command, message, argument, args, input) {
-    const gang = await db.gangRepo.findOne({ guildId: message.guild.id, name: input });
+    const gang = await message.client.db.gangRepo.findOne({ guildId: message.guild.id, name: input });
 
-    if (gang !== null) {
+    if (gang) {
       return patron.TypeReaderResult.fromSuccess(gang);
     }
 

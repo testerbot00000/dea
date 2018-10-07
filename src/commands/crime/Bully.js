@@ -1,6 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
-const NumberUtil = require('../../utility/NumberUtil.js');
 const Constants = require('../../utility/Constants.js');
 
 class Bully extends patron.Command {
@@ -23,7 +21,8 @@ class Bully extends patron.Command {
           key: 'nickname',
           type: 'string',
           example: 'ass hat',
-          preconditions: [{ name: 'maximumlength', options: { length: Constants.config.bully.maxLength } }],
+          preconditionOptions: [{ length: Constants.config.bully.maxLength }],
+          preconditions: ['maximumlength'],
           remainder: true
         })
       ]
@@ -32,7 +31,8 @@ class Bully extends patron.Command {
 
   async run(msg, args) {
     await args.member.setNickname(args.nickname);
-    return msg.createReply('You just __BULLIED__ ' + args.member.user.tag.boldify() + ' to ' + args.nickname.boldify() + '.');
+
+    return msg.createReply('you just __BULLIED__ ' + args.member.user.tag.boldify() + ' to ' + args.nickname.boldify() + '.');
   }
 }
 

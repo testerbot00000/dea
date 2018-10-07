@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class SetModLog extends patron.Command {
   constructor() {
@@ -20,9 +19,9 @@ class SetModLog extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'channels.modLog': args.channel.id } });
+    await msg.client.db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'channels.modLog': args.channel.id } });
 
-    return msg.createReply('You have successfully set the mod log channel to ' + args.channel + '.');
+    return msg.createReply('you have successfully set the mod log channel to ' + args.channel.toString() + '.');
   }
 }
 

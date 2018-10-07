@@ -3,7 +3,7 @@ const IncMoneyUpdate = require('../updates/IncMoneyUpdate.js');
 const IncPointsUpdate = require('../updates/IncPointsUpdate');
 const UserQuery = require('../queries/UserQuery.js');
 const User = require('../models/User.js');
-const RankService = require ('../../services/RankService.js');
+const RankService = require('../../services/RankService.js');
 
 class UserRepository extends BaseRepository {
   anyUser(userId, guildId) {
@@ -14,7 +14,7 @@ class UserRepository extends BaseRepository {
     const query = new UserQuery(userId, guildId);
     const fetchedUser = await this.findOne(query, guildId);
 
-    return fetchedUser !== null ? fetchedUser : this.findOneAndReplace(query, new User(userId, guildId));
+    return fetchedUser ? fetchedUser : this.findOneAndReplace(query, new User(userId, guildId));
   }
 
   updateUser(userId, guildId, update) {
@@ -97,7 +97,7 @@ class UserRepository extends BaseRepository {
   }
 
   deleteUsers(guildId) {
-    return this.deleteMany({ guildId: guildId });
+    return this.deleteMany({ guildId });
   }
 }
 

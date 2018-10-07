@@ -11,8 +11,8 @@ class Store extends patron.Command {
     });
   }
 
-  async run(msg, args) {
-    const crates = items.filter(x => x.price !== undefined);
+  async run(msg) {
+    const crates = items.filter(x => x.price);
     let reply = '';
 
     for (let i = 0; i < crates.length; i++) {

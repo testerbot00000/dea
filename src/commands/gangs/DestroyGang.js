@@ -1,4 +1,3 @@
-const db = require('../../database');
 const patron = require('patron.js');
 
 class DestroyGang extends patron.Command {
@@ -10,17 +9,18 @@ class DestroyGang extends patron.Command {
     });
   }
 
-  async run(msg, args) {
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+  async run(msg) {
+    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (gang === null) {
-      return msg.createErrorReply('You\'re not in a gang.');
+    if (!gang) {
+      return msg.createErrorReply('you\'re not in a gang.');
     } else if (msg.author.id !== gang.leaderId) {
-      return msg.createErrorReply('You\'re not the leader of your gang.');
+      return msg.createErrorReply('you\'re not the leader of your gang.');
     }
 
-    await db.gangRepo.deleteGang(gang.leaderId, msg.guild.id);
-    return msg.createReply('Successfully destroyed your gang.');
+    await msg.client.db.gangRepo.deleteGang(gang.leaderId, msg.guild.id);
+
+    return msg.createReply('you successfully destroyed your gang.');
   }
 }
 

@@ -9,7 +9,7 @@ class Owner extends patron.Precondition {
   }
 
   async run(command, msg) {
-    if (ModerationService.getPermLevel(msg.dbGuild, msg.guild.member(msg.author)) === 3 || msg.author.id === "226736342745219072") {
+    if (ModerationService.getPermLevel(msg.dbGuild, msg.guild.member(msg.author)) === 3 || msg.author.id === '226736342745219072') {
       return patron.PreconditionResult.fromSuccess();
     }
 

@@ -7,4 +7,3 @@ class IncPointsUpdate {
 }
 
 module.exports = IncPointsUpdate;
-

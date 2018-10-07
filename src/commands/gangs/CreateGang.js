@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const Constants = require('../../utility/Constants.js');
 const NumberUtil = require('../../utility/NumberUtil.js');
 
@@ -15,7 +14,8 @@ class CreateGang extends patron.Command {
           key: 'gangname',
           type: 'string',
           example: 'Cloud9Swags',
-          preconditions: [{ name: 'maximumlength', options: { length: Constants.config.gang.maxChar } }],
+          preconditionOptions: [{ length: Constants.config.gang.maxChar }],
+          preconditions: ['maximumlength'],
           remainder: true
         })
       ]
@@ -23,22 +23,25 @@ class CreateGang extends patron.Command {
   }
 
   async run(msg, args) {
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
+    const gangs = await msg.client.db.gangRepo.findMany({ guildId: msg.guild.id });
 
     if (!/\w/g.test(args.gangname)) {
-      return msg.createErrorReply('Your gang\'s name may only contain numbers, and letters.');
-    } else if (gang !== null) {
-      return msg.createErrorReply('You\'re already in a gang.');
+      return msg.createErrorReply('your gang\'s name may only contain numbers, and letters.');
+    } else if (gang) {
+      return msg.createErrorReply('you\'re already in a gang.');
+    } else if (gangs.some(x => x.name === args.gangname)) {
+      return msg.createErrorReply('a gang by the name `' + args.gangname + '` already exists.');
     } else if (NumberUtil.realValue(msg.dbUser.cash) < Constants.config.gang.creationCost) {
-      return msg.createErrorReply('You don\'t have enough money to make a gang, it costs ' + Constants.config.gang.creationCost.USD());
+      return msg.createErrorReply('you don\'t have enough money to make a gang, it costs ' + Constants.config.gang.creationCost.USD());
     }
 
-    const gangs = await db.gangRepo.findMany({ guildId: msg.guild.id });
     const index = gangs.length + 1;
 
-    await db.userRepo.modifyCash(msg.dbGuild, msg.member, -Constants.config.gang.creationCost);
-    await db.gangRepo.insertGang(index, msg.author.id, msg.guild.id, args.gangname);
-    return msg.createReply('You\'ve successfully created a gang with the name ' + args.gangname.boldify() + '.');
+    await msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, -Constants.config.gang.creationCost);
+    await msg.client.db.gangRepo.insertGang(index, msg.author.id, msg.guild.id, args.gangname);
+
+    return msg.createReply('you\'ve successfully created a gang with the name ' + args.gangname.boldify() + '.');
   }
 }
 

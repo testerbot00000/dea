@@ -16,11 +16,11 @@ class GangRepository extends BaseRepository {
   }
 
   findGang(userId, guildId) {
-    return this.findOne(( { $or: [{ members: userId }, { leaderId: userId }], $and: [{ guildId: guildId }] } ));
+    return this.findOne({ $or: [{ members: userId }, { leaderId: userId }], $and: [{ guildId }] });
   }
 
   findGangByLeader(leaderId, guildId) {
-    return this.findOne(( { $and: [{ leaderId: leaderId}, { guildId: guildId }] } ));
+    return this.findOne({ $and: [{ leaderId }, { guildId }] });
   }
 
   deleteGang(leaderId, guildId) {
@@ -28,8 +28,8 @@ class GangRepository extends BaseRepository {
   }
 
   deleteGangs(guildId) {
-    return this.deleteMany({ guildId: guildId });
-  }  
+    return this.deleteMany({ guildId });
+  }
 }
 
 module.exports = GangRepository;

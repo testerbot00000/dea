@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class RemoveTriviaQuestion extends patron.Command {
   constructor() {
@@ -22,8 +21,9 @@ class RemoveTriviaQuestion extends patron.Command {
   async run(msg, args) {
     const question = 'trivia.' + args.question;
 
-    await db.guildRepo.updateGuild(msg.guild.id, { $unset: { [question]: "" } });
-    return msg.createReply('You\'ve successfully removed question **' + args.question + '**.');
+    await msg.client.db.guildRepo.updateGuild(msg.guild.id, { $unset: { [question]: '' } });
+
+    return msg.createReply('you\'ve successfully removed question **' + args.question + '**.');
   }
 }
 

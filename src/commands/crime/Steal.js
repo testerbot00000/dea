@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const Random = require('../../utility/Random.js');
 const Constants = require('../../utility/Constants.js');
 
@@ -16,7 +15,7 @@ class Steal extends patron.Command {
   async run(msg) {
     const prize = Random.nextFloat(Constants.config.steal.min, Constants.config.steal.max);
 
-    await db.userRepo.modifyCash(msg.dbGuild, msg.member, prize);
+    await msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, prize);
 
     return msg.createReply(Random.arrayElement(Constants.data.messages.steal).format(Random.arrayElement(Constants.data.messages.stores), prize.USD()));
   }

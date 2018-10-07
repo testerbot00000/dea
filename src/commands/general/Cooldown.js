@@ -21,24 +21,24 @@ class Cooldowns extends patron.Command {
   }
 
   run(msg, args) {
-    const commands = msg.client.registry.commands.filter((command) => command.hasCooldown === true);
+    const commands = msg.client.registry.commands.filter(command => command.hasCooldown);
     let cooldowns = '';
 
     for (let i = 0; i < commands.length; i++) {
       const cooldown = commands[i].cooldowns[args.member.id + '-' + msg.guild.id];
 
-      if (cooldown !== undefined) {
+      if (cooldown) {
         const remaining = cooldown - Date.now();
 
         if (remaining > 0) {
           const formattedCooldown = NumberUtil.msToTime(remaining);
 
-          cooldowns += (commands[i].names[0].upperFirstChar()).boldify() + ': ' + NumberUtil.pad(formattedCooldown.hours, 2) + ':' + NumberUtil.pad(formattedCooldown.minutes, 2) + ':' + NumberUtil.pad(formattedCooldown.seconds, 2) + '\n';
+          cooldowns += commands[i].names[0].upperFirstChar().boldify() + ': ' + NumberUtil.pad(formattedCooldown.hours, 2) + ':' + NumberUtil.pad(formattedCooldown.minutes, 2) + ':' + NumberUtil.pad(formattedCooldown.seconds, 2) + '\n';
         }
       }
     }
 
-    if (String.isNullOrWhiteSpace(cooldowns) === true) {
+    if (String.isNullOrWhiteSpace(cooldowns)) {
       return msg.createReply('All of ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag + '\'s') + ' commands are ready for use.');
     }
 

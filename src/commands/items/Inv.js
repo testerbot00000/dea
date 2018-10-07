@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const ItemService = require('../../services/ItemService.js');
 
 class Inv extends patron.Command {
@@ -22,11 +21,14 @@ class Inv extends patron.Command {
   }
 
   async run(msg, args) {
-    const dbUser = await db.userRepo.getUser(args.member.id, msg.guild.id);
+    const dbUser = await msg.client.db.userRepo.getUser(args.member.id, msg.guild.id);
+
     let description = '';
+
     for (const key in dbUser.inventory) {
-      const s = (dbUser.inventory[key] > 1 ? 's' : '');
-      description += (dbUser.inventory[key] > 0 ? ItemService.capitializeWords(key) + s + ': ' + dbUser.inventory[key] + '\n' : '');
+      const s = dbUser.inventory[key] > 1 ? 's' : '';
+
+      description += dbUser.inventory[key] ? ItemService.capitializeWords(key) + s + ': ' + dbUser.inventory[key] + '\n' : '';
     }
 
     if (String.isNullOrWhiteSpace(description)) {

@@ -1,4 +1,3 @@
-const db = require('../../database');
 const patron = require('patron.js');
 
 class DeleteGang extends patron.Command {
@@ -20,8 +19,9 @@ class DeleteGang extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.gangRepo.deleteGang(args.gang.leaderId, msg.guild.id);
-    return msg.createReply('Successfully deleted gang ' + args.gang.name + '.');
+    await msg.client.db.gangRepo.deleteGang(args.gang.leaderId, msg.guild.id);
+
+    return msg.createReply('successfully deleted gang ' + args.gang.name + '.');
   }
 }
 

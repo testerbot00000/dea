@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class Questions extends patron.Command {
   constructor() {
@@ -10,12 +9,13 @@ class Questions extends patron.Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg) {
     let description = '';
     let position = 1;
 
     for (const key in msg.dbGuild.trivia) {
-      description += (position++) + '. ' + key.boldify() + '\n';
+      description += position++ + '. ' + key.boldify() + '\n';
+
       if (description.length > 1024) {
         await msg.author.tryDM(description, { title: 'Trivia Questions' });
         description = '';
@@ -23,7 +23,8 @@ class Questions extends patron.Command {
     }
 
     await msg.author.tryDM(description, { title: 'Trivia Questions' });
-    return msg.createReply('You\'ve been DM\'d with all trivia questions.');
+
+    return msg.createReply('you\'ve been DM\'d with all trivia questions.');
   }
 }
 

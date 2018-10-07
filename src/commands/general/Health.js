@@ -1,4 +1,3 @@
-const db = require('../../database');
 const patron = require('patron.js');
 
 class Health extends patron.Command {
@@ -21,7 +20,7 @@ class Health extends patron.Command {
   }
 
   async run(msg, args) {
-    const dbUser = msg.author.id === args.member.id ? msg.dbUser : await db.userRepo.getUser(args.member.id, msg.guild.id);
+    const dbUser = msg.author.id === args.member.id ? msg.dbUser : await msg.client.db.userRepo.getUser(args.member.id, msg.guild.id);
 
     return msg.channel.createMessage(args.member.user.tag.boldify() + '\'s health: ' + dbUser.health + '.');
   }

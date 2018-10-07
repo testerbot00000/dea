@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class AddTriviaQuestion extends patron.Command {
   constructor() {
@@ -13,14 +12,16 @@ class AddTriviaQuestion extends patron.Command {
           key: 'question',
           type: 'string',
           example: 'is john gay',
-          preconditions: [{ name: 'maximumlength', options: { length: 128 }}]
+          preconditionOptions: [{ length: 128 }],
+          preconditions: ['maximumlength']
         }),
         new patron.Argument({
           name: 'answer',
           key: 'answer',
           type: 'string',
           example: 'yes he is',
-          preconditions: [{ name: 'maximumlength', options: { length: 128 }}],
+          preconditionOptions: [{ length: 128 }],
+          preconditions: ['maximumlength'],
           remainder: true
         })
       ]
@@ -29,13 +30,14 @@ class AddTriviaQuestion extends patron.Command {
 
   async run(msg, args) {
     if (Object.keys(msg.dbGuild.trivia) > 69) {
-      return msg.createErrorReply('This guild has too many trivia questions.');
+      return msg.createErrorReply('this server has too many trivia questions.');
     }
 
     const question = 'trivia.' + args.question;
 
-    await db.guildRepo.updateGuild(msg.guild.id, { $set: { [question]: args.answer } });
-    return msg.createReply('You\'ve successfully added question **' + args.question + '**.');
+    await msg.client.db.guildRepo.updateGuild(msg.guild.id, { $set: { [question]: args.answer } });
+
+    return msg.createReply('you\'ve successfully added question **' + args.question + '**.');
   }
 }
 

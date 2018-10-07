@@ -16,7 +16,8 @@ class Clear extends patron.Command {
           key: 'quantity',
           type: 'float',
           example: '5',
-          preconditions: [{ name: 'minimum', options: { minimum: Constants.config.clear.min } }, { name: 'maximum', options: { maximum: Constants.config.clear.max } }]
+          preconditionOptions: [{ minimum: Constants.config.clear.min }, { maximum: Constants.config.clear.max }],
+          preconditions: ['minimum', 'maximum']
         }),
         new patron.Argument({
           name: 'reason',

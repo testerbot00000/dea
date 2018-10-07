@@ -7,7 +7,7 @@ const appendFile = util.promisify(fs.appendFile);
 
 class Logger {
   constructor() {
-    if (fs.existsSync(logsPath) === false) {
+    if (!fs.existsSync(logsPath)) {
       fs.mkdirSync(logsPath);
     }
 
@@ -25,19 +25,21 @@ class Logger {
       this.stream = fs.createWriteStream(logsPath + '/' + this.UTCDate + '.txt', { flags: 'a' });
     }
 
-    if (this.stream.writable === false) {
+    if (!this.stream.writable) {
       await this.waitTillWritable();
     }
 
     const formattedMessage = DateUtil.UTCTime(newDate) + ' [' + level + '] ' + message;
 
+    /* eslint-disable no-console */
     console.log(formattedMessage);
+    /* eslint-enable no-console */
 
     if (level === 'ERROR') {
       await appendFile(logsPath + '/' + this.UTCDate + ' Errors.txt', formattedMessage + '\n');
     }
 
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       this.stream.write(formattedMessage + '\n', () => {
         resolve();
       });
@@ -49,7 +51,7 @@ class Logger {
   }
 
   waitTillWritable() {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       this.stream.on('open', () => {
         resolve();
       });

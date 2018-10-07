@@ -8,7 +8,7 @@ class Top extends patron.Precondition {
   }
 
   async run(command, msg, options) {
-    if (msg.member.roles.has(msg.dbGuild.roles['top' + options.top]) === true) {
+    if (msg.member.roles.has(msg.dbGuild.roles['top' + options.top])) {
       return patron.PreconditionResult.fromSuccess();
     }
 

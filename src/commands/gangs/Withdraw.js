@@ -1,8 +1,6 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const Constants = require('../../utility/Constants.js');
 const NumberUtil = require('../../utility/NumberUtil.js');
-const IncMoneyUpdate = require('../../database/updates/IncMoneyUpdate.js');
 
 class Withdraw extends patron.Command {
   constructor() {
@@ -17,28 +15,30 @@ class Withdraw extends patron.Command {
           key: 'transfer',
           type: 'quantity',
           example: '500',
-          preconditions: [{ name: 'minimumcash', options: { minimum: Constants.config.gang.min } }, 'withdrawprec']
+          preconditionOptions: [{ minimum: Constants.config.gang.min }],
+          preconditions: ['minimumcash', 'withdrawprec']
         })
       ]
     });
   }
 
   async run(msg, args) {
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
-    
-    if (gang === null) {
-      return msg.createErrorReply('You\'re not in a gang.');
+    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
+
+    if (!gang) {
+      return msg.createErrorReply('you\'re not in a gang.');
     }
-    
-    const leader = await msg.guild.members.get(gang.leaderId);
 
-    await db.userRepo.modifyCash(msg.dbGuild, msg.member, args.transfer);
-    await db.gangRepo.updateGang(gang.leaderId, gang.guildId, new IncMoneyUpdate('wealth', -args.transfer));
+    const leader = msg.guild.members.get(gang.leaderId);
 
-    const newGang = await db.gangRepo.findOne({ guildId: msg.guild.id, name: gang.name });
-    
+    await msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, args.transfer);
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, gang.guildId, new msg.client.db.updates.IncMoney('wealth', -args.transfer));
+
+    const newGang = await msg.client.db.gangRepo.findOne({ guildId: msg.guild.id, name: gang.name });
+
     await leader.tryDM(msg.author.tag.boldify() + ' has withdrawn ' + args.transfer.USD() + ' from your gang.', { guild: msg.guild });
-    return msg.createReply('You have successfully withdrawn ' + args.transfer.USD() + ' from your gang. ' + newGang.name + '\'s Wealth: ' + NumberUtil.format(newGang.wealth) + '.');
+
+    return msg.createReply('you have successfully withdrawn ' + args.transfer.USD() + ' from your gang. ' + newGang.name + '\'s Wealth: ' + NumberUtil.format(newGang.wealth) + '.');
   }
 }
 

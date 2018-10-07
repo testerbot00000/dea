@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 
 class PromoteMember extends patron.Command {
   constructor() {
@@ -20,22 +19,24 @@ class PromoteMember extends patron.Command {
   }
 
   async run(msg, args) {
-    const gang = await db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
+    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (gang === null) {
-      return msg.createErrorReply('You\'re not in a gang.');
+    if (!gang) {
+      return msg.createErrorReply('you\'re not in a gang.');
     } else if (msg.author.id !== gang.leaderId) {
-      return msg.createErrorReply('You\'re not the owner of this gang.');
+      return msg.createErrorReply('you\'re not the owner of this gang.');
     } else if (msg.author.id === args.member.id) {
-      return msg.createErrorReply('You cannot make yourself an elder.');
-    } else if (gang.elders.some((v) => v === args.member.id)) {
-      return msg.createErrorReply('This member is already an elder.');
+      return msg.createErrorReply('you cannot make yourself an elder.');
+    } else if (gang.elders.some(v => v === args.member.id)) {
+      return msg.createErrorReply('this member is already an elder.');
     }
 
-    await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $push: { elders: args.member.id } });
-    await db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $pull: { members: args.member.id } });
+    const update = (x, y) => new msg.client.db.updates[x](y, args.member.id);
 
-    return msg.createReply('You\'ve successfully promoted ' + args.member.user.tag + ' as an elder in your gang.');
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update('Push', 'elders'));
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update('Pull', 'members'));
+
+    return msg.createReply('you\'ve successfully promoted ' + args.member.user.tag + ' as an elder in your gang.');
   }
 }
 

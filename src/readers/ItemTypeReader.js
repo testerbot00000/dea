@@ -8,7 +8,7 @@ class ItemTypeReader extends patron.TypeReader {
   async read(command, message, argument, args, input) {
     const item = message.dbGuild.items.find(x => x.names.includes(input.toLowerCase()));
 
-    if (item !== undefined) {
+    if (item) {
       return patron.TypeReaderResult.fromSuccess(item);
     }
 

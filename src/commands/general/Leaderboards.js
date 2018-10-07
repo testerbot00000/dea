@@ -1,4 +1,3 @@
-const db = require('../../database');
 const Constants = require('../../utility/Constants.js');
 const patron = require('patron.js');
 const NumberUtil = require('../../utility/NumberUtil.js');
@@ -13,7 +12,7 @@ class Leaderboards extends patron.Command {
   }
 
   async run(msg) {
-    const users = await db.userRepo.findMany({ guildId: msg.guild.id });
+    const users = await msg.client.db.userRepo.findMany({ guildId: msg.guild.id });
 
     users.sort((a, b) => b.cash - a.cash);
 
@@ -26,15 +25,15 @@ class Leaderboards extends patron.Command {
 
       const user = msg.client.users.get(users[i].userId);
 
-      if (user === undefined) {
+      if (!user) {
         continue;
       }
 
-      message += (i + 1) + '. ' + user.tag.boldify() + ': ' + NumberUtil.format(users[i].cash) + '\n';
+      message += i + 1 + '. ' + user.tag.boldify() + ': ' + NumberUtil.format(users[i].cash) + '\n';
     }
 
-    if (String.isNullOrWhiteSpace(message) === true) {
-      return msg.createErrorReply('There is nobody on the leaderboards.');
+    if (String.isNullOrWhiteSpace(message)) {
+      return msg.createErrorReply('there is nobody on the leaderboards.');
     }
 
     return msg.channel.createMessage(message, { title: 'The Richest Traffickers' });

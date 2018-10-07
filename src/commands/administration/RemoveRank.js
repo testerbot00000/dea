@@ -1,4 +1,3 @@
-const db = require('../../database');
 const patron = require('patron.js');
 
 class RemoveRank extends patron.Command {
@@ -20,13 +19,15 @@ class RemoveRank extends patron.Command {
   }
 
   async run(msg, args) {
-    if (msg.dbGuild.roles.rank.some((role) => role.id === args.role.id) === false) {
-      return msg.createErrorReply('You may not remove a rank role that has no been set.');
+    if (!msg.dbGuild.roles.rank.some(role => role.id === args.role.id)) {
+      return msg.createErrorReply('you may not remove a rank role that has not been set.');
     }
 
-    await db.guildRepo.upsertGuild(msg.guild.id, new db.updates.Pull('roles.rank', { id: args.role.id }));
+    const update = new msg.client.db.updates.Pull('roles.rank', { id: args.role.id });
 
-    return msg.createReply('You have successfully removed the rank role ' + args.role + '.');
+    await msg.client.db.guildRepo.upsertGuild(msg.guild.id, update);
+
+    return msg.createReply('you have successfully removed the rank role ' + args.role.toString() + '.');
   }
 }
 

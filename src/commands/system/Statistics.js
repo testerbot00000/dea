@@ -1,6 +1,6 @@
 const patron = require('patron.js');
-const NumberUtil = require('../../utility/NumberUtil.js');
 const Constants = require('../../utility/Constants.js');
+const NumberUtil = require('../../utility/NumberUtil.js');
 
 class Statistics extends patron.Command {
   constructor() {
@@ -12,7 +12,7 @@ class Statistics extends patron.Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg) {
     const uptime = NumberUtil.msToTime(msg.client.uptime);
 
     let users = 0;
@@ -21,14 +21,13 @@ class Statistics extends patron.Command {
       users += guild.memberCount;
     }
 
-    await msg.author.DMFields(
-      [
-        'Author', 'Luner#0059', 'Framework', 'patron.js', 'Memory', (process.memoryUsage().rss / 1048576).toFixed(2) + ' MB', 'Servers', msg.client.guilds.size,
-        'Users', users, 'Uptime', 'Days: ' + uptime.days + '\nHours: '+ uptime.hours + '\nMinutes: ' + uptime.minutes
-      ]);
+    await msg.author.DMFields([
+      'Authors', Constants.data.misc.botOwners.join(', '), 'Framework', 'patron.js', 'Memory', (process.memoryUsage().rss / 1048576).toFixed(2) + ' MB', 'Servers', msg.client.guilds.size,
+      'Users', users, 'Uptime', 'Days: ' + uptime.days + '\nHours: ' + uptime.hours + '\nMinutes: ' + uptime.minutes
+    ]);
 
     if (msg.channel.type !== 'dm') {
-      return msg.createReply('You have been DMed with all ' + msg.client.user.username + ' Statistics!');
+      return msg.createReply('you have been DMed with all ' + msg.client.user.username + ' Statistics!');
     }
   }
 }

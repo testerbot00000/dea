@@ -1,5 +1,4 @@
 const patron = require('patron.js');
-const db = require('../../database');
 const util = require('util');
 const Constants = require('../../utility/Constants.js');
 
@@ -25,13 +24,8 @@ class Eval extends patron.Command {
   async run(msg, args) {
     try {
       /* eslint-disable no-unused-vars */
-      const client = msg.client;
+      const { client, client: { db }, guild, channel, author, member } = msg;
       const message = msg;
-      const guild = msg.guild;
-      const channel = msg.channel;
-      const author = msg.author;
-      const member = msg.member;
-      const database = db;
 
       let result = eval(args.code);
 
@@ -43,7 +37,7 @@ class Eval extends patron.Command {
         result = util.inspect(result, { depth: 0 });
       }
 
-      result = result.replace(msg.client.token, ' ').replace(/\[Object\]/g, 'Object').replace(/\[Array\]/g, 'Array');
+      result = result.replace(msg.client.token, ' ');
 
       return msg.channel.createFieldsMessage(['Eval', '```js\n' + args.code + '```', 'Returns', '```js\n' + result + '```'], false);
     } catch (err) {

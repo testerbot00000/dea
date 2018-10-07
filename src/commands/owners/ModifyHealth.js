@@ -1,10 +1,9 @@
-const db = require('../../database');
 const patron = require('patron.js');
 
 class ModifyHealth extends patron.Command {
   constructor() {
     super({
-      names: ['modifyhealth'],
+      names: ['modifyhealth', 'modhealth'],
       groupName: 'owners',
       description: 'Allows you to modify the health of any member.',
       args: [
@@ -26,10 +25,11 @@ class ModifyHealth extends patron.Command {
   }
 
   async run(msg, args) {
-    await db.userRepo.updateUser(args.member.id, msg.guild.id, { $inc: { health: args.amount } });
-    const dbUser = await db.userRepo.getUser(args.member.id, msg.guild.id);
+    await msg.client.db.userRepo.updateUser(args.member.id, msg.guild.id, { $inc: { health: args.amount } });
 
-    return msg.createReply('You have successfully modifed ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag.boldify() + '\'s') + ' health to ' + dbUser.health + '.');
+    const dbUser = await msg.client.db.userRepo.getUser(args.member.id, msg.guild.id);
+
+    return msg.createReply('you have successfully modifed ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag.boldify() + '\'s') + ' health to ' + dbUser.health + '.');
   }
 }
 

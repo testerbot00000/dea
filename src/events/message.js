@@ -26,7 +26,7 @@ client.on('message', async msg => {
   }
 
   if (!Constants.data.regexes.prefix.test(msg.content)) {
-    return !inGuild && msg.member ? ChatService.applyCash(msg) : null;
+    return !inGuild && msg.member && !msg.dbGuild.channels.ignore.includes(msg.channel.id) ? ChatService.applyCash(msg) : null;
   }
 
   const result = await handler.run(msg, Constants.data.misc.prefix.length);

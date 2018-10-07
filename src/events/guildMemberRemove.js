@@ -1,4 +1,4 @@
-const client = require('../structures/client.js');
+const client = require('../structures/Client.js');
 
 client.on('guildMemberRemove', async member => {
   const gang = await client.db.gangRepo.findOne({ $or: [{ members: member.id }, { leaderId: member.id }, { elders: member.id }], $and: [{ guildId: member.guild.id }] });

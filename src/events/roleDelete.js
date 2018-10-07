@@ -1,4 +1,4 @@
-const client = require('../structures/client.js');
+const client = require('../structures/Client.js');
 
 client.on('roleDelete', async role => {
   const dbGuild = await role.client.db.guildRepo.getGuild(role.guild.id);

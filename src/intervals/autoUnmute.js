@@ -35,7 +35,7 @@ module.exports = async client => {
         continue;
       }
 
-      await member.removeRole(role);
+      await member.roles.remove(role);
       await ModerationService.tryModLog(dbGuild, guild, 'Automatic Unmute', Constants.data.colors.unmute, '', null, member.user);
       await ModerationService.tryInformUser(guild, client.user, 'automatically unmuted', member.user);
     }

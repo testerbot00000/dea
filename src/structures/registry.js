@@ -1,6 +1,6 @@
 const patron = require('patron.js');
 const path = require('path');
-const registry = new patron.Registry({ library: 'discord.js' });
+const registry = new patron.Registry({ library: 'discord.js', caseSensitive: false });
 
 (async r => {
   r.registerGlobalTypeReaders();

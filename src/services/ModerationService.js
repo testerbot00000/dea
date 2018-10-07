@@ -44,7 +44,7 @@ class ModerationService {
     if (moderator) {
       options.author = {
         name: moderator.tag,
-        icon: moderator.avatarURL,
+        icon: moderator.displayAvatarURL(),
         URL: Constants.data.links.botInvite
       };
     }

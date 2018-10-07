@@ -7,7 +7,7 @@ Structures.extend('User', U => {
   class User extends U {
     DM(description, options = {}) {
       if (options.guild) {
-        options.footer = { text: options.guild.name, icon: options.guild.iconURL };
+        options.footer = { text: options.guild.name, icon: options.guild.iconURL() };
       }
 
       return createMessage(this, description, options);

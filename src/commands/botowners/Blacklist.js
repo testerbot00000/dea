@@ -23,7 +23,7 @@ class Blacklist extends patron.Command {
       return msg.createErrorReply('this user is already blacklisted.');
     }
 
-    await msg.client.db.blacklistRepo.insertBlacklist(args.user.id, args.user.tag, args.user.avatarURL);
+    await msg.client.db.blacklistRepo.insertBlacklist(args.user.id, args.user.tag, args.user.displayAvatarURL());
 
     return msg.createReply('successfully blacklisted ' + args.user.tag + '.');
   }

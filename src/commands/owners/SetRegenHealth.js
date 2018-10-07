@@ -3,7 +3,7 @@ const patron = require('patron.js');
 class SetRegenHealth extends patron.Command {
   constructor() {
     super({
-      names: ['setregenhealth', 'regenhealth'],
+      names: ['setregenhealth', 'regenhealth', 'setregen'],
       groupName: 'owners',
       description: 'Sets the amount of health to be regenerated per hour.',
       args: [

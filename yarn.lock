@@ -359,7 +359,7 @@ detect-libc@^1.0.3:
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
   integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
 
-"discord.js@github:discordjs/discord.js", "uws@github:discordjs/discord.js":
+"discord.js@github:discordjs/discord.js":
   version "12.0.0-dev"
   resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/27d2ce7baf9a25d2e5eec76cd66b8ca14aabd5ee"
   dependencies:
@@ -974,8 +974,6 @@ path-is-inside@^1.0.1, path-is-inside@^1.0.2:
 "patron.js@github:asshley/patron.js":
   version "3.0.3"
   resolved "https://codeload.github.com/asshley/patron.js/tar.gz/e1d0c9c46b9f5585cf887669c241101a5e10b458"
-  dependencies:
-    "@types/node" "^10.11.4"
 
 pify@^2.0.0:
   version "2.3.0"
@@ -1365,6 +1363,10 @@ util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
+
+"uws@github:discordjs/uws":
+  version "0.0.0"
+  resolved "https://codeload.github.com/discordjs/uws/tar.gz/6d010c830553123cddbb4fcd2b6a9592fcb41478"
 
 which-pm-runs@^1.0.0:
   version "1.0.0"

@@ -19,7 +19,7 @@ class Shop extends patron.Command {
         new patron.Argument({
           name: 'amount',
           key: 'amount',
-          type: 'quantity',
+          type: 'int',
           example: '2',
           defaultValue: 1,
           preconditionOptions: [{ minimum: 1 }],

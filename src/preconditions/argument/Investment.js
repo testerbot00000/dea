@@ -30,7 +30,7 @@ class Investment extends patron.ArgumentPrecondition {
     const investmentObject = Constants.config.investments[investment];
 
     if (investmentObject.cost > cashValue) {
-      return patron.PreconditionResult.fromError(command, 'you need ' + cashValue.USD() + ' to buy ' + investment + '. Balance: ' + cashValue.USD() + '.');
+      return patron.PreconditionResult.fromError(command, 'you need ' + investmentObject.cost.USD() + ' to buy ' + investment + '. Balance: ' + cashValue.USD() + '.');
     }
 
     return patron.PreconditionResult.fromSuccess();

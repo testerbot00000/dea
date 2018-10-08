@@ -24,10 +24,10 @@ class Investments extends patron.Command {
     const investments = Constants.config.investments;
 
     if (String.isNullOrWhiteSpace(args.investment)) {
-      const message = Object.keys(investments).map(x => '**Cost:** ' + investments[x].cost.USD() + ' | ' + investments[x].description);
+      const message = Object.keys(investments).map(x => x.upperFirstChar().boldify() + ', **Cost:** ' + investments[x].cost.USD() + ' | ' + investments[x].description);
       const ownInvestments = msg.dbUser.investments.length ? msg.dbUser.investments.map(x => x.upperFirstChar()).join(', ') : '';
 
-      return msg.channel.createMessage(message.join('\n') + '\n\n**Your Investments:** ' + ownInvestments, { title: 'Available Investments' });
+      return msg.channel.createMessage(message.join('\n') + (ownInvestments ? '\n\n**Your Investments:** ' + ownInvestments : ''), { title: 'Available Investments' });
     }
 
     const update = new msg.client.db.updates.Push('investments', args.investment.toLowerCase());

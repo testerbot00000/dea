@@ -973,7 +973,7 @@ path-is-inside@^1.0.1, path-is-inside@^1.0.2:
 
 "patron.js@github:asshley/patron.js":
   version "3.0.3"
-  resolved "https://codeload.github.com/asshley/patron.js/tar.gz/4cab6843fb72a744ad52436c4ea970fb9d0aa64f"
+  resolved "https://codeload.github.com/asshley/patron.js/tar.gz/c7c17be806ed5bd80cdebc2ffc1c7f28a833b3e6"
   dependencies:
     "@types/node" "^10.11.4"
 

@@ -22,7 +22,7 @@ class DumpVault extends patron.Command {
       await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $inc: { [vaultGained]: amount } });
     }
 
-    const leader = msg.guild.members.get(args.gang.leaderId);
+    const leader = msg.guild.members.get(gang.leaderId);
 
     if (!leader.user.dmChannel) {
       await leader.createDM();

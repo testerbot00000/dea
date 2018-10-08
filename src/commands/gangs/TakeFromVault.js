@@ -40,7 +40,7 @@ class TakeFromVault extends patron.Command {
     await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [inv]: args.amount } });
     await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $inc: { [vault]: -args.amount } });
 
-    const leader = msg.guild.members.get(args.gang.leaderId);
+    const leader = msg.guild.members.get(gang.leaderId);
 
     if (!leader.user.dmChannel) {
       await leader.createDM();

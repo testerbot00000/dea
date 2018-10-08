@@ -47,7 +47,7 @@ class Clear extends patron.Command {
       msg.author,
       null,
       'Quantity',
-      args.quantity + '**Channel:** ' + msg.channel.name + ' (' + msg.channel.toString() + ')'
+      args.quantity + '\n**Channel:** ' + msg.channel.name + ' (' + msg.channel.toString() + ')'
     );
 
     return reply.delete(3000);

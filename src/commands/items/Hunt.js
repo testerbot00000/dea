@@ -36,7 +36,7 @@ class Hunt extends patron.Command {
     }
 
     if (args.item.type === 'gun') {
-      await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [args.item.bullet]: -1 } });
+      await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { ['inventory.' + args.item.bullet]: -1 } });
     }
 
     return msg.createReply(reply);

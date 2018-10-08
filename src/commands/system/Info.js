@@ -7,7 +7,7 @@ class Info extends patron.Command {
       names: ['info', 'information', 'cashinfo', 'cashhelp'],
       groupName: 'system',
       description: 'All the information about the cash system.',
-      usableContexts: [patron.Context.DM, patron.Context.Guild],
+      usableContexts: [patron.Context.DM, patron.Context.Guild]
     });
   }
 

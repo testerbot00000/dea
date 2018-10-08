@@ -10,7 +10,7 @@ class DumpVault extends patron.Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg) {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
     for (const key in msg.dbUser.inventory) {
@@ -22,7 +22,14 @@ class DumpVault extends patron.Command {
       await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $inc: { [vaultGained]: amount } });
     }
 
-    return msg.createReply('you have successfully dumped all of your items to your gangs vault.');
+    const leader = msg.guild.members.get(args.gang.leaderId);
+
+    if (!leader.user.dmChannel) {
+      await leader.createDM();
+    }
+
+    await leader.tryDM(msg.author.tag + ' has just dumped all his items into your gangs vault', { guild: msg.guild });
+    return msg.createReply('you have successfully dumped all of your items into your gangs vault.');
   }
 }
 

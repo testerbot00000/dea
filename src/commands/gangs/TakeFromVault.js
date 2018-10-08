@@ -1,6 +1,5 @@
 const patron = require('patron.js');
 const Constants = require('../../utility/Constants.js');
-const NumberUtil = require('../../utility/NumberUtil.js');
 
 class TakeFromVault extends patron.Command {
   constructor() {
@@ -16,7 +15,7 @@ class TakeFromVault extends patron.Command {
           key: 'item',
           type: 'item',
           example: 'intervention',
-          preconditions: ['notinvault'],
+          preconditions: ['notinvault']
         }),
         new patron.Argument({
           name: 'amount',
@@ -41,6 +40,13 @@ class TakeFromVault extends patron.Command {
     await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [inv]: args.amount } });
     await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $inc: { [vault]: -args.amount } });
 
+    const leader = msg.guild.members.get(args.gang.leaderId);
+
+    if (!leader.user.dmChannel) {
+      await leader.createDM();
+    }
+
+    await leader.tryDM(msg.author.tag + ' has just taken ' + args.amount + ' of ' + (args.amount > 1 ? args.item.names[0] + 's' : args.item.names[0]) + ' from your gangs vault', { guild: msg.guild });
     return msg.createReply('you have successfully taken ' + args.amount + ' of ' + (args.amount > 1 ? args.item.names[0] + 's' : args.item.names[0]) + ' from your gangs vault.');
   }
 }

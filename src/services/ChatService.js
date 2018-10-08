@@ -8,7 +8,7 @@ class ChatService {
 
   async applyCash(msg) {
     const lastMessage = this.messages.get(msg.author.id);
-    const cooldown = msg.dbUser.investments.includes('line') ? 25 : Constants.config.misc.messageCooldown;
+    const cooldown = msg.dbUser.investments.includes('line') ? 25000 : Constants.config.misc.messageCooldown;
     const isMessageCooldownOver = !lastMessage || Date.now() - lastMessage > cooldown;
     const isLongEnough = msg.content.length >= Constants.config.misc.minCharLength;
 

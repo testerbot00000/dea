@@ -38,7 +38,7 @@ class Raid extends patron.Command {
 
     const gangLeader = await msg.client.users.get(gang.leaderId);
     const raidedGangLeader = await msg.client.users.get(args.gang.leaderId);
-    const membersDeduction = args.gang.members.length + args.gang.elders.length * 5;
+    const membersDeduction = (args.gang.members.length + args.gang.elders.length) * 5;
     const stolen = args.raid * 2;
 
     if (roll < Constants.config.gang.raidOdds - membersDeduction) {

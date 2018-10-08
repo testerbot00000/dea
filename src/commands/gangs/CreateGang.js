@@ -26,7 +26,7 @@ class CreateGang extends patron.Command {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
     const gangs = await msg.client.db.gangRepo.findMany({ guildId: msg.guild.id });
 
-    if (!/\w/g.test(args.gangname)) {
+    if (/[^A-Za-z0-9]/.test(args.gangname)) {
       return msg.createErrorReply('your gang\'s name may only contain numbers, and letters.');
     } else if (gang) {
       return msg.createErrorReply('you\'re already in a gang.');

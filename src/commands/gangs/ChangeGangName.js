@@ -27,7 +27,7 @@ class ChangeGangName extends patron.Command {
     const gangs = await msg.client.db.gangRepo.findMany({ guildId: msg.guild.id });
     const gang = gangs.find(x => x.members.includes(msg.author.id) || x.elders.includes(msg.author.id) || x.leaderId === msg.author.id);
 
-    if (!/\w/g.test(args.name)) {
+    if (/[^A-Za-z0-9 ]/.test(args.name)) {
       return msg.createErrorReply('your gang\'s name may only contain numbers, and letters.');
     } else if (gangs.some(x => x.name === args.name)) {
       return msg.createErrorReply('a gang by the name `' + args.name + '` already exists.');

@@ -28,7 +28,7 @@ class InviteToGang extends patron.Command {
       return msg.createErrorReply('this user is already in a gang.');
     } else if (gang.members.length + gang.elders.length >= 10) {
       return msg.createErrorReply('sorry, your gang is full.');
-    } else if (msg.author.id !== gang.leaderId && gang.elders.some(v => v === msg.author.id)) {
+    } else if (msg.author.id !== gang.leaderId && !gang.elders.some(v => v === msg.author.id)) {
       return msg.createErrorReply('you cannot invite anyone to your gang since you\'re not a leader or elder of it.');
     }
 
@@ -51,7 +51,7 @@ class InviteToGang extends patron.Command {
     if (result.size >= 1) {
       const update = new msg.client.db.updates.Push('members', args.user.id);
 
-      await msg.client.db.gangRepo.updateGang(msg.author.id, msg.guild.id, update);
+      await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update);
       await msg.author.tryDM('You\'ve successfully let ' + args.user.tag + ' join your gang.', { guild: msg.guild });
 
       return args.user.tryDM('You\'ve successfully joined gang ' + gang.name.boldify() + '.', { guild: msg.guild });

@@ -8,7 +8,7 @@ class Statistics extends patron.Command {
       names: ['statistics', 'stats'],
       groupName: 'system',
       description: 'Statistics about this bot.',
-      usableContexts: [patron.Context.DM, patron.Context.Guild],
+      usableContexts: [patron.Context.DM, patron.Context.Guild]
     });
   }
 

@@ -18,7 +18,7 @@ class Raid extends patron.Command {
           type: 'quantity',
           example: '500',
           preconditionOptions: [{ minimum: Constants.config.gang.min }],
-          preconditions: ['minimumcash', 'raidamount'],
+          preconditions: ['minimumcash', 'raidamount']
         }),
         new patron.Argument({
           name: 'gang',
@@ -34,8 +34,8 @@ class Raid extends patron.Command {
 
   async run(msg, args) {
     const roll = Random.roll();
-    const gang = await msg.client.db.gangRepo.findOne( { $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] } );
-    
+    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
+
     const gangLeader = await msg.client.users.get(gang.leaderId);
     const raidedGangLeader = await msg.client.users.get(args.gang.leaderId);
     const membersDeduction = args.gang.members.length * 5;

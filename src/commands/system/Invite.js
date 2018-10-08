@@ -7,7 +7,7 @@ class Invite extends patron.Command {
       names: ['invite', 'join', 'add'],
       groupName: 'system',
       description: 'Add Bot to your server.',
-      usableContexts: [patron.Context.DM, patron.Context.Guild],
+      usableContexts: [patron.Context.DM, patron.Context.Guild]
     });
   }
 

@@ -10,7 +10,7 @@ class DumpVault extends patron.Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg) {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
     for (const key in msg.dbUser.inventory) {

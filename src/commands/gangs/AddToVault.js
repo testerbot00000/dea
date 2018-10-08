@@ -1,6 +1,4 @@
 const patron = require('patron.js');
-const Constants = require('../../utility/Constants.js');
-const NumberUtil = require('../../utility/NumberUtil.js');
 
 class AddToVault extends patron.Command {
   constructor() {
@@ -15,7 +13,7 @@ class AddToVault extends patron.Command {
           key: 'item',
           type: 'item',
           example: 'intervention',
-          preconditions: ['donthave'],
+          preconditions: ['donthave']
         }),
         new patron.Argument({
           name: 'amount',

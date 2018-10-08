@@ -28,7 +28,7 @@ class InviteToGang extends patron.Command {
       return msg.createErrorReply('this user is already in a gang.');
     } else if (gang.members.length + gang.elders.length >= 10) {
       return msg.createErrorReply('sorry, your gang is full.');
-    } else if (msg.author.id !== gang.leaderId && gang.elders.some(v => v === msg.author.id)) {
+    } else if (msg.author.id !== gang.leaderId && !gang.elders.some(v => v === msg.author.id)) {
       return msg.createErrorReply('you cannot invite anyone to your gang since you\'re not a leader or elder of it.');
     }
 

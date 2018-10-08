@@ -5,6 +5,7 @@ class Gang {
     this.guildId = guildId;
     this.name = name;
     this.wealth = 0;
+    this.vault = {};
     this.members = [];
     this.elders = [];
   }

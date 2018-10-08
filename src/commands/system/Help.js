@@ -7,7 +7,7 @@ class Help extends patron.Command {
       names: ['help', 'commands', 'command', 'cmd', 'cmds', 'support', 'docs'],
       groupName: 'system',
       description: 'All command information.',
-      guildOnly: false,
+      usableContexts: [patron.Context.DM, patron.Context.Guild],
       args: [
         new patron.Argument({
           name: 'command',

@@ -6,7 +6,7 @@ class Modules extends patron.Command {
       names: ['modules', 'module', 'groups', 'group'],
       groupName: 'system',
       description: 'View all modules or a modules information.',
-      guildOnly: false,
+      usableContexts: [patron.Context.DM, patron.Context.Guild],
       args: [
         new patron.Argument({
           name: 'module',

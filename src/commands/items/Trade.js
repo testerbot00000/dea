@@ -20,7 +20,9 @@ class Trade extends patron.Command {
           name: 'Exchange Amount',
           key: 'amount',
           type: 'int',
-          example: '2'
+          example: '2',
+          preconditionOptions: [{ minimum: 1 }],
+          preconditions: ['minimum']
         }),
         new patron.Argument({
           name: 'Exchange Item',
@@ -32,7 +34,9 @@ class Trade extends patron.Command {
           name: 'Wanted Amount',
           key: 'amount2',
           type: 'int',
-          example: '2'
+          example: '2',
+          preconditionOptions: [{ minimum: 1 }],
+          preconditions: ['minimum']
         }),
         new patron.Argument({
           name: 'Wanted Item',

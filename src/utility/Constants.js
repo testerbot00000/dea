@@ -111,6 +111,21 @@ class Constants {
         min: 500
       },
 
+      investments: {
+        line: {
+          cost: 1000,
+          description: 'One line of blow. Seems like nothing, yet it\'s enough to lower the message cooldown from 30 to 25 seconds.'
+        },
+        pound: {
+          cost: 5000,
+          description: 'This one pound of coke will double the amount of cash you get per message.'
+        },
+        kilo: {
+          cost: 10000,
+          description: 'A kilo of cocaine is more than enough to quadruple your cash per message.'
+        }
+      },
+
       polls: {
         elderTimeRequired: 172800000,
         maxAnswers: 6,
@@ -233,8 +248,8 @@ class Constants {
       misc: {
         cashPerMessage: 50,
         leaderboardCap: 10,
-        messageCooldown: 15000,
-        minCharLength: 4,
+        messageCooldown: 30000,
+        minCharLength: 7,
         messageMultiplier: 1
       },
 

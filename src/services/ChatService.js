@@ -8,10 +8,9 @@ class ChatService {
 
   async applyCash(msg) {
     const lastMessage = this.messages.get(msg.author.id);
-    const isMessageCooldownOver = !lastMessage || Date.now() - lastMessage > Constants.config.misc.messageCooldown;
+    const cooldown = msg.dbUser.investments.includes('line') ? 25 : Constants.config.misc.messageCooldown;
+    const isMessageCooldownOver = !lastMessage || Date.now() - lastMessage > cooldown;
     const isLongEnough = msg.content.length >= Constants.config.misc.minCharLength;
-    const dbGuild = await msg.client.db.guildRepo.getGuild(msg.guild.id);
-    const messageMultiplier = dbGuild.settings.messageMultiplier;
 
     if (isMessageCooldownOver && isLongEnough) {
       this.messages.set(msg.author.id, Date.now());
@@ -24,7 +23,10 @@ class ChatService {
         return msg.tryCreateReply(Random.arrayElement(Constants.data.messages.lottery).format(winnings.USD()));
       }
 
-      return msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, Constants.config.misc.cashPerMessage * messageMultiplier);
+      const cashPerMessage = Constants.config.misc.cashPerMessage *
+        (msg.dbUser.investments.includes('pound') ? msg.dbUser.investments.includes('kilo') ? 4 : 2 : 1);
+
+      return msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, cashPerMessage * msg.dbGuild.settings.messageMultiplier);
     }
   }
 }

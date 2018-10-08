@@ -6,6 +6,7 @@ class User {
     this.bounty = 0;
     this.health = 100;
     this.inventory = {};
+    this.investments = [];
   }
 }
 

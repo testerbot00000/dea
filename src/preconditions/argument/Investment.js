@@ -28,7 +28,7 @@ class Investment extends patron.ArgumentPrecondition {
 
     const lastInvestmentIndex = validInvestments.indexOf(investment) - 1;
 
-    if (lastInvestmentIndex > 0 && msg.dbUser.investments.includes(validInvestments[lastInvestmentIndex]) === false) {
+    if (lastInvestmentIndex >= 0 && msg.dbUser.investments.includes(validInvestments[lastInvestmentIndex]) === false) {
       return patron.PreconditionResult.fromError(command, 'you need to buy ' + validInvestments[lastInvestmentIndex].upperFirstChar() + ' first.');
     }
 

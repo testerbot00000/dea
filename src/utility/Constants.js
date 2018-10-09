@@ -163,7 +163,7 @@ class Constants {
         maxChar: 24,
         cooldownRaid: 28800000,
         cooldownWithdraw: 14400000,
-        cooldownTakeFromVault: 14400000,
+        cooldownTakeFromVault: 60000,
         creationCost: 2500,
         nameChange: 500,
         raidOdds: 80

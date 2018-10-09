@@ -23,20 +23,20 @@ class Investment extends patron.ArgumentPrecondition {
     const investment = validInvestments.find(x => x === value.toLowerCase());
 
     if (msg.dbUser.investments.includes(investment)) {
-      return patron.PreconditionResult.fromError(command, 'you already have ' + investment.upperFirstChar() + '.');
+      return patron.PreconditionResult.fromError(command, 'you already have ' + investment.toLowerCase().upperFirstChar() + '.');
     }
 
     const lastInvestmentIndex = validInvestments.indexOf(investment) - 1;
 
     if (lastInvestmentIndex >= 0 && msg.dbUser.investments.includes(validInvestments[lastInvestmentIndex]) === false) {
-      return patron.PreconditionResult.fromError(command, 'you need to buy ' + validInvestments[lastInvestmentIndex].upperFirstChar() + ' first.');
+      return patron.PreconditionResult.fromError(command, 'you need to buy ' + validInvestments[lastInvestmentIndex].toLowerCase().upperFirstChar() + ' first.');
     }
 
     const cashValue = NumberUtil.realValue(msg.dbUser.cash);
     const investmentObject = Constants.config.investments[investment];
 
     if (investmentObject.cost > cashValue) {
-      return patron.PreconditionResult.fromError(command, 'you need ' + investmentObject.cost.USD() + ' to buy ' + investment.upperFirstChar() + '. Balance: ' + cashValue.USD() + '.');
+      return patron.PreconditionResult.fromError(command, 'you need ' + investmentObject.cost.USD() + ' to buy ' + investment.toLowerCase().upperFirstChar() + '. Balance: ' + cashValue.USD() + '.');
     }
 
     return patron.PreconditionResult.fromSuccess();

@@ -23,8 +23,8 @@ class TakeFromVault extends patron.Command {
           type: 'int',
           example: '2',
           defaultValue: 1,
-          preconditionOptions: [{ minimum: 1 }],
-          preconditions: ['minimum', 'vaulthasamount'],
+          preconditionOptions: [{ minimum: 1 }, { maximum: 5 }],
+          preconditions: ['minimum', 'maximum', 'vaulthasamount'],
           remainder: true
         })
       ]

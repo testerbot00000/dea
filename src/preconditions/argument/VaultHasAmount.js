@@ -10,7 +10,7 @@ class VaultHasAmount extends patron.ArgumentPrecondition {
   async run(command, msg, argument, args, value) {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    if (!gang.vault[args.item.names[0]] < value) {
+    if (gang.vault[args.item.names[0]] < value) {
       return patron.PreconditionResult.fromError(command, 'Your gang doesn\'t have ' + value + ' of this item.');
     }
 

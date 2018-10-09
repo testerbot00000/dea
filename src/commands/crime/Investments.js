@@ -36,7 +36,7 @@ class Investments extends patron.Command {
     await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, update);
     await msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, -cost);
 
-    return msg.createReply('you\'ve successfully purchased ' + args.investment.toLowerCase() + '.');
+    return msg.createReply('you\'ve successfully purchased ' + args.investment.upperFirstChar() + '.');
   }
 }
 

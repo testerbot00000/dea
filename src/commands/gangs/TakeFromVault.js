@@ -4,7 +4,7 @@ const Constants = require('../../utility/Constants.js');
 class TakeFromVault extends patron.Command {
   constructor() {
     super({
-      names: ['takefromvault', 'takevault', 'takeitem', 'takefromgang'],
+      names: ['takefromvault', 'takevault', 'takeitem', 'takefromgang', 'withdrawitem', 'yoink'],
       groupName: 'gangs',
       description: 'Take an item from a gangs vault.',
       cooldown: Constants.config.gang.cooldownTakeFromVault,

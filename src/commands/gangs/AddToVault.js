@@ -40,11 +40,8 @@ class AddToVault extends patron.Command {
 
     const leader = msg.guild.members.get(gang.leaderId);
 
-    if (!leader.user.dmChannel) {
-      await leader.createDM();
-    }
+    await leader.tryDM(msg.author.tag.boldify() + ' has just added ' + args.amount + ' ' + (args.amount > 1 ? args.item.names[0] + 's' : args.item.names[0]) + ' to your gangs vault.', { guild: msg.guild });
 
-    await leader.tryDM(msg.author.tag + ' has just added ' + args.amount + ' ' + (args.amount > 1 ? args.item.names[0] + 's' : args.item.names[0]) + ' to your gangs vault', { guild: msg.guild });
     return msg.createReply('you have successfully added ' + args.amount + ' ' + (args.amount > 1 ? args.item.names[0] + 's' : args.item.names[0]) + ' to your gangs vault.');
   }
 }

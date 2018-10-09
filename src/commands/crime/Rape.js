@@ -38,7 +38,7 @@ class Rape extends patron.Command {
     const costStr = NumberUtil.format(cost);
 
     await msg.client.db.userRepo.modifyCashExact(msg.dbGuild, args.member, -cost);
-    await args.member.user.tryDM('listen here bucko, ' + msg.author.tag.boldify() + ' just raped your fucking asshole and forced you to spend ' + costStr + ' on rectal repairs.');
+    await args.member.user.tryDM('Listen here bucko, ' + msg.author.tag.boldify() + ' just raped your fucking asshole and forced you to spend ' + costStr + ' on rectal repairs.');
 
     return msg.createReply('you raped his **GODDAMN ASSHOLE** :joy:! ' + args.member.user.tag.boldify() + ' needed to spend ' + costStr + ' just to get his anus working again!');
   }

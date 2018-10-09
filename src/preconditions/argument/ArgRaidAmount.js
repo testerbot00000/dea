@@ -12,7 +12,7 @@ class ArgRaidAmount extends patron.ArgumentPrecondition {
     if (NumberUtil.realValue(value.wealth) >= args.raid) {
       return patron.PreconditionResult.fromSuccess();
     }
-    return patron.PreconditionResult.fromError(command, 'Their gang doesn\'t have enough money.');
+    return patron.PreconditionResult.fromError(command, 'their gang doesn\'t have enough money.');
   }
 }
 

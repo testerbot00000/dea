@@ -13,7 +13,7 @@ class NotOwnGang extends patron.ArgumentPrecondition {
     if (value.name !== gang.name) {
       return patron.PreconditionResult.fromSuccess();
     }
-    return patron.PreconditionResult.fromError(command, 'You cannot raid your own gang, retard.');
+    return patron.PreconditionResult.fromError(command, 'you cannot raid your own gang, retard.');
   }
 }
 

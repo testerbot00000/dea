@@ -14,7 +14,7 @@ class RaidAmount extends patron.ArgumentPrecondition {
     if (NumberUtil.realValue(gang.wealth) >= value) {
       return patron.PreconditionResult.fromSuccess();
     }
-    return patron.PreconditionResult.fromError(command, 'Your gang doesn\'t have enough money.');
+    return patron.PreconditionResult.fromError(command, 'your gang doesn\'t have enough money.');
   }
 }
 

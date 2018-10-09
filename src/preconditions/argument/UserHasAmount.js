@@ -9,7 +9,7 @@ class UserHasAmount extends patron.ArgumentPrecondition {
 
   async run(command, msg, argument, args, value) {
     if (msg.dbUser.inventory[args.item.names[0]] < value) {
-      return patron.PreconditionResult.fromError(command, 'You don\'t have ' + value + ' of this item.');
+      return patron.PreconditionResult.fromError(command, 'you don\'t have ' + value + ' of this item.');
     }
 
     return patron.PreconditionResult.fromSuccess();

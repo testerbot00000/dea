@@ -13,7 +13,7 @@ class NoModerator extends patron.ArgumentPrecondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You may not use this command on a moderator.');
+    return patron.PreconditionResult.fromError(command, 'you may not use this command on a moderator.');
   }
 }
 

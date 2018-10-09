@@ -39,7 +39,7 @@ class Cooldowns extends patron.Command {
     }
 
     if (String.isNullOrWhiteSpace(cooldowns)) {
-      return msg.createReply('All of ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag + '\'s') + ' commands are ready for use.');
+      return msg.createReply('all of ' + (args.member.id === msg.author.id ? 'your' : args.member.user.tag.boldify() + '\'s') + ' commands are ready for use.');
     }
 
     return msg.channel.createMessage(cooldowns, { title: args.member.user.tag + '\'s Cooldowns' });

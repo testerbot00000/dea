@@ -15,7 +15,7 @@ class Cash extends patron.ArgumentPrecondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You do not have ' + value.USD() + '. Balance: ' + realValue.USD() + '.');
+    return patron.PreconditionResult.fromError(command, 'you do not have ' + value.USD() + '. Balance: ' + realValue.USD() + '.');
   }
 }
 

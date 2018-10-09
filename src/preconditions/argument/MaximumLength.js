@@ -13,7 +13,7 @@ class MaximumLength extends patron.ArgumentPrecondition {
     }
 
     const s = value.length > 1 ? 's' : '';
-    return patron.PreconditionResult.fromError(command, 'The ' + argument.name + ' may not be longer than ' + options.length + ' character' + s + '.');
+    return patron.PreconditionResult.fromError(command, 'the ' + argument.name + ' may not be longer than ' + options.length + ' character' + s + '.');
   }
 }
 

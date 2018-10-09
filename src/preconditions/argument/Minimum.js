@@ -12,7 +12,7 @@ class Minimum extends patron.ArgumentPrecondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'The minimum ' + argument.name + ' is ' + options.minimum + '.');
+    return patron.PreconditionResult.fromError(command, 'the minimum ' + argument.name + ' is ' + options.minimum + '.');
   }
 }
 

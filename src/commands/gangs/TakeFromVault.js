@@ -42,11 +42,8 @@ class TakeFromVault extends patron.Command {
 
     const leader = msg.guild.members.get(gang.leaderId);
 
-    if (!leader.user.dmChannel) {
-      await leader.createDM();
-    }
+    await leader.tryDM(msg.author.tag.boldify() + ' has just taken ' + args.amount + ' of ' + (args.amount > 1 ? args.item.names[0] + 's' : args.item.names[0]) + ' from your gangs vault.', { guild: msg.guild });
 
-    await leader.tryDM(msg.author.tag + ' has just taken ' + args.amount + ' of ' + (args.amount > 1 ? args.item.names[0] + 's' : args.item.names[0]) + ' from your gangs vault', { guild: msg.guild });
     return msg.createReply('you have successfully taken ' + args.amount + ' of ' + (args.amount > 1 ? args.item.names[0] + 's' : args.item.names[0]) + ' from your gangs vault.');
   }
 }

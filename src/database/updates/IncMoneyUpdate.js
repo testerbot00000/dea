@@ -1,7 +1,9 @@
+const NumberUtil = require('../../utility/NumberUtil.js');
+
 class IncMoneyUpdate {
   constructor(property, change) {
     this.$inc = {
-      [property]: Math.round(change * 100)
+      [property]: NumberUtil.round(change * 100)
     };
   }
 }

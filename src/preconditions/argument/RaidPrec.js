@@ -9,11 +9,13 @@ class RaidPrec extends patron.ArgumentPrecondition {
   }
 
   async run(command, msg, argument, args, value) {
-    if (args.raid <= Math.round(NumberUtil.realValue(value.wealth) * 0.4 / 2, 2)) {
+    const wealth = NumberUtil.round(NumberUtil.realValue(value.wealth) * 0.4 / 2, 2);
+
+    if (args.raid <= wealth) {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You are overkilling it. You only need ' + (NumberUtil.realValue(value.wealth) * 0.4 / 2).USD() + ' to steal 40% of their cash that is ' + (NumberUtil.realValue(value.wealth) * 0.4).USD() + '.');
+    return patron.PreconditionResult.fromError(command, 'you are overkilling it. You only need ' + wealth.USD() + ' to steal 40% of their cash that is ' + NumberUtil.round(NumberUtil.realValue(value.wealth) * 0.4, 2).USD() + '.');
   }
 }
 

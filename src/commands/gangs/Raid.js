@@ -10,7 +10,7 @@ class Raid extends patron.Command {
       groupName: 'gangs',
       description: 'Raid another gang\'s money.',
       cooldown: Constants.config.gang.cooldownRaid,
-      preconditions: ['ingang'],
+      preconditions: ['ingang', 'unusedraid'],
       args: [
         new patron.Argument({
           name: 'amount',
@@ -46,13 +46,15 @@ class Raid extends patron.Command {
       await msg.client.db.gangRepo.updateGang(args.gang.leaderId, msg.guild.id, new IncMoneyUpdate('wealth', -stolen));
       await gangLeader.tryDM((msg.author.id === gang.leaderId ? 'You have' : msg.author.tag.boldify() + ' has') + ' raided ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.', { guild: msg.guild });
       await raidedGangLeader.tryDM(gang.name.boldify() + ' has raided ' + stolen.USD() + ' from your gang.', { guild: msg.guild });
-      return msg.createReply('You\'ve successfully raided ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.');
+
+      return msg.createReply('you\'ve successfully raided ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.');
     }
 
     await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, new IncMoneyUpdate('wealth', -args.raid));
     await gangLeader.tryDM((msg.author.id === gang.leaderId ? 'You have' : msg.author.tag.boldify() + ' has') + ' attempted to raid ' + stolen.USD() + ' from ' + args.gang.name.boldify() + ' but you failed horribly.', { guild: msg.guild });
-    await raidedGangLeader.tryDM(gang.name.boldify() + ' has attempted to raid ' + stolen.USD() + ' from your gang but failed horrbily.', { guild: msg.guild });
-    return msg.createErrorReply('Unfortunately your gang has failed to raid ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.');
+    await raidedGangLeader.tryDM(gang.name.boldify() + ' has attempted to raid ' + stolen.USD() + ' from your gang but failed horribily.', { guild: msg.guild });
+
+    return msg.createErrorReply('unfortunately your gang has failed to raid ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.');
   }
 }
 

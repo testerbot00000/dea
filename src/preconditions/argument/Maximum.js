@@ -12,7 +12,7 @@ class Maximum extends patron.ArgumentPrecondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'The maximum ' + argument.name + ' is ' + options.maximum + '.');
+    return patron.PreconditionResult.fromError(command, 'the maximum ' + argument.name + ' is ' + options.maximum + '.');
   }
 }
 

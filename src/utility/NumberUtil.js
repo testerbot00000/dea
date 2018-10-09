@@ -38,6 +38,10 @@ class NumberUtil {
 
     return s;
   }
+
+  static round(num, dec) {
+    return typeof dec === 'number' ? Number(num.toFixed(dec)) : Math.round(num);
+  }
 }
 
 module.exports = NumberUtil;

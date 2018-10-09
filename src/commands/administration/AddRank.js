@@ -1,4 +1,5 @@
 const patron = require('patron.js');
+const NumberUtil = require('../../utility/NumberUtil.js');
 
 class AddRank extends patron.Command {
   constructor() {
@@ -30,7 +31,7 @@ class AddRank extends patron.Command {
       return msg.createErrorReply('this rank role has already been set.');
     }
 
-    const update = new msg.client.db.updates.Push('roles.rank', { id: args.role.id, cashRequired: Math.round(args.cashRequired) });
+    const update = new msg.client.db.updates.Push('roles.rank', { id: args.role.id, cashRequired: NumberUtil.round(args.cashRequired, 2) });
 
     await msg.client.db.guildRepo.upsertGuild(msg.guild.id, update);
 

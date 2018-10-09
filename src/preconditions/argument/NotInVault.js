@@ -11,7 +11,7 @@ class NotInVault extends patron.ArgumentPrecondition {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
     if (!gang.vault[value.names[0]] || gang.vault[value.names[0]] <= 0) {
-      return patron.PreconditionResult.fromError(command, 'Your gang doesn\'t have any of this item.');
+      return patron.PreconditionResult.fromError(command, 'your gang doesn\'t have any of this item.');
     }
 
     return patron.PreconditionResult.fromSuccess();

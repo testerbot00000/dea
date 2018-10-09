@@ -12,7 +12,7 @@ class MinimumCash extends patron.ArgumentPrecondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'The minimum ' + argument.name + ' is ' + options.minimum.USD() + '.');
+    return patron.PreconditionResult.fromError(command, 'the minimum ' + argument.name + ' is ' + options.minimum.USD() + '.');
   }
 }
 

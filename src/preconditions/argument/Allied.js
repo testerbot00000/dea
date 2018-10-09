@@ -15,7 +15,7 @@ class Allied extends patron.ArgumentPrecondition {
         const gangMembers = gang.members.concat(args.elders).concat(gang.leaderId);
 
         if (gangMembers.some(v => v === args.member.id)) {
-          return patron.PreconditionResult.fromError(command, 'You may not shoot or stab a member of your gang.');
+          return patron.PreconditionResult.fromError(command, 'you may not shoot or stab a member of your gang.');
         }
       }
     }

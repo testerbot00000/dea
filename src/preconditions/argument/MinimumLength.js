@@ -12,7 +12,7 @@ class MinimumLength extends patron.ArgumentPrecondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'The ' + argument.name + ' may not be lower than ' + options.length + ' character' + (options.length === 1 ? '' : 's') + '.');
+    return patron.PreconditionResult.fromError(command, 'the ' + argument.name + ' may not be lower than ' + options.length + ' character' + (options.length === 1 ? '' : 's') + '.');
   }
 }
 

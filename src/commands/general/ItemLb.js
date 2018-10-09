@@ -6,7 +6,7 @@ class ItemLb extends patron.Command {
     super({
       names: ['itemleaderboards', 'itemlb', 'itemleaderboard'],
       groupName: 'general',
-      description: 'View the richest Drug Traffickers.'
+      description: 'View the most armed people.'
     });
   }
 

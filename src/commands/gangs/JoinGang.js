@@ -1,5 +1,6 @@
 const patron = require('patron.js');
 const Random = require('../../utility/Random.js');
+const Constants = require('../../utility/Constants.js');
 
 class JoinGang extends patron.Command {
   constructor() {
@@ -52,6 +53,10 @@ class JoinGang extends patron.Command {
 
     if (result.size >= 1) {
       const update = new msg.client.db.updates.Push('members', msg.author.id);
+
+      const raid = msg.client.registry.commands.find(x => x.names.includes('raid'));
+
+      raid.cooldowns[msg.author.id + '-' + msg.guild.id] = Date.now() + Constants.config.gang.cooldownRaid;
 
       await msg.client.db.gangRepo.updateGang(args.gang.leaderId, msg.guild.id, update);
       await leader.tryDM('You\'ve successfully let ' + msg.author.tag + ' join your gang.', { guild: msg.guild });

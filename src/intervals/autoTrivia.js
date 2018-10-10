@@ -22,7 +22,7 @@ module.exports = async client => {
       const answerIndex = questions.findIndex(x => x === question);
       const answer = Object.values(guilds[i].trivia)[answerIndex];
 
-      await guild.mainChannel.createMessage(question, { title: 'Trivia!' });
+      await guild.mainChannel.createMessage(question + '?', { title: 'Trivia!' });
 
       const result = await guild.mainChannel.awaitMessages(m => m.content.toLowerCase().includes(answer.toLowerCase()), { time: 90000, max: 1 });
 

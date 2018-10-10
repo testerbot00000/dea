@@ -3,7 +3,7 @@ const patron = require('patron.js');
 class AddTriviaQuestion extends patron.Command {
   constructor() {
     super({
-      names: ['addtriviaquestion', 'addtrivia', 'createtriviaquestion', 'createtrivia'],
+      names: ['addtriviaquestion', 'addtrivia', 'createtriviaquestion', 'createtrivia', 'addquestion'],
       groupName: 'administration',
       description: 'Create a trivia question.',
       args: [

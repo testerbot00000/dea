@@ -27,7 +27,7 @@ module.exports = async client => {
       const result = await guild.mainChannel.awaitMessages(m => m.content.toLowerCase().includes(answer.toLowerCase()), { time: 90000, max: 1 });
 
       if (result.size >= 1) {
-        const prize = Random.nextInt(500, 10000);
+        const prize = Random.nextInt(500, 5000);
 
         await client.db.userRepo.modifyCash(guilds[i], result.first().member, prize);
         await guild.mainChannel.createMessage('Congratulations ' + result.first().author.tag.boldify() + ' for winning ' + prize.USD() + ' in trivia!');

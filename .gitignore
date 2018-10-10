@@ -2,6 +2,7 @@
 node_modules/
 
 # Authentication
+src/index.js
 
 # Miscellaneous
 .vscode/

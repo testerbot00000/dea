@@ -66,7 +66,7 @@ client.on('message', async msg => {
         message = 'you are incorrectly using this command.\n**Usage:** `' + Constants.data.misc.prefix + result.command.getUsage() + '`\n**Example:** `' + Constants.data.misc.prefix + result.command.getExample() + '`';
         break;
       default:
-        message = result.errorReason;
+        message = !result.errorReason.startsWith('I') ? result.errorReason[0].toLowerCase() + result.errorReason.slice(1) : result.errorReason;
         break;
     }
 

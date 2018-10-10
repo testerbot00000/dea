@@ -1,6 +1,7 @@
 const patron = require('patron.js');
 const ItemService = require('../../services/ItemService.js');
 const Constants = require('../../utility/Constants.js');
+const Random = require('../../utility/Random.js');
 
 class Fish extends patron.Command {
   constructor() {
@@ -26,6 +27,12 @@ class Fish extends patron.Command {
   async run(msg, args) {
     const caught = await ItemService.fish(args.item, msg.dbGuild.items);
     let reply = '';
+
+    if (args.item.crate_odds >= Random.roll()) {
+      const inv = 'inventory.' + args.item.names[0];
+      await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [inv]: -1 } });
+      return msg.createErrorReply(Random.arrayElement(Constants.data.messages.itemBreaking).format(args.item.names[0].boldify()));
+    }
 
     if (caught) {
       const gained = 'inventory.' + caught.names[0];

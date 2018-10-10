@@ -59,6 +59,17 @@ class Constants {
         ],
         stores: [
           '7-Eleven', 'Speedway', 'Couche-Tard', 'QuikTrip', 'Kroger', 'Circle K', 'Admiral Petroleum', 'Big Apple', 'Bucky\'s Express'
+        ],
+        itemBreaking: [
+          'you almost fucked up some hobo\'s cock off with that broken {0}',
+          'you hit some hobo\'s dick but his rock hard boner shattered your {0}',
+          'that rusty old {0} that your grandpa gave you broke faster than I could nut',
+          'out of nowhere your fat teacher comes and confiscates your {0}',
+          'someone ratted you out to the cops and the SWAT team destroyed your {0}',
+          'you want to hit a fat whip but you dropped your {0} and it shattered but you hit the fat whip',
+          'you tried to slam a nigga but they surprise attacked and dropped you, taking your {0} and cashing it at a pawn shop',
+          'the {0} hit socrates instead, he then turned it into a shit server and it broke.',
+          'you got horny and tried to use {0} as a dildo, but you got it stuck and couldn\'t get it out.'
         ]
       },
 

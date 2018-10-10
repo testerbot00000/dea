@@ -38,6 +38,12 @@ class Shoot extends patron.Command {
     const damage = await ItemService.reduceDamage(dbUser, args.item.damage, msg.dbGuild.items);
     const user = await msg.client.users.get(args.member.id);
 
+    if (args.item.crate_odds >= Random.roll()) {
+      const inv = 'inventory.' + args.item.names[0];
+      await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [inv]: -1 } });
+      return msg.createErrorReply(Random.arrayElement(Constants.data.messages.itemBreaking).format(args.item.names[0].boldify()));
+    }
+
     if (roll <= args.item.accuracy) {
       if (dbUser.health - damage <= 0) {
         await ItemService.takeInv(msg.author.id, args.member.id, msg.guild.id, msg.client.db);

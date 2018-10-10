@@ -9,8 +9,7 @@ const registry = require('../structures/registry.js');
 const handler = new patron.Handler({ registry });
 const CONTEXTS = {
   [patron.Context.Guild]: 'server',
-  [patron.Context.DM]: 'DMs',
-  [patron.Context.GroupDM]: 'group DMs'
+  [patron.Context.DM]: 'DMs'
 };
 
 client.on('message', async msg => {
@@ -50,7 +49,7 @@ client.on('message', async msg => {
           } else if (result.error.code === 50007) {
             message = 'I do not have permission to message you. Try allowing DMs from server members.';
           } else if (result.error.code >= 500 && result.error.code < 600) {
-            message = 'Houston, we have a problem. Discord internal server errors coming in hot.';
+            message = 'houston, we have a problem. Discord internal server errors coming in hot.';
           } else {
             message = result.errorReason;
           }
@@ -60,11 +59,11 @@ client.on('message', async msg => {
         }
         break;
       case patron.CommandError.InvalidContext:
-        message = 'This command can\'t be used in ' + (CONTEXTS[result.context] === 'server' ? 'a ' : '') + CONTEXTS[result.context];
+        message = 'this command can\'t be used in ' + (CONTEXTS[result.context] === 'server' ? 'a ' : '') + CONTEXTS[result.context];
 
         break;
       case patron.CommandError.InvalidArgCount:
-        message = 'You are incorrectly using this command.\n**Usage:** `' + Constants.data.misc.prefix + result.command.getUsage() + '`\n**Example:** `' + Constants.data.misc.prefix + result.command.getExample() + '`';
+        message = 'you are incorrectly using this command.\n**Usage:** `' + Constants.data.misc.prefix + result.command.getUsage() + '`\n**Example:** `' + Constants.data.misc.prefix + result.command.getExample() + '`';
         break;
       default:
         message = result.errorReason;

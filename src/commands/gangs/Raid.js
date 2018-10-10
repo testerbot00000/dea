@@ -52,7 +52,7 @@ class Raid extends patron.Command {
       await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, new IncMoneyUpdate('wealth', -args.raid));
       await gangLeader.tryDM((msg.author.id === gang.leaderId ? 'You have' : msg.author.tag.boldify() + ' has') + ' attempted to raid ' + stolen.USD() + ' from ' + args.gang.name.boldify() + ' but you failed horribly.', { guild: msg.guild });
       await raidedGangLeader.tryDM(gang.name.boldify() + ' has attempted to raid ' + stolen.USD() + ' from your gang but failed horribily.', { guild: msg.guild });
-  
+
       await msg.createErrorReply('unfortunately your gang has failed to raid ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.');
     }
 
@@ -61,8 +61,6 @@ class Raid extends patron.Command {
     for (let i = 0; i < gangMembers.length; i++) {
       this.cooldowns[gangMembers[i] + '-' + msg.guild.id] = Date.now() + Constants.config.gang.cooldownRaid;
     }
-
-    return;
   }
 }
 

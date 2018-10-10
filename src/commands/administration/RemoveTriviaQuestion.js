@@ -21,6 +21,10 @@ class RemoveTriviaQuestion extends patron.Command {
   async run(msg, args) {
     const question = 'trivia.' + args.question;
 
+    if (msg.dbGuild.trivia[question] === undefined) {
+      return msg.createErrorReply('this trivia question doesn\'t exist.');
+    }
+
     await msg.client.db.guildRepo.updateGuild(msg.guild.id, { $unset: { [question]: '' } });
 
     return msg.createReply('you\'ve successfully removed question **' + args.question + '**.');

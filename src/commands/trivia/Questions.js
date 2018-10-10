@@ -10,6 +10,10 @@ class Questions extends patron.Command {
   }
 
   async run(msg) {
+    if (!Object.keys(msg.dbGuild.trivia).length) {
+      return msg.createErrorReply('there are no trivia questions in this server.');
+    }
+
     let description = '';
     let position = 1;
 

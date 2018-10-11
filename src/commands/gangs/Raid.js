@@ -1,7 +1,6 @@
 const patron = require('patron.js');
 const Constants = require('../../utility/Constants.js');
 const Random = require('../../utility/Random.js');
-const IncMoneyUpdate = require('../../database/updates/IncMoneyUpdate.js');
 
 class Raid extends patron.Command {
   constructor() {
@@ -42,14 +41,14 @@ class Raid extends patron.Command {
     const stolen = args.raid * 2;
 
     if (roll < Constants.config.gang.raidOdds - membersDeduction) {
-      await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, new IncMoneyUpdate('wealth', stolen));
-      await msg.client.db.gangRepo.updateGang(args.gang.leaderId, msg.guild.id, new IncMoneyUpdate('wealth', -stolen));
+      await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, new msg.client.db.updates.IncMoney('wealth', stolen));
+      await msg.client.db.gangRepo.updateGang(args.gang.leaderId, msg.guild.id, new msg.client.db.updates.IncMoney('wealth', -stolen));
       await gangLeader.tryDM((msg.author.id === gang.leaderId ? 'You have' : msg.author.tag.boldify() + ' has') + ' raided ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.', { guild: msg.guild });
       await raidedGangLeader.tryDM(gang.name.boldify() + ' has raided ' + stolen.USD() + ' from your gang.', { guild: msg.guild });
 
       await msg.createReply('you\'ve successfully raided ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.');
     } else {
-      await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, new IncMoneyUpdate('wealth', -args.raid));
+      await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, new msg.client.db.updates.IncMoney('wealth', -args.raid));
       await gangLeader.tryDM((msg.author.id === gang.leaderId ? 'You have' : msg.author.tag.boldify() + ' has') + ' attempted to raid ' + stolen.USD() + ' from ' + args.gang.name.boldify() + ' but you failed horribly.', { guild: msg.guild });
       await raidedGangLeader.tryDM(gang.name.boldify() + ' has attempted to raid ' + stolen.USD() + ' from your gang but failed horribily.', { guild: msg.guild });
 

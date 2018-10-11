@@ -11,7 +11,7 @@ class RemoveTriviaQuestion extends patron.Command {
           name: 'question',
           key: 'question',
           type: 'string',
-          example: 'is john gay',
+          example: '"is john gay"',
           remainder: true
         })
       ]

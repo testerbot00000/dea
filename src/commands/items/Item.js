@@ -31,7 +31,7 @@ class Item extends patron.Command {
           case 'names':
             break;
           case 'description':
-            description += '**Description:** '+ args.item[key] + '\n';
+            description += '**Description:** ' + args.item[key] + '\n';
             break;
           default:
             description += '**' + ItemService.capitializeWords(key) + ':** ' + ItemService.capitializeWords(args.item[key]) + '\n';

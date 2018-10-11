@@ -17,8 +17,6 @@ class Questions extends patron.Command {
     let description = '';
     let position = 1;
 
-    if (msg.dbGuild.trivia)
-
     for (const key in msg.dbGuild.trivia) {
       description += position++ + '. ' + key.boldify() + '\n';
 

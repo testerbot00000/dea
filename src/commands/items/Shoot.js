@@ -17,7 +17,7 @@ class Shoot extends patron.Command {
           key: 'member',
           type: 'member',
           preconditions: ['noself'],
-          example: 'Blast It Baby#6969'
+          example: '"Blast It Baby#6969"'
         }),
         new patron.Argument({
           name: 'item',

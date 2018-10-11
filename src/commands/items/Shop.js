@@ -41,7 +41,7 @@ class Shop extends patron.Command {
     await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [item]: args.amount } });
     await msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, -totalCaseAmount);
 
-    return msg.createReply('you have successfully purchased ' + args.amount + ' of ' + (args.amount > 1 ? args.item.names[0] + 's' : args.item.names[0]) + '.');
+    return msg.createReply('you have successfully purchased ' + args.amount + ' ' + (args.amount > 1 ? args.item.names[0].endsWith('fe') ? args.item.names[0].slice(0, args.item.names[0].length - 2) + 'ves' : args.item.names[0] + 's' : args.item.names[0]) + '.');
   }
 }
 

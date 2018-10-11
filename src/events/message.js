@@ -5,8 +5,7 @@ const Logger = require('../utility/Logger.js');
 const NumberUtil = require('../utility/NumberUtil.js');
 const client = require('../structures/Client.js');
 const patron = require('patron.js');
-const registry = require('../structures/registry.js');
-const handler = new patron.Handler({ registry });
+const handler = require('../structures/handler.js');
 const CONTEXTS = {
   [patron.Context.Guild]: 'server',
   [patron.Context.DM]: 'DMs'

@@ -1,4 +1,5 @@
 const patron = require('patron.js');
+const { config: { gang: { maxUnique, maxAmount } } } = require('../../utility/Constants.js');
 
 class DumpVault extends patron.Command {
   constructor() {
@@ -12,6 +13,15 @@ class DumpVault extends patron.Command {
 
   async run(msg) {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
+    const vault = Object.keys(gang.vault).filter(x => gang[x] > 0);
+    const inv = Object.keys(msg.dbUser.inventory).filter(x => msg.dbUser.inventory[x] > 0);
+    const unique = inv.filter(x => vault[x] === undefined || vault[x] <= 0);
+
+    if (vault.length + unique.length >= maxUnique) {
+      return msg.createErrorReply('you may not have more than or equal to ' + maxUnique + ' items in your gang\'s vault.');
+    } else if (inv.some(x => msg.dbUser.inventory[x] > maxAmount || vault[x] !== undefined && vault[x] + msg.dbUser.inventory[x] > maxAmount)) {
+      return msg.createErrorReply('you may not have more than ' + maxAmount + ' of any item in your gang\'s vault');
+    }
 
     for (const key in msg.dbUser.inventory) {
       const invGained = 'inventory.' + key;
@@ -24,11 +34,8 @@ class DumpVault extends patron.Command {
 
     const leader = msg.guild.members.get(gang.leaderId);
 
-    if (!leader.user.dmChannel) {
-      await leader.createDM();
-    }
-
     await leader.tryDM(msg.author.tag + ' has just dumped all his items into your gangs vault', { guild: msg.guild });
+
     return msg.createReply('you have successfully dumped all of your items into your gangs vault.');
   }
 }

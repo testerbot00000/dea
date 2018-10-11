@@ -177,17 +177,13 @@ class Constants {
         cooldownTakeFromVault: 60000,
         creationCost: 2500,
         nameChange: 500,
-        raidOdds: 80
+        raidOdds: 80,
+        maxUnique: 10,
+        maxAmount: 50
       },
 
       poll: {
         maxChar: 80
-      },
-
-      enslave: {
-        cooldown: 7200000,
-        odds: 20,
-        killOwner: 30
       },
 
       collect: {
@@ -199,11 +195,6 @@ class Constants {
         max: 0.2,
         min: 500,
         odds: 60
-      },
-
-      shootowner: {
-        cooldown: 86400000,
-        odds: 1
       },
 
       username: {
@@ -295,7 +286,7 @@ class Constants {
       rape: {
         odds: 50,
         cooldown: 14400000,
-        cost: 0.25
+        cost: 0.10
       }
     };
 

@@ -1,4 +1,5 @@
 const patron = require('patron.js');
+const { config: { gang: { maxUnique, maxAmount } } } = require('../../utility/Constants.js');
 
 class AddToVault extends patron.Command {
   constructor() {
@@ -21,8 +22,8 @@ class AddToVault extends patron.Command {
           type: 'int',
           example: '2',
           defaultValue: 1,
-          preconditionOptions: [{ minimum: 1 }],
-          preconditions: ['minimum', 'userhasamount'],
+          preconditionOptions: [{ minimum: 1 }, {}, { maxUnique, maxAmount }],
+          preconditions: ['minimum', 'userhasamount', 'maxvaultitems'],
           remainder: true
         })
       ]

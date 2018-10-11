@@ -25,7 +25,7 @@ class JoinGang extends patron.Command {
 
     if (gang) {
       return msg.createErrorReply('you\'re already in a gang.');
-    } else if (args.gang.members.length + args.gang.elders.length >= 10) {
+    } else if (args.gang.members.length + args.gang.elders.length >= 4) {
       return msg.createErrorReply('sorry, this gang is too full.');
     }
 

@@ -27,7 +27,7 @@ module.exports = async client => {
       const dbGuild = await client.db.guildRepo.getGuild(guild.id);
       const role = guild.roles.get(dbGuild.roles.muted);
 
-      if (!role) {
+      if (!role || !member.roles.has(dbGuild.roles.muted)) {
         continue;
       }
 

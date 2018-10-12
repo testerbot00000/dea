@@ -14,7 +14,7 @@ class MaxVaultItems extends patron.ArgumentPrecondition {
     if (gang.vault[args.item.names[0]] !== undefined) {
       if (gang.vault[args.item.names[0]] <= 0 && items.length >= options.maxUnique) {
         return patron.PreconditionResult.fromError(command, 'you may not have more than or equal to ' + options.maxUnique + ' unique items in your gang\'s vault.');
-      } else if (gang.vault[args.item.names[0]] + 1 > options.maxAmount) {
+      } else if (gang.vault[args.item.names[0]] + value > options.maxAmount) {
         return patron.PreconditionResult.fromError(command, 'you may not have more than ' + options.maxAmount + ' of this item in your gang\'s vault.');
       }
     }

@@ -1,5 +1,6 @@
 const patron = require('patron.js');
 const Constants = require('../../utility/Constants.js');
+const handler = require('../../structures/handler.js');
 const Random = require('../../utility/Random.js');
 
 class Raid extends patron.Command {
@@ -56,10 +57,12 @@ class Raid extends patron.Command {
       await msg.createErrorReply('unfortunately your gang has failed to raid ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.');
     }
 
-    const gangMembers = gang.members.concat(gang.elders).concat(gang.leaderId);
+    const gangMembers = gang.members.concat(gang.elders, gang.leaderId);
 
     for (let i = 0; i < gangMembers.length; i++) {
-      this.cooldowns[gangMembers[i] + '-' + msg.guild.id] = Date.now() + Constants.config.gang.cooldownRaid;
+      await handler.mutex.sync(msg.guild.id, async () => {
+        this.cooldowns[gangMembers[i] + '-' + msg.guild.id] = Date.now() + Constants.config.gang.cooldownRaid;
+      });
     }
   }
 }

@@ -9,6 +9,7 @@ class Fish extends patron.Command {
       names: ['fish'],
       groupName: 'items',
       description: 'Go fishing using items.',
+      postconditions: ['reducedcooldown'],
       cooldown: Constants.config.fish.cooldown,
       args: [
         new patron.Argument({

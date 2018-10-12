@@ -8,6 +8,7 @@ class Scam extends patron.Command {
       names: ['scam', 'whore'],
       groupName: 'crime',
       description: 'Scam some noobs on the streets.',
+      postconditions: ['reducedcooldown'],
       cooldown: Constants.config.scam.cooldown
     });
   }

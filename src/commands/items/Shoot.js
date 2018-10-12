@@ -10,6 +10,7 @@ class Shoot extends patron.Command {
       names: ['shoot'],
       groupName: 'items',
       description: 'Shoot a user with specified gun.',
+      postconditions: ['reducedcooldown'],
       cooldown: Constants.config.shoot.cooldown,
       args: [
         new patron.Argument({
@@ -50,7 +51,17 @@ class Shoot extends patron.Command {
         await msg.client.db.userRepo.modifyCashExact(msg.dbGuild, msg.member, dbUser.bounty);
         await msg.client.db.userRepo.modifyCashExact(msg.dbGuild, msg.member, dbUser.cash);
 
-        const totalEarning = dbUser.bounty + dbUser.cash;
+        const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: args.member.id }, { elders: args.member.id }, { leaderId: args.member.id }], $and: [{ guildId: msg.guild.id }] });
+        let amount = 0;
+
+        if (gang && NumberUtil.realValue(gang.wealth) > Constants.config.gang.min) {
+          amount = NumberUtil.round(gang.wealth * Constants.config.gang.killedMember, 2);
+
+          await msg.client.db.userRepo.modifyCashExact(msg.dbGuild, msg.member, amount);
+          await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, new msg.client.db.updates.IncMoney('wealth', -NumberUtil.realValue(amount)));
+        }
+
+        const totalEarning = dbUser.bounty + dbUser.cash + amount;
 
         await msg.client.db.userRepo.deleteUser(args.member.id, msg.guild.id);
         await user.tryDM('Unfortunately, you were killed by ' + msg.author.tag.boldify() + '. All your data has been reset.', { guild: msg.guild });

@@ -8,6 +8,7 @@ class Jump extends patron.Command {
       names: ['jump'],
       groupName: 'crime',
       description: 'Jump some trash for cash on the street.',
+      postconditions: ['reducedcooldown'],
       cooldown: Constants.config.jump.cooldown
     });
   }

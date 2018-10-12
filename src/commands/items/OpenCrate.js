@@ -8,6 +8,7 @@ class OpenCrate extends patron.Command {
       names: ['opencrate', 'open'],
       groupName: 'items',
       description: 'Open a crate.',
+      postconditions: ['reducedcooldown'],
       cooldown: Constants.config.opencrate.cooldown,
       args: [
         new patron.Argument({

@@ -8,7 +8,8 @@ class Clear extends patron.Command {
       names: ['clear', 'prune', 'purge'],
       groupName: 'moderation',
       description: 'Clear up to ' + Constants.config.clear.max + ' messages in any text channel.',
-      cooldown: 1000,
+      postconditions: ['reducedcooldown'],
+      cooldown: Constants.config.clear.cooldown,
       botPermissions: ['MANAGE_MESSAGES'],
       args: [
         new patron.Argument({

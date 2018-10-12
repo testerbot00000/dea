@@ -134,6 +134,10 @@ class Constants {
         kilo: {
           cost: 10000,
           description: 'A kilo of cocaine is more than enough to quadruple your cash per message.'
+        },
+        convoy: {
+          cost: 50000,
+          description: 'These bad boys help distribute your drugs even faster, reducing all of your cooldowns by 5%.'
         }
       },
 
@@ -169,9 +173,12 @@ class Constants {
         maxLength: 32
       },
 
+      reducedCooldown: 0.05,
+
       gang: {
         min: 500,
         maxChar: 24,
+        killedMember: 0.05,
         cooldownRaid: 28800000,
         cooldownWithdraw: 14400000,
         cooldownTakeFromVault: 60000,
@@ -216,7 +223,8 @@ class Constants {
 
       clear: {
         max: 100,
-        min: 2
+        min: 2,
+        cooldown: 1000
       },
 
       gambling: {

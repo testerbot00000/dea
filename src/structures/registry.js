@@ -8,6 +8,7 @@ const registry = new patron.Registry({ library: 'discord.js', caseSensitive: fal
   r.registerTypeReaders(await patron.RequireAll(path.join(__dirname, '../readers')));
   r.registerArgumentPreconditions(await patron.RequireAll(path.join(__dirname, '../preconditions', 'argument')));
   r.registerPreconditions(await patron.RequireAll(path.join(__dirname, '../preconditions', 'command')));
+  r.registerPostconditions(await patron.RequireAll(path.join(__dirname, '../postconditions')));
   r.registerGroups(await patron.RequireAll(path.join(__dirname, '../groups')));
   r.registerCommands(await patron.RequireAll(path.join(__dirname, '../commands')));
 })(registry);

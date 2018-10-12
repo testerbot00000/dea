@@ -8,6 +8,7 @@ class Raid extends patron.Command {
       names: ['raid'],
       groupName: 'gangs',
       description: 'Raid another gang\'s money.',
+      postconditions: ['reducedcooldown'],
       cooldown: Constants.config.gang.cooldownRaid,
       preconditions: ['ingang', 'unusedraid'],
       args: [

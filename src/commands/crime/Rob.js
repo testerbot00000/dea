@@ -8,6 +8,7 @@ class Rob extends patron.Command {
       names: ['rob'],
       groupName: 'crime',
       description: 'Use your cash to rob a user.',
+      postconditions: ['reducedcooldown'],
       cooldown: Constants.config.rob.cooldown,
       args: [
         new patron.Argument({
@@ -18,7 +19,7 @@ class Rob extends patron.Command {
           preconditions: ['noself']
         }),
         new patron.Argument({
-          name: 'resources',
+          name: 'resource',
           type: 'quantity',
           key: 'resources',
           example: '500',

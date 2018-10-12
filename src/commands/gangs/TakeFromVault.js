@@ -7,6 +7,7 @@ class TakeFromVault extends patron.Command {
       names: ['takefromvault', 'takevault', 'takeitem', 'takefromgang', 'withdrawitem', 'yoink'],
       groupName: 'gangs',
       description: 'Take an item from a gangs vault.',
+      postconditions: ['reducedcooldown'],
       cooldown: Constants.config.gang.cooldownTakeFromVault,
       preconditions: ['ingang'],
       args: [

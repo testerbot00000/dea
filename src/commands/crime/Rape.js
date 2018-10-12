@@ -10,6 +10,7 @@ class Rape extends patron.Command {
       groupName: 'crime',
       description: 'Rape any user.',
       cooldown: Constants.config.rape.cooldown,
+      postconditions: ['reducedcooldown'],
       args: [
         new patron.Argument({
           name: 'member',

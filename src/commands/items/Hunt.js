@@ -9,6 +9,7 @@ class Hunt extends patron.Command {
       names: ['hunt'],
       groupName: 'items',
       description: 'Go hunting using items.',
+      postconditions: ['reducedcooldown'],
       cooldown: Constants.config.hunt.cooldown,
       args: [
         new patron.Argument({

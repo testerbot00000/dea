@@ -8,6 +8,7 @@ class OpenAll extends patron.Command {
       names: ['openall'],
       groupName: 'items',
       description: 'Open all of a kind of crate.',
+      postconditions: ['reducedcooldown'],
       cooldown: Constants.config.opencrate.cooldown,
       args: [
         new patron.Argument({

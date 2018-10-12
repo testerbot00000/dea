@@ -10,6 +10,7 @@ class Stab extends patron.Command {
       names: ['stab'],
       groupName: 'items',
       description: 'Stab a user with specified knife.',
+      postconditions: ['reducedcooldown'],
       cooldown: Constants.config.stab.cooldown,
       args: [
         new patron.Argument({
@@ -40,7 +41,9 @@ class Stab extends patron.Command {
 
     if (args.item.crate_odds >= Random.roll()) {
       const inv = 'inventory.' + args.item.names[0];
+
       await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [inv]: -1 } });
+
       return msg.createErrorReply(Random.arrayElement(Constants.data.messages.itemBreaking).format(args.item.names[0].boldify()));
     }
 
@@ -50,7 +53,17 @@ class Stab extends patron.Command {
         await msg.client.db.userRepo.modifyCashExact(msg.dbGuild, msg.member, dbUser.bounty);
         await msg.client.db.userRepo.modifyCashExact(msg.dbGuild, msg.member, dbUser.cash);
 
-        const totalEarning = dbUser.bounty + dbUser.cash;
+        const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: args.member.id }, { elders: args.member.id }, { leaderId: args.member.id }], $and: [{ guildId: msg.guild.id }] });
+        let amount = 0;
+
+        if (gang && NumberUtil.realValue(gang.wealth) > Constants.config.gang.min) {
+          amount = NumberUtil.round(gang.wealth * Constants.config.gang.killedMember, 2);
+
+          await msg.client.db.userRepo.modifyCashExact(msg.dbGuild, msg.member, amount);
+          await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, new msg.client.db.updates.IncMoney('wealth', -NumberUtil.realValue(amount)));
+        }
+
+        const totalEarning = dbUser.bounty + dbUser.cash + amount;
 
         await msg.client.db.userRepo.deleteUser(args.member.id, msg.guild.id);
         await shotUser.tryDM('Unfortunately, you were killed by ' + msg.author.tag.boldify() + ' using a ' + ItemService.capitializeWords(args.item.names[0]) + '. All your data has been reset.', { guild: msg.guild });

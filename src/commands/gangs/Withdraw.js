@@ -8,6 +8,7 @@ class Withdraw extends patron.Command {
       names: ['withdraw'],
       groupName: 'gangs',
       description: 'Withdraw money from your gang.',
+      postconditions: ['reducedcooldown'],
       cooldown: Constants.config.gang.cooldownWithdraw,
       preconditions: ['ingang'],
       args: [

@@ -13,7 +13,7 @@ module.exports = async client => {
 
       const guild = client.guilds.get(guilds[i].guildId);
 
-      if (!guild.mainChannel) {
+      if (!guild || !guild.mainChannel) {
         continue;
       }
 

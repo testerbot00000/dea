@@ -1,6 +1,6 @@
 const patron = require('patron.js');
 const Random = require('../../utility/Random.js');
-const Constants = require('../../utility/Constants.js');
+const handler = require('../../structures/handler.js');
 
 class JoinGang extends patron.Command {
   constructor() {
@@ -52,11 +52,21 @@ class JoinGang extends patron.Command {
     const result = await leader.user.dmChannel.awaitMessages(m => m.author.id === leader.id && m.content.includes(key), { time: 300000, max: 1 });
 
     if (result.size >= 1) {
-      const update = new msg.client.db.updates.Push('members', msg.author.id);
-
       const raid = msg.client.registry.commands.find(x => x.names.includes('raid'));
+      const gangMembers = args.gang.members.concat(args.gang.elders, args.gang.leaderId);
+      const cooldowns = gangMembers
+        .filter(x => raid.cooldowns[x + '-' + msg.guild.id] !== undefined && raid.cooldowns[x + '-' + msg.guild.id] - Date.now() > 0)
+        .map(x => raid.cooldowns[x + '-' + msg.guild.id]);
 
-      raid.cooldowns[msg.author.id + '-' + msg.guild.id] = Date.now() + Constants.config.gang.cooldownRaid;
+      if (cooldowns.length) {
+        await handler.mutex.sync(msg.guild.id, async () => {
+          const highest = Math.max(...cooldowns);
+
+          raid.cooldowns[msg.author.id + '-' + msg.guild.id] = highest;
+        });
+      }
+
+      const update = new msg.client.db.updates.Push('members', msg.author.id);
 
       await msg.client.db.gangRepo.updateGang(args.gang.leaderId, msg.guild.id, update);
       await leader.tryDM('You\'ve successfully let ' + msg.author.tag + ' join your gang.', { guild: msg.guild });

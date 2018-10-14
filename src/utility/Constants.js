@@ -262,6 +262,7 @@ class Constants {
         leaderboardCap: 10,
         messageCooldown: 30000,
         rateLimitMessageCooldown: 5000,
+        rateLimitMessageAmount: 8,
         minCharLength: 7,
         messageMultiplier: 1
       },

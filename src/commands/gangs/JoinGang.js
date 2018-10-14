@@ -1,5 +1,6 @@
 const patron = require('patron.js');
 const Random = require('../../utility/Random.js');
+const Constants = require('../../utility/Constants.js');
 const handler = require('../../structures/handler.js');
 
 class JoinGang extends patron.Command {
@@ -25,7 +26,7 @@ class JoinGang extends patron.Command {
 
     if (gang) {
       return msg.createErrorReply('you\'re already in a gang.');
-    } else if (args.gang.members.length + args.gang.elders.length >= 4) {
+    } else if (args.gang.members.length + args.gang.elders.length >= Constants.config.gang.maxMembers) {
       return msg.createErrorReply('sorry, this gang is too full.');
     }
 

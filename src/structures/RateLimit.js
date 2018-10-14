@@ -1,6 +1,6 @@
 class RateLimit {
   constructor() {
-    this.messages = 0;
+    this.messages = 1;
     this.time = Date.now();
   }
 }

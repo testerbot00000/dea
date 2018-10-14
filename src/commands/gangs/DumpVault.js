@@ -22,7 +22,7 @@ class DumpVault extends patron.Command {
 
     const inv = Object.keys(msg.dbUser.inventory).filter(x => msg.dbUser.inventory[x] > 0);
     const has = inv.filter(x => gang.vault[x] && gang.vault[x] < maxAmount);
-    const passedFilter = inv.filter(x => gang.vault[x] === undefined || gang.vault[x] < maxAmount).slice(0, maxUnique + has.length - vault.length);
+    const passedFilter = inv.filter(x => !gang.vault[x] || gang.vault[x] < maxAmount).slice(0, maxUnique + has.length - vault.length);
     const needs = vault.filter(x => gang.vault[x] < maxAmount && !inv.includes(x));
 
     if (!passedFilter.length) {

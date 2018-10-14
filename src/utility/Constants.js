@@ -261,6 +261,7 @@ class Constants {
         cashPerMessage: 50,
         leaderboardCap: 10,
         messageCooldown: 30000,
+        rateLimitMessageCooldown: 5000,
         minCharLength: 7,
         messageMultiplier: 1
       },

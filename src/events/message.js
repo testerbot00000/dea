@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const Constants = require('../utility/Constants.js');
 const ChatService = require('../services/ChatService.js');
+const RateLimitService = require('../services/RateLimitService.js');
 const Logger = require('../utility/Logger.js');
 const NumberUtil = require('../utility/NumberUtil.js');
 const client = require('../structures/Client.js');
@@ -26,6 +27,8 @@ client.on('message', async msg => {
   if (!Constants.data.regexes.prefix.test(msg.content)) {
     return !inGuild && msg.member && !msg.dbGuild.channels.ignore.includes(msg.channel.id) ? ChatService.applyCash(msg) : null;
   }
+
+  RateLimitService.initiate(msg);
 
   const result = await handler.run(msg, Constants.data.misc.prefix.length);
 

@@ -1,4 +1,5 @@
 const patron = require('patron.js');
+const handler = require('../../structures/handler.js');
 
 class KickGangMember extends patron.Command {
   constructor() {
@@ -39,6 +40,16 @@ class KickGangMember extends patron.Command {
     } else if (gang.members.includes(args.user.id)) {
       await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update('members', args.user.id));
     }
+
+    const raid = msg.client.registry.commands.find(x => x.names.includes('raid'));
+
+    await handler.mutex.sync(msg.guild.id, async () => {
+      const exists = raid.cooldowns[args.user.id + '-' + msg.guild.id];
+
+      if (exists !== undefined && exists - Date.now() > 0) {
+        raid.cooldowns[args.user.id + '-' + msg.guild.id] = undefined;
+      }
+    });
 
     await args.user.tryDM('You\'ve been kicked from the gang ' + gang.name.boldify() + '.', { guild: msg.guild });
 

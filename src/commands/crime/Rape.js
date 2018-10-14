@@ -17,7 +17,8 @@ class Rape extends patron.Command {
           key: 'member',
           type: 'member',
           example: 'Vanalk#1231',
-          preconditions: ['noself']
+          preconditionOptions: [{ minimum: Constants.config.rape.minimum }],
+          preconditions: ['hasminimumcash', 'noself']
         })
       ]
     });

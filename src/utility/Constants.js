@@ -186,7 +186,8 @@ class Constants {
         nameChange: 500,
         raidOdds: 80,
         maxUnique: 10,
-        maxAmount: 50
+        maxAmount: 50,
+        maxMembers: 4
       },
 
       poll: {
@@ -294,7 +295,8 @@ class Constants {
       rape: {
         odds: 50,
         cooldown: 14400000,
-        cost: 0.10
+        cost: 0.10,
+        minimum: 1000
       }
     };
 

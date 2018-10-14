@@ -69,9 +69,9 @@ class JoinGang extends patron.Command {
       const update = new msg.client.db.updates.Push('members', msg.author.id);
 
       await msg.client.db.gangRepo.updateGang(args.gang.leaderId, msg.guild.id, update);
-      await leader.tryDM('You\'ve successfully let ' + msg.author.tag + ' join your gang.', { guild: msg.guild });
+      await leader.tryDM('You\'ve successfully let ' + msg.author.tag.boldify() + ' join your gang.', { guild: msg.guild });
 
-      return msg.author.tryDM('You\'ve successfully joined gang ' + args.gang.name.boldify() + '.', { guild: msg.guild });
+      return msg.author.tryDM('You\'ve successfully joined the gang ' + args.gang.name.boldify() + '.', { guild: msg.guild });
     }
 
     return msg.author.tryDM(leader.user.tag.boldify() + ' didn\'t respond to your join request.', { guild: msg.guild });

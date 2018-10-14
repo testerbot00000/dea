@@ -4,7 +4,7 @@ const NumberUtil = require('../../utility/NumberUtil.js');
 class Cooldowns extends patron.Command {
   constructor() {
     super({
-      names: ['cooldowns', 'cd'],
+      names: ['cooldowns', 'cds', 'cd'],
       groupName: 'general',
       description: 'View all command cooldowns of a member',
       args: [

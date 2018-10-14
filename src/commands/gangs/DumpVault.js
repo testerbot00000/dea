@@ -17,6 +17,19 @@ class DumpVault extends patron.Command {
     const inv = Object.keys(msg.dbUser.inventory).filter(x => msg.dbUser.inventory[x] > 0);
     const unique = inv.filter(x => vault[x] === undefined || vault[x] <= 0);
 
+    /* TODO: Dump 50 items of each of the 10 unique ones
+    const passedFilter = inv.filter(x => gang.vault[x] === undefined || gang.vault[x] < maxAmount);
+    const itemsToDump = (passedFilter.length > maxUnique ? passedFilter.slice(0, maxUnique) : passedFilter)
+      .map(x => ({
+        item: x,
+        amount: msg.dbUser.inventory[x] > maxAmount
+          ? gang.vault[x] || gang.vault[x] + msg.dbUser.inventory[x] > maxAmount
+            ? maxAmount - gang.vault[x]
+            : maxAmount
+          : msg.dbUser.inventory[x]
+      }));
+      */
+
     if (vault.length + unique.length >= maxUnique) {
       return msg.createErrorReply('you may not have more than or equal to ' + maxUnique + ' unique items in your gang\'s vault.');
     } else if (inv.some(x => msg.dbUser.inventory[x] > maxAmount || vault[x] !== undefined && vault[x] + msg.dbUser.inventory[x] > maxAmount)) {

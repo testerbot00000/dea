@@ -1,6 +1,5 @@
 const patron = require('patron.js');
 const Constants = require('../../utility/Constants.js');
-const handler = require('../../structures/handler.js');
 const Random = require('../../utility/Random.js');
 
 class Raid extends patron.Command {
@@ -9,9 +8,9 @@ class Raid extends patron.Command {
       names: ['raid'],
       groupName: 'gangs',
       description: 'Raid another gang\'s money.',
-      postconditions: ['reducedcooldown'],
+      postconditions: ['reducedcooldown', 'pergangraid'],
       cooldown: Constants.config.gang.cooldownRaid,
-      preconditions: ['ingang', 'unusedraid'],
+      preconditions: ['ingang'],
       args: [
         new patron.Argument({
           name: 'amount',
@@ -48,22 +47,14 @@ class Raid extends patron.Command {
       await gangLeader.tryDM((msg.author.id === gang.leaderId ? 'You have' : msg.author.tag.boldify() + ' has') + ' raided ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.', { guild: msg.guild });
       await raidedGangLeader.tryDM(gang.name.boldify() + ' has raided ' + stolen.USD() + ' from your gang.', { guild: msg.guild });
 
-      await msg.createReply('you\'ve successfully raided ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.');
-    } else {
-      await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, new msg.client.db.updates.IncMoney('wealth', -args.raid));
-      await gangLeader.tryDM((msg.author.id === gang.leaderId ? 'You have' : msg.author.tag.boldify() + ' has') + ' attempted to raid ' + stolen.USD() + ' from ' + args.gang.name.boldify() + ' but you failed horribly.', { guild: msg.guild });
-      await raidedGangLeader.tryDM(gang.name.boldify() + ' has attempted to raid ' + stolen.USD() + ' from your gang but failed horribily.', { guild: msg.guild });
-
-      await msg.createErrorReply('unfortunately your gang has failed to raid ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.');
+      return msg.createReply('you\'ve successfully raided ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.');
     }
 
-    const gangMembers = gang.members.concat(gang.elders, gang.leaderId);
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, new msg.client.db.updates.IncMoney('wealth', -args.raid));
+    await gangLeader.tryDM((msg.author.id === gang.leaderId ? 'You have' : msg.author.tag.boldify() + ' has') + ' attempted to raid ' + stolen.USD() + ' from ' + args.gang.name.boldify() + ' but you failed horribly.', { guild: msg.guild });
+    await raidedGangLeader.tryDM(gang.name.boldify() + ' has attempted to raid ' + stolen.USD() + ' from your gang but failed horribily.', { guild: msg.guild });
 
-    for (let i = 0; i < gangMembers.length; i++) {
-      await handler.mutex.sync(msg.guild.id, async () => {
-        this.cooldowns[gangMembers[i] + '-' + msg.guild.id] = Date.now() + Constants.config.gang.cooldownRaid;
-      });
-    }
+    return msg.createErrorReply('unfortunately your gang has failed to raid ' + stolen.USD() + ' from ' + args.gang.name.boldify() + '.');
   }
 }
 

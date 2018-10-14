@@ -1,5 +1,6 @@
 const patron = require('patron.js');
 const { config: { gang: { maxUnique, maxAmount } } } = require('../../utility/Constants.js');
+const ItemService = require('../../services/ItemService.js');
 
 class DumpVault extends patron.Command {
   constructor() {
@@ -13,43 +14,48 @@ class DumpVault extends patron.Command {
 
   async run(msg) {
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
-    const vault = Object.keys(gang.vault).filter(x => gang[x] > 0);
-    const inv = Object.keys(msg.dbUser.inventory).filter(x => msg.dbUser.inventory[x] > 0);
-    const unique = inv.filter(x => vault[x] === undefined || vault[x] <= 0);
+    const vault = Object.keys(gang.vault).filter(x => gang.vault[x] > 0);
 
-    /* TODO: Dump 50 items of each of the 10 unique ones
-    const passedFilter = inv.filter(x => gang.vault[x] === undefined || gang.vault[x] < maxAmount);
-    const itemsToDump = (passedFilter.length > maxUnique ? passedFilter.slice(0, maxUnique) : passedFilter)
-      .map(x => ({
-        item: x,
-        amount: msg.dbUser.inventory[x] > maxAmount
-          ? gang.vault[x] || gang.vault[x] + msg.dbUser.inventory[x] > maxAmount
-            ? maxAmount - gang.vault[x]
-            : maxAmount
-          : msg.dbUser.inventory[x]
-      }));
-      */
-
-    if (vault.length + unique.length >= maxUnique) {
-      return msg.createErrorReply('you may not have more than or equal to ' + maxUnique + ' unique items in your gang\'s vault.');
-    } else if (inv.some(x => msg.dbUser.inventory[x] > maxAmount || vault[x] !== undefined && vault[x] + msg.dbUser.inventory[x] > maxAmount)) {
-      return msg.createErrorReply('you may not have more than ' + maxAmount + ' of any item in your gang\'s vault');
+    if (vault.length >= maxUnique && vault.every(x => gang.vault[x] >= maxAmount)) {
+      return msg.createErrorReply('your gang\'s vault cannot hold any more items.');
     }
 
-    for (const key in msg.dbUser.inventory) {
-      const invGained = 'inventory.' + key;
-      const vaultGained = 'vault.' + key;
-      const amount = msg.dbUser.inventory[key];
+    const inv = Object.keys(msg.dbUser.inventory).filter(x => msg.dbUser.inventory[x] > 0);
+    const has = inv.filter(x => gang.vault[x] && gang.vault[x] < maxAmount);
+    const passedFilter = inv.filter(x => gang.vault[x] === undefined || gang.vault[x] < maxAmount).slice(0, maxUnique + has.length - vault.length);
+    const needs = vault.filter(x => gang.vault[x] < maxAmount && !inv.includes(x));
 
-      await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [invGained]: -amount } });
-      await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $inc: { [vaultGained]: amount } });
+    if (!passedFilter.length) {
+      if (needs.length) {
+        return msg.createErrorReply('you don\'t have any of the following item' + (needs.length > 1 ? 's' : '') + ' to dump: ' + needs.map(ItemService.capitializeWords).join(', ') + '.');
+      }
+      return msg.createErrorReply('you don\'t have any of your gang\'s current items to dump.');
+    }
+
+    const itemsToDump = passedFilter.map(x => ({
+      item: x,
+      amount: gang.vault[x] && gang.vault[x] + msg.dbUser.inventory[x] > maxAmount
+        ? maxAmount - gang.vault[x]
+        : msg.dbUser.inventory[x] > maxAmount
+          ? maxAmount
+          : msg.dbUser.inventory[x]
+    }));
+
+    let dumped = '';
+
+    for (let i = 0; i < itemsToDump.length; i++) {
+      const { item, amount } = itemsToDump[i];
+      dumped += ItemService.capitializeWords(item) + (amount > 1 ? 's' : '') + ': ' + amount + (i !== itemsToDump.length - 1 ? '\n' : '');
+
+      await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { ['inventory.' + item]: -amount } });
+      await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $inc: { ['vault.' + item]: amount } });
     }
 
     const leader = msg.guild.members.get(gang.leaderId);
 
-    await leader.tryDM(msg.author.tag + ' has just dumped all his items into your gangs vault', { guild: msg.guild });
+    await leader.tryDM(msg.author.tag + ' has just dumped the following into your gang\'s vault:\n' + dumped, { guild: msg.guild });
 
-    return msg.createReply('you have successfully dumped all of your items into your gangs vault.');
+    return msg.createReply('you have successfully dumped the following into your gang\'s vault:\n' + dumped);
   }
 }
 

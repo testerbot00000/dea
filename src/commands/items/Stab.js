@@ -3,6 +3,7 @@ const Random = require('../../utility/Random.js');
 const Constants = require('../../utility/Constants.js');
 const ItemService = require('../../services/ItemService.js');
 const NumberUtil = require('../../utility/NumberUtil.js');
+const items = require('../../data/items.json');
 
 class Stab extends patron.Command {
   constructor() {
@@ -36,7 +37,7 @@ class Stab extends patron.Command {
   async run(msg, args) {
     const roll = Random.roll();
     const dbUser = await msg.client.db.userRepo.getUser(args.member.id, msg.guild.id);
-    const damage = await ItemService.reduceDamage(dbUser, args.item.damage, msg.dbGuild.items);
+    const damage = await ItemService.reduceDamage(dbUser, args.item.damage, items);
     const shotUser = await msg.client.users.get(args.member.id);
 
     if (args.item.crate_odds >= Random.roll()) {

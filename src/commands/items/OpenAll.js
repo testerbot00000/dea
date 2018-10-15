@@ -1,6 +1,7 @@
 const patron = require('patron.js');
 const ItemService = require('../../services/ItemService.js');
 const Constants = require('../../utility/Constants.js');
+const items = require('../../data/items.json');
 
 class OpenAll extends patron.Command {
   constructor() {
@@ -37,7 +38,7 @@ class OpenAll extends patron.Command {
       openAmount = msg.dbUser.inventory[args.item.names[0]];
     }
 
-    const item = await ItemService.massOpenCrate(openAmount, args.item, msg.dbGuild.items);
+    const item = await ItemService.massOpenCrate(openAmount, args.item, items);
     const object = {
       $inc: Object.keys(item).reduce((a, b) => {
         a['inventory.' + b] = item[b];

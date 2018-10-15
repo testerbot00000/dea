@@ -4,7 +4,7 @@ const Constants = require('../utility/Constants.js');
 class ItemService {
   async openCrate(crate, items) {
     const roll = Random.roll();
-    const weapons = items.filter(x => x.type === 'gun' || x.type === 'knife').filter(x => x.crate_odds).sort((a, b) => a.crate_odds - b.crate_odds);
+    const weapons = items.filter(x => x.type === 'gun' || x.type === 'knife' || x.type === 'armour').filter(x => x.crate_odds).sort((a, b) => a.crate_odds - b.crate_odds);
     const fullWeaponOdds = weapons.map(x => x.crate_odds).reduce((accumulator, currentValue) => accumulator + currentValue);
     const rollWeapon = Random.nextInt(1, fullWeaponOdds);
     const ammunation = items.filter(x => x.type === 'bullet' && x.crate_odds).filter(x => x.crate_odds).sort((a, b) => a.crate_odds - b.crate_odds);
@@ -88,8 +88,8 @@ class ItemService {
     let reduce = damage;
 
     for (let i = 0; i < armours.length; i++) {
-      if (dbUser.inventory[armours[i].names[0]] || dbUser.inventory[armours[i].names[0]] > 0) {
-        reduce *= (100 - armours[i].damageReduction) / 100;
+      if (dbUser.inventory[armours[i].names[0]] && dbUser.inventory[armours[i].names[0]] > 0) {
+        reduce *= (100 - armours[i].damage_reduction) / 100;
       }
     }
 

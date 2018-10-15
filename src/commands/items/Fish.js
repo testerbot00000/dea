@@ -2,6 +2,7 @@ const patron = require('patron.js');
 const ItemService = require('../../services/ItemService.js');
 const Constants = require('../../utility/Constants.js');
 const Random = require('../../utility/Random.js');
+const items = require('../../data/items.json');
 
 class Fish extends patron.Command {
   constructor() {
@@ -26,7 +27,7 @@ class Fish extends patron.Command {
   }
 
   async run(msg, args) {
-    const caught = await ItemService.fish(args.item, msg.dbGuild.items);
+    const caught = await ItemService.fish(args.item, items);
     let reply = '';
 
     if (args.item.crate_odds >= Random.roll()) {

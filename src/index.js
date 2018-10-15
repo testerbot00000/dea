@@ -2,6 +2,8 @@ const path = require('path');
 const patron = require('patron.js');
 const Logger = require('./utility/Logger.js');
 
+require('dotenv').config();
+
 (async () => {
   await require('./extensions');
 

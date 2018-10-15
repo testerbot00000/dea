@@ -3,15 +3,21 @@ const patron = require('patron.js');
 class ModifyGangWealth extends patron.Command {
   constructor() {
     super({
-      names: ['modifygangwealth', 'modifywealth', 'modwealth', 'modifygangcash', 'modgangcash', 'modgangwealth'],
+      names: ['modifygangvault', 'modifyvault', 'modvault', 'modifyganginventory', 'modganginventory', 'modganginv', 'modifyganginv'],
       groupName: 'owners',
-      description: 'Modifies the specified gang\'s wealth.',
+      description: 'Modifies the specified gang\'s vault.',
       args: [
         new patron.Argument({
           name: 'amount',
           key: 'amount',
           type: 'quantity',
           example: '1000'
+        }),
+        new patron.Argument({
+          name: 'item',
+          key: 'item',
+          type: 'item',
+          example: 'intervention'
         }),
         new patron.Argument({
           name: 'gang',
@@ -36,11 +42,12 @@ class ModifyGangWealth extends patron.Command {
       }
     }
 
-    const update = new msg.client.db.updates.IncMoney('wealth', args.amount);
+    const inventory = 'vault.' + args.item.names[0];
 
-    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, update);
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $inc: { [inventory]: args.amount } });
+    const s = args.amount > 1 ? 's' : '';
 
-    return msg.createReply('you have successfully added ' + args.amount.USD() + ' to ' + (gang.leaderId === msg.author.id ? 'your gang' : gang.name) + '\'s wealth.');
+    return msg.createReply('you have successfully added ' + args.amount + ' ' + args.item.names[0] + s + ' to ' + (gang.leaderId === msg.author.id ? 'your gang' : gang.name) + '\'s vault.');
   }
 }
 

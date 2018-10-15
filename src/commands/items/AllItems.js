@@ -1,5 +1,6 @@
 const patron = require('patron.js');
 const ItemService = require('../../services/ItemService.js');
+const items = require('../../data/items.json');
 
 class OpenAll extends patron.Command {
   constructor() {
@@ -14,8 +15,8 @@ class OpenAll extends patron.Command {
     const itemsObj = {};
     let reply = '';
 
-    for (let i = 0; i < msg.dbGuild.items.length; i++) {
-      itemsObj[msg.dbGuild.items[i].type] += ItemService.capitializeWords(msg.dbGuild.items[i].names[0]) + ', ';
+    for (let i = 0; i < items.length; i++) {
+      itemsObj[items[i].type] += ItemService.capitializeWords(items[i].names[0]) + ', ';
     }
 
     for (const key in itemsObj) {

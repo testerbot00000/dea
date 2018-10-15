@@ -190,10 +190,6 @@ class Constants {
         maxMembers: 4
       },
 
-      poll: {
-        maxChar: 80
-      },
-
       collect: {
         cooldown: 86400000
       },

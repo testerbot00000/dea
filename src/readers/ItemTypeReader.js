@@ -1,4 +1,5 @@
 const patron = require('patron.js');
+const items = require('../data/items.json');
 
 class ItemTypeReader extends patron.TypeReader {
   constructor() {
@@ -6,7 +7,7 @@ class ItemTypeReader extends patron.TypeReader {
   }
 
   async read(command, message, argument, args, input) {
-    const item = message.dbGuild.items.find(x => x.names.includes(input.toLowerCase()));
+    const item = items.find(x => x.names.includes(input.toLowerCase()));
 
     if (item) {
       return patron.TypeReaderResult.fromSuccess(item);

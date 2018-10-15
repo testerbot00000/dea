@@ -35,6 +35,10 @@ class DumpVault extends patron.Command {
     }
 
     let dumped = '';
+    const items = {
+      inv: {},
+      vault: {}
+    };
 
     for (let i = 0; i < passedFilter.length; i++) {
       const item = passedFilter[i];
@@ -45,9 +49,12 @@ class DumpVault extends patron.Command {
           : msg.dbUser.inventory[passedFilter[i]];
       dumped += ItemService.capitializeWords(item) + (amount > 1 ? 's' : '') + ': ' + amount + (i !== passedFilter.length - 1 ? '\n' : '');
 
-      await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { ['inventory.' + item]: -amount } });
-      await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $inc: { ['vault.' + item]: amount } });
+      items.inv['inventory.' + item] = -amount;
+      items.vault['vault.' + item] = amount;
     }
+
+    await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: items.inv });
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $inc: items.vault });
 
     const leader = msg.guild.members.get(gang.leaderId);
 

@@ -17,14 +17,20 @@ class TakeAll extends patron.Command {
       return msg.createErrorReply('you\'re not the owner of your gang.');
     }
 
+    const items = {
+      inv: {},
+      vault: {}
+    };
+
     for (const key in gang.vault) {
-      const invGained = 'inventory.' + key;
-      const vaultGained = 'vault.' + key;
       const amount = gang.vault[key];
 
-      await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: { [invGained]: amount } });
-      await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $inc: { [vaultGained]: -amount } });
+      items.inv['inventory.' + key] = amount;
+      items.vault['vault.' + key] = -amount;
     }
+
+    await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: items.inv });
+    await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $inc: items.vault });
 
     return msg.createReply('you have successfully taken all of your gangs items from the vault.');
   }

@@ -51,6 +51,14 @@ class InviteToGang extends patron.Command {
     const result = await args.user.dmChannel.awaitMessages(m => m.author.id === args.user.id && m.content.includes(key), { time: 300000, max: 1 });
 
     if (result.size >= 1) {
+      const inGang = await msg.client.db.gangRepo.findOne({ $or: [{ members: args.user.id }, { elders: args.user.id }, { leaderId: args.user.id }], $and: [{ guildId: msg.guild.id }] });
+
+      if (inGang) {
+        await msg.author.tryDM(msg.author.tag.boldify() + ' has already joined a gang.', { guild: msg.guild });
+
+        return args.user.tryDM('you\'re unable to join ' + gang.name.boldify() + ' since you\'re already in a gang.', { guild: msg.guild });
+      }
+
       const raid = msg.client.registry.commands.find(x => x.names.includes('raid'));
       const gangMembers = gang.members.concat(gang.elders, gang.leaderId);
       const cooldowns = gangMembers

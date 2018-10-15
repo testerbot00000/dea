@@ -40,20 +40,19 @@ class OpenAll extends patron.Command {
 
     const item = await ItemService.massOpenCrate(openAmount, args.item, items);
     const object = {
-      $inc: Object.keys(item).reduce((a, b) => {
-        a['inventory.' + b] = item[b];
-
-        return a;
-      }, {})
+      $inc: {}
     };
-    object.$inc[cases] = -openAmount;
 
-    await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, object);
+    object.$inc[cases] = -openAmount;
 
     for (const key in item) {
       const s = item[key] > 1 ? 's' : '';
       reply += ItemService.capitializeWords(key) + s + ': ' + item[key] + '\n';
+
+      object.$inc['inventory.' + key] = item[key];
     }
+
+    await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, object);
 
     return msg.channel.createMessage(reply, { title: msg.author.tag + ' has won' });
   }

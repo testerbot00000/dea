@@ -27,7 +27,7 @@ class Gang extends patron.Command {
       gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
       if (!gang) {
-        return msg.createErrorReply('You\'re not in a gang so you must specify one.');
+        return msg.createErrorReply('you\'re not in a gang so you must specify one.');
       }
     }
 

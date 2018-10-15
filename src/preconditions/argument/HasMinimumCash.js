@@ -4,7 +4,7 @@ const NumberUtil = require('../../utility/NumberUtil.js');
 class HasMinimumCash extends patron.ArgumentPrecondition {
   constructor() {
     super({
-      name: 'Hasminimumcash'
+      name: 'hasminimumcash'
     });
   }
 

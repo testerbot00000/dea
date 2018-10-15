@@ -6,18 +6,30 @@ class RateLimitService {
     this.messages = new Map();
   }
 
-  initiate(msg) {
+  async initiate(msg) {
     const lastMessage = this.messages.get(msg.author.id);
     const isMessageCooldownOver = !lastMessage || Date.now() - lastMessage.time > Constants.config.misc.rateLimitMessageCooldown;
 
     if (!isMessageCooldownOver) {
       if (lastMessage.messages > Constants.config.misc.rateLimitMessageAmount) {
-        return msg.client.db.blacklistRepo.insertBlacklist(msg.author.id, msg.author.tag, msg.author.displayAvatarURL());
-      }
-      lastMessage.messages++;
-    }
+        if (!await msg.client.db.blacklistRepo.anyBlacklist(msg.author.id)) {
+          const botOwners = Constants.data.misc.ownerIds;
 
-    if (isMessageCooldownOver) {
+          for (let i = 0; i < botOwners.length; i++) {
+            const botOwner = msg.client.users.get(botOwners[i]);
+
+            await botOwner.tryDM(msg.author.toString() + ' (' + msg.author.id + ') was blacklisted.\nGuild: ' + msg.guild.name +
+              ' (' + msg.guild.id + ')\nChannel: ' + msg.channel.name + ' (' + msg.channel.id + ')\nContent: ' + msg.content);
+          }
+
+          await msg.createReply('you were automatically blacklisted for rate-limiting.');
+
+          return msg.client.db.blacklistRepo.insertBlacklist(msg.author.id, msg.author.tag, msg.author.displayAvatarURL());
+        }
+      }
+
+      lastMessage.messages++;
+    } else {
       return this.messages.set(msg.author.id, new RateLimit());
     }
   }

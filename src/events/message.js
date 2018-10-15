@@ -13,7 +13,7 @@ const CONTEXTS = {
 };
 
 client.on('message', async msg => {
-  if (msg.author.bot || await client.db.blacklistRepo.anyBlacklist(msg.author.id)) {
+  if (msg.author.bot || await msg.client.db.blacklistRepo.anyBlacklist(msg.author.id)) {
     return;
   }
 
@@ -28,7 +28,7 @@ client.on('message', async msg => {
     return !inGuild && msg.member && !msg.dbGuild.channels.ignore.includes(msg.channel.id) ? ChatService.applyCash(msg) : null;
   }
 
-  RateLimitService.initiate(msg);
+  await RateLimitService.initiate(msg);
 
   const result = await handler.run(msg, Constants.data.misc.prefix.length);
 

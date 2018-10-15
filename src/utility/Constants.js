@@ -94,7 +94,7 @@ class Constants {
         game: '$help',
         prefix: '$',
         botOwners: ['Luner#0059', 'Ash#8999'],
-        ownerIds: ['226736342745219072', '271424970796564490', '289976550726828042']
+        ownerIds: ['226736342745219072', '271424970796564490']
       },
 
       regexes: {
@@ -144,7 +144,7 @@ class Constants {
       polls: {
         elderTimeRequired: 172800000,
         maxAnswers: 6,
-        maxAnswerChar: 20,
+        maxAnswerChar: 40,
         maxChar: 40
       },
 

@@ -12,7 +12,7 @@ class ItemTypeReader extends patron.TypeReader {
       return patron.TypeReaderResult.fromSuccess(item);
     }
 
-    return patron.TypeReaderResult.fromError(command, 'Guild does not have item ' + input + '.');
+    return patron.TypeReaderResult.fromError(command, 'this item doesn\'t exist.');
   }
 }
 

@@ -8,6 +8,7 @@ class CreateGang extends patron.Command {
       names: ['creategang', 'makegang'],
       groupName: 'gangs',
       description: 'Create a gang.',
+      preconditions: ['notingang'],
       args: [
         new patron.Argument({
           name: 'gang name',
@@ -23,13 +24,10 @@ class CreateGang extends patron.Command {
   }
 
   async run(msg, args) {
-    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
     const gangs = await msg.client.db.gangRepo.findMany({ guildId: msg.guild.id });
 
     if (/[^A-Za-z0-9 ]/.test(args.gangname)) {
       return msg.createErrorReply('your gang\'s name may only contain numbers, and letters.');
-    } else if (gang) {
-      return msg.createErrorReply('you\'re already in a gang.');
     } else if (gangs.some(x => x.name === args.gangname)) {
       return msg.createErrorReply('a gang by the name `' + args.gangname + '` already exists.');
     } else if (NumberUtil.realValue(msg.dbUser.cash) < Constants.config.gang.creationCost) {

@@ -252,6 +252,11 @@ doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
+dotenv@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.1.0.tgz#9853b6ca98292acb7dec67a95018fa40bccff42c"
+  integrity sha512-/veDn2ztgRlB7gKmE3i9f6CmDIyXAy6d5nBq+whO9SLX+Zs1sXEgFLPi+aSuWqUuusMfbi84fT8j34fs1HaYUw==
+
 "erlpack@github:discordapp/erlpack":
   version "0.1.0"
   resolved "https://codeload.github.com/discordapp/erlpack/tar.gz/674ebfd3439ba4b7ce616709821d27630f7cdc61"
@@ -646,7 +651,7 @@ mongodb-core@3.1.7:
   optionalDependencies:
     saslprep "^1.0.0"
 
-mongodb@^3.1.7:
+mongodb@^3.1.8:
   version "3.1.8"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.1.8.tgz#df8084fda2efdbaddd05dfd6a269891fc4cc72df"
   integrity sha512-yNKwYxQ6m00NV6+pMoWoheFTHSQVv1KkSrfOhRDYMILGWDYtUtQRqHrFqU75rmPIY8hMozVft8zdC4KYMWaM3Q==
@@ -748,8 +753,6 @@ path-key@^2.0.1:
 "patron.js@github:Asshley/patron.js":
   version "3.0.3"
   resolved "https://codeload.github.com/Asshley/patron.js/tar.gz/8d19e0454b3da0bee413f648948aa5ffda6264e0"
-  dependencies:
-    "@types/node" "^10.11.4"
 
 pify@^2.0.0:
   version "2.3.0"

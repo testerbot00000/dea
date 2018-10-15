@@ -9,6 +9,7 @@ class JoinGang extends patron.Command {
       names: ['joingang'],
       groupName: 'gangs',
       description: 'Asks leader to join his gang.',
+      preconditions: ['notingang'],
       args: [
         new patron.Argument({
           name: 'gang',
@@ -22,11 +23,7 @@ class JoinGang extends patron.Command {
   }
 
   async run(msg, args) {
-    const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
-
-    if (gang) {
-      return msg.createErrorReply('you\'re already in a gang.');
-    } else if (args.gang.members.length + args.gang.elders.length >= Constants.config.gang.maxMembers) {
+    if (args.gang.members.length + args.gang.elders.length >= Constants.config.gang.maxMembers) {
       return msg.createErrorReply('sorry, this gang is too full.');
     }
 
@@ -53,6 +50,14 @@ class JoinGang extends patron.Command {
     const result = await leader.user.dmChannel.awaitMessages(m => m.author.id === leader.id && m.content.includes(key), { time: 300000, max: 1 });
 
     if (result.size >= 1) {
+      const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
+
+      if (gang) {
+        await leader.tryDM(msg.author.tag.boldify() + ' has already joined a gang.', { guild: msg.guild });
+
+        return msg.author.tryDM('you\'re unable to join ' + args.gang.name.boldify() + ' since you\'re already in a gang.', { guild: msg.guild });
+      }
+
       const raid = msg.client.registry.commands.find(x => x.names.includes('raid'));
       const gangMembers = args.gang.members.concat(args.gang.elders, args.gang.leaderId);
       const cooldowns = gangMembers

@@ -93,7 +93,7 @@ class ItemService {
       }
     }
 
-    return reduce;
+    return Math.round(reduce);
   }
 
   async takeInv(killerId, deadUserId, guildId, db) {

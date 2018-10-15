@@ -21,11 +21,18 @@
     "item_odds": 100
   },
   {
-    "names": ["kevlar", "armour", "armor"],
+    "names": ["kevlar"],
     "type": "armour",
     "description": "You won't even feel the bullet wearing this thing.",
     "damage_reduction": 20,
     "crate_odds": 30
+  },
+  {
+    "names": ["bubble wrap suit", "bubble wrap"],
+    "type": "armour",
+    "description": "You'll be untouchable.",
+    "damage_reduction": 5,
+    "crate_odds": 50
   },
   {
     "names": ["sardine"],

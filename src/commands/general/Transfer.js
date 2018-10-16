@@ -19,7 +19,7 @@ class Transfer extends patron.Command {
         new patron.Argument({
           name: 'transfer',
           key: 'transfer',
-          type: 'quantity',
+          type: 'cash',
           example: '500',
           preconditionOptions: [{ minimum: Constants.config.transfer.min }],
           preconditions: ['minimumcash', 'cash']

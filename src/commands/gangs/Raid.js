@@ -15,7 +15,7 @@ class Raid extends patron.Command {
         new patron.Argument({
           name: 'amount',
           key: 'raid',
-          type: 'quantity',
+          type: 'cash',
           example: '500',
           preconditionOptions: [{ minimum: Constants.config.gang.min }],
           preconditions: ['minimumcash', 'raidamount']

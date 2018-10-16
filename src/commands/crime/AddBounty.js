@@ -12,7 +12,7 @@ class AddBounty extends patron.Command {
         new patron.Argument({
           name: 'bounty',
           key: 'bounty',
-          type: 'quantity',
+          type: 'cash',
           preconditionOptions: [{ minimum: Constants.config.bounty.min }],
           preconditions: ['minimumcash', 'cash', 'noself'],
           example: '500'

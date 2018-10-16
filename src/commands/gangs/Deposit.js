@@ -13,7 +13,7 @@ class Deposit extends patron.Command {
         new patron.Argument({
           name: 'amount',
           key: 'transfer',
-          type: 'quantity',
+          type: 'cash',
           example: '500',
           preconditionOptions: [{ minimum: Constants.config.transfer.min }],
           preconditions: ['minimumcash', 'cash']

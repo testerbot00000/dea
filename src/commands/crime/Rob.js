@@ -20,7 +20,7 @@ class Rob extends patron.Command {
         }),
         new patron.Argument({
           name: 'resource',
-          type: 'quantity',
+          type: 'cash',
           key: 'resources',
           example: '500',
           preconditionOptions: [{ percent: Constants.config.rob.max }, { minimum: Constants.config.rob.min }],

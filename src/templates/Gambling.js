@@ -14,7 +14,7 @@ class Gambling extends patron.Command {
         new patron.Argument({
           name: 'bet',
           key: 'bet',
-          type: 'quantity',
+          type: 'cash',
           example: '500',
           preconditionOptions: [{ minimum: Constants.config.gambling.minBet }],
           preconditions: ['minimumcash', 'cash']

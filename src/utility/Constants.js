@@ -73,6 +73,12 @@ class Constants {
         ]
       },
 
+      numbers: {
+        thousand: 1000,
+        million: 1000000,
+        billion: 1000000000
+      },
+
       misc: {
         clientOptions: {
           fetchAllMembers: true,

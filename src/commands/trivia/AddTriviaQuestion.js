@@ -4,8 +4,9 @@ class AddTriviaQuestion extends patron.Command {
   constructor() {
     super({
       names: ['addtriviaquestion', 'addtrivia', 'createtriviaquestion', 'createtrivia', 'addquestion'],
-      groupName: 'administration',
+      groupName: 'trivia',
       description: 'Create a trivia question.',
+      preconditions: ['administrator'],
       args: [
         new patron.Argument({
           name: 'question',

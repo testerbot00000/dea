@@ -13,7 +13,7 @@ class Administrator extends patron.Precondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You must be an administrator in order to use this command.');
+    return patron.PreconditionResult.fromError(command, 'you must be an administrator in order to use this command.');
   }
 }
 

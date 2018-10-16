@@ -4,7 +4,6 @@ const UserRepository = require('./repositories/UserRepository.js');
 const GuildRepository = require('./repositories/GuildRepository.js');
 const MuteRepository = require('./repositories/MuteRepository.js');
 const BlacklistRepository = require('./repositories/BlacklistRepository.js');
-const BotOwnerRepository = require('./repositories/BotOwnerRepository.js');
 const GangRepository = require('./repositories/GangRepository.js');
 const PollRepository = require('./repositories/PollRepository.js');
 
@@ -46,7 +45,6 @@ class Database {
     const db = connection.db(connection.s.options.dbName);
 
     this.blacklistRepo = new BlacklistRepository(await db.createCollection('blacklists'));
-    this.botownerRepo = new BotOwnerRepository(await db.createCollection('botowners'));
     this.guildRepo = new GuildRepository(await db.createCollection('guilds'));
     this.muteRepo = new MuteRepository(await db.createCollection('mutes'));
     this.userRepo = new UserRepository(await db.createCollection('users'));

@@ -13,7 +13,7 @@ class Moderator extends patron.Precondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You must be a moderator in order to use this command.');
+    return patron.PreconditionResult.fromError(command, 'you must be a moderator in order to use this command.');
   }
 }
 

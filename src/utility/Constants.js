@@ -61,7 +61,7 @@ class Constants {
           '7-Eleven', 'Speedway', 'Couche-Tard', 'QuikTrip', 'Kroger', 'Circle K', 'Admiral Petroleum', 'Big Apple', 'Bucky\'s Express'
         ],
         itemBreaking: [
-          'you almost fucked up some hobo\'s cock off with that broken {0}',
+          'you almost fucked up some hobo\'s cock with that broken {0}',
           'you hit some hobo\'s dick but his rock hard boner shattered your {0}',
           'that rusty old {0} that your grandpa gave you broke faster than I could nut',
           'out of nowhere your fat teacher comes and confiscates your {0}',

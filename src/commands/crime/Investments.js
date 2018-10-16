@@ -25,9 +25,8 @@ class Investments extends patron.Command {
 
     if (String.isNullOrWhiteSpace(args.investment)) {
       const message = Object.keys(investments).map(x => x.upperFirstChar().boldify() + ', **Cost:** ' + investments[x].cost.USD() + ' | ' + investments[x].description);
-      const ownInvestments = msg.dbUser.investments.length ? msg.dbUser.investments.map(x => x.upperFirstChar()).join(', ') : '';
 
-      return msg.channel.createMessage(message.join('\n') + (ownInvestments ? '\n\n**Your Investments:** ' + ownInvestments : ''), { title: 'Available Investments' });
+      return msg.channel.createMessage(message.join('\n'), { title: 'Available Investments' });
     }
 
     const update = new msg.client.db.updates.Push('investments', args.investment.toLowerCase());

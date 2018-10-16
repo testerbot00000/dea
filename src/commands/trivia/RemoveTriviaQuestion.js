@@ -4,8 +4,9 @@ class RemoveTriviaQuestion extends patron.Command {
   constructor() {
     super({
       names: ['removetriviaquestion', 'removetrivia', 'removequestion'],
-      groupName: 'administration',
+      groupName: 'trivia',
       description: 'Remove a trivia question.',
+      preconditions: ['moderator'],
       args: [
         new patron.Argument({
           name: 'question',

@@ -4,8 +4,9 @@ class Answers extends patron.Command {
   constructor() {
     super({
       names: ['answers'],
-      groupName: 'moderation',
-      description: 'See what the trivia answers are.'
+      groupName: 'trivia',
+      description: 'See what the trivia answers are.',
+      preconditions: ['moderator']
     });
   }
 

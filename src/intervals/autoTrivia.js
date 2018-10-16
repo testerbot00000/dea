@@ -7,7 +7,9 @@ module.exports = async client => {
     const guilds = await client.db.guildRepo.findMany();
 
     for (let i = 0; i < guilds.length; i++) {
-      if (Object.keys(guilds[i].trivia).length <= 0 || !guilds[i].autoTrivia) {
+      const questions = Object.keys(guilds[i].trivia);
+
+      if (questions.length <= 0 || !guilds[i].autoTrivia) {
         continue;
       }
 
@@ -17,12 +19,10 @@ module.exports = async client => {
         continue;
       }
 
-      const questions = Object.keys(guilds[i].trivia);
       const question = Random.arrayElement(questions);
-      const answerIndex = questions.findIndex(x => x === question);
-      const answer = Object.values(guilds[i].trivia)[answerIndex];
+      const answer = guilds[i].trivia[question];
 
-      await guild.mainChannel.createMessage(question + '?', { title: 'Trivia!' });
+      await guild.mainChannel.createMessage(question, { title: 'Trivia!' });
 
       const result = await guild.mainChannel.awaitMessages(m => m.content.toLowerCase().includes(answer.toLowerCase()), { time: 90000, max: 1 });
 

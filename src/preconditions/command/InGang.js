@@ -14,7 +14,7 @@ class InGang extends patron.Precondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You aren\'t in a gang.');
+    return patron.PreconditionResult.fromError(command, 'you aren\'t in a gang.');
   }
 }
 

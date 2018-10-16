@@ -12,7 +12,7 @@ class Top extends patron.Precondition {
       return patron.PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'You must be one of the top ' + options.top + ' richest users in order to use this command.');
+    return patron.PreconditionResult.fromError(command, 'you must be one of the top ' + options.top + ' richest users in order to use this command.');
   }
 }
 

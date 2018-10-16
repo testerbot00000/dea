@@ -11,7 +11,6 @@ class Database {
   constructor() {
     this.queries = {
       Blacklist: require('./queries/BlacklistQuery.js'),
-      BotOwners: require('./queries/BotOwnersQuery.js'),
       Guild: require('./queries/GuildQuery.js'),
       Id: require('./queries/IdQuery.js'),
       Mute: require('./queries/MuteQuery.js'),
@@ -30,7 +29,6 @@ class Database {
 
     this.models = {
       Blacklist: require('./models/Blacklist.js'),
-      BotOwners: require('./models/BotOwners.js'),
       Guild: require('./models/Guild.js'),
       Mute: require('./models/Mute.js'),
       User: require('./models/User.js'),
@@ -52,7 +50,6 @@ class Database {
     this.pollRepo = new PollRepository(await db.createCollection('polls'));
 
     await db.collection('blacklists').createIndex('userId', { unique: true });
-    await db.collection('botowners').createIndex('userId', { unique: true });
     await db.collection('guilds').createIndex('guildId', { unique: true });
   }
 }

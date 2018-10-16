@@ -14,7 +14,7 @@ class AutoTrivia extends patron.Command {
 
     await msg.client.db.guildRepo.updateGuild(msg.guild.id, { $set: { autoTrivia } });
 
-    return msg.createReply('you\'ve successfully set this server\'s auto trivia to **' + autoTrivia + '**.');
+    return msg.createReply('you\'ve successfully ' + (autoTrivia ? 'enabled' : 'disabled') + ' auto trivia for this server.');
   }
 }
 

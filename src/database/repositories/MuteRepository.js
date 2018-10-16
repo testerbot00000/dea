@@ -12,7 +12,7 @@ class MuteRepository extends BaseRepository {
   }
 
   findMute(userId, guildId) {
-    return this.find(new MuteQuery(userId, guildId));
+    return this.findOne(new MuteQuery(userId, guildId));
   }
 
   deleteMute(userId, guildId) {

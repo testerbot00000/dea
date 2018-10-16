@@ -29,19 +29,20 @@ class Unmute extends patron.Command {
   }
 
   async run(msg, args) {
-    const role = msg.guild.roles.get(msg.dbGuild.roles.muted);
-
     if (!msg.dbGuild.roles.muted) {
       return msg.createErrorReply('you must set a muted role with the `' + Constants.data.misc.prefix + 'setmute @Role` command before you can unmute users.');
     } else if (!args.member.roles.has(msg.dbGuild.roles.muted)) {
       return msg.createErrorReply('this user is not muted.');
     }
 
+    const role = msg.guild.roles.get(msg.dbGuild.roles.muted);
+
     if (!role) {
       return msg.createErrorReply('the set muted role has been deleted. Please set a new one with the `' + Constants.data.misc.prefix + 'setmute Role` command.');
     }
 
     await args.member.roles.remove(role);
+    await msg.client.db.muteRepo.deleteMute(args.member.id, msg.guild);
     await msg.createReply('you have successfully unmuted ' + args.member.user.tag + '.');
     await ModerationService.tryInformUser(msg.guild, msg.author, 'unmuted', args.member.user, args.reason);
 

@@ -128,6 +128,12 @@ class Constants {
         min: 500
       },
 
+      double: {
+        min: 1000,
+        maxWins: 5,
+        odds: 70
+      },
+
       investments: {
         line: {
           cost: 1000,

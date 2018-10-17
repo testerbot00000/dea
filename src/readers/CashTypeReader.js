@@ -17,11 +17,11 @@ class CashTypeReader extends patron.TypeReader {
 
       return patron.TypeReaderResult.fromSuccess(NumberUtil.realValue(message.dbUser.cash));
     } else if (Number.isNaN(value) === false) {
-      if (input.endsWith('k')) {
+      if (input.toLowerCase().endsWith('k')) {
         value *= Constants.data.numbers.thousand;
-      } else if (input.endsWith('m')) {
+      } else if (input.toLowerCase().endsWith('m')) {
         value *= Constants.data.numbers.million;
-      } else if (input.endsWith('b')) {
+      } else if (input.toLowerCase().endsWith('b')) {
         value *= Constants.data.numbers.billion;
       }
 

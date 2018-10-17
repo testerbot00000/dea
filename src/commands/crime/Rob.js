@@ -19,7 +19,7 @@ class Rob extends patron.Command {
           preconditions: ['noself']
         }),
         new patron.Argument({
-          name: 'resource',
+          name: 'resources',
           type: 'cash',
           key: 'resources',
           example: '500',

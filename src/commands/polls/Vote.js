@@ -30,7 +30,7 @@ class Vote extends patron.Command {
   async run(msg, args) {
     const elderDays = NumberUtil.msToTime(Constants.config.polls.elderTimeRequired).days;
 
-    if (args.poll.elderOnly && msg.member.joinedAt - Date.now() > Constants.config.polls.elderTimeRequired) {
+    if (args.poll.elderOnly && Date.now() - msg.member.joinedAt < Constants.config.polls.elderTimeRequired) {
       return msg.createErrorReply('you may not vote on this poll until you\'ve been in this server for ' + elderDays + ' days.');
     } else if (args.poll.modOnly && ModerationService.getPermLevel(msg.dbGuild, msg.member) < 1) {
       return msg.createErrorReply('you may only vote on this poll if you\'re a moderator.');

@@ -42,7 +42,7 @@ class Unmute extends patron.Command {
     }
 
     await args.member.roles.remove(role);
-    await msg.client.db.muteRepo.deleteMute(args.member.id, msg.guild);
+    await msg.client.db.muteRepo.deleteMute(args.member.id, msg.guild.id);
     await msg.createReply('you have successfully unmuted ' + args.member.user.tag + '.');
     await ModerationService.tryInformUser(msg.guild, msg.author, 'unmuted', args.member.user, args.reason);
 

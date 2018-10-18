@@ -31,6 +31,12 @@ class Rob extends patron.Command {
   }
 
   async run(msg, args) {
+    const reader = msg.client.registry.typeReaders.find(x => x.type === 'cash');
+
+    if (reader.inputtedAll) {
+      args.resources = args['resources-all'];
+    }
+
     const roll = Random.roll();
 
     if (roll < Constants.config.rob.odds) {

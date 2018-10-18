@@ -12,13 +12,12 @@ class CashPercent extends patron.ArgumentPrecondition {
     const dbUser = await msg.client.db.userRepo.getUser(args.member.id, msg.guild.id);
     const cashValue = NumberUtil.realValue(dbUser.cash);
     const rounded = NumberUtil.round(cashValue * options.percent, 2);
-    const reader = msg.client.registry.typeReaders.find(x => x.type === argument.type);
 
-    if (reader.inputtedAll) {
-      // Cap to 20%
-    }
+    if (argument.typeReader.inputtedAll) {
+      args[argument.name + '-all'] = rounded;
 
-    if (rounded >= value) {
+      return patron.PreconditionResult.fromSuccess();
+    } else if (rounded >= value) {
       return patron.PreconditionResult.fromSuccess();
     }
 

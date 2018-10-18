@@ -131,7 +131,7 @@ class Constants {
       double: {
         min: 1000,
         maxWins: 5,
-        odds: 70
+        odds: 60
       },
 
       investments: {
@@ -148,8 +148,13 @@ class Constants {
           description: 'A kilo of cocaine is more than enough to quadruple your cash per message.'
         },
         convoy: {
+          cost: 25000,
+          description: 'A fleet of ships will help distribute your drugs even faster, reducing all of your cooldowns by 5%.'
+        },
+        snowcap: {
           cost: 50000,
-          description: 'These bad boys help distribute your drugs even faster, reducing all of your cooldowns by 5%.'
+          description: 'A combination of brick and weed is enough to revive you one time.',
+          time: 259200000
         }
       },
 
@@ -185,7 +190,7 @@ class Constants {
         maxLength: 32
       },
 
-      reducedCooldown: 0.05,
+      reducedCooldown: 0.1,
 
       gang: {
         min: 500,

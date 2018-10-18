@@ -15,25 +15,29 @@ class Investment extends patron.ArgumentPrecondition {
     }
 
     const validInvestments = Object.keys(Constants.config.investments);
+    const investment = validInvestments.find(x => x === value.toLowerCase());
 
-    if (!validInvestments.includes(value.toLowerCase())) {
+    if (!investment) {
       return patron.PreconditionResult.fromError(command, 'you have provided an invalid investment.');
     }
 
-    const investment = validInvestments.find(x => x === value.toLowerCase());
+    const lastInvestmentIndex = validInvestments.indexOf(investment) - 1;
+
+    if (lastInvestmentIndex >= 0 && !msg.dbUser.investments.includes(validInvestments[lastInvestmentIndex])) {
+      return patron.PreconditionResult.fromError(command, 'you need to buy ' + validInvestments[lastInvestmentIndex].toLowerCase().upperFirstChar() + ' first.');
+    }
 
     if (msg.dbUser.investments.includes(investment)) {
       return patron.PreconditionResult.fromError(command, 'you already have ' + investment.toLowerCase().upperFirstChar() + '.');
     }
 
-    const lastInvestmentIndex = validInvestments.indexOf(investment) - 1;
+    const investmentObject = Constants.config.investments[investment];
 
-    if (lastInvestmentIndex >= 0 && msg.dbUser.investments.includes(validInvestments[lastInvestmentIndex]) === false) {
-      return patron.PreconditionResult.fromError(command, 'you need to buy ' + validInvestments[lastInvestmentIndex].toLowerCase().upperFirstChar() + ' first.');
+    if (investment === 'snowcap' && msg.dbUser.revivable && msg.dbUser.revivable - Date.now() > 0) {
+      return patron.PreconditionResult.fromError(command, 'you need to wait ' + NumberUtil.msToTime(investmentObject.time).days + ' days before purchasing this investment again.');
     }
 
     const cashValue = NumberUtil.realValue(msg.dbUser.cash);
-    const investmentObject = Constants.config.investments[investment];
 
     if (investmentObject.cost > cashValue) {
       return patron.PreconditionResult.fromError(command, 'you need ' + investmentObject.cost.USD() + ' to buy ' + investment.toLowerCase().upperFirstChar() + '. Balance: ' + cashValue.USD() + '.');

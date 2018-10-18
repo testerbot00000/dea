@@ -15,6 +15,8 @@ class TakeAll extends patron.Command {
 
     if (gang.leaderId !== msg.author.id) {
       return msg.createErrorReply('you\'re not the owner of your gang.');
+    } else if (!Object.keys(gang.vault).length) {
+      return msg.createErrorReply('you don\'t have any items in your gang\'s vault.');
     }
 
     const items = {

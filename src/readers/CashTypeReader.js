@@ -6,7 +6,7 @@ class CashTypeReader extends patron.TypeReader {
   constructor() {
     super({ type: 'cash' });
 
-    this.inputtedAll = false;
+    this.inputtedAll = null;
   }
 
   async read(command, message, argument, args, input) {

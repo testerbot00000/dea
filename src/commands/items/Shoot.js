@@ -38,7 +38,7 @@ class Shoot extends patron.Command {
     const roll = Random.roll();
     const dbUser = await msg.client.db.userRepo.getUser(args.member.id, msg.guild.id);
     const damage = await ItemService.reduceDamage(dbUser, args.item.damage, items);
-    const user = await msg.client.users.get(args.member.id);
+    const user = msg.client.users.get(args.member.id);
 
     if (args.item.crate_odds >= Random.roll()) {
       const inv = 'inventory.' + args.item.names[0];
@@ -48,6 +48,15 @@ class Shoot extends patron.Command {
 
     if (roll <= args.item.accuracy) {
       if (dbUser.health - damage <= 0) {
+        if (dbUser.investments.includes('snowcap')) {
+          await msg.createReply('you managed to kill ' + args.member.user.tag.boldify() + ' but he was revived with his snowcap investment.');
+          await user.tryDM(msg.author.tag.boldify() + ' tried to kill you, but your snowcap brought you back to life.', { guild: msg.guild });
+
+          const update = { $pull: { investments: 'snowcap' }, $set: { revivable: Date.now() + 1000 * 60 * 60 * 24 * 2, health: 100 } };
+
+          return msg.client.db.userRepo.updateUser(args.member.id, msg.guild.id, update);
+        }
+
         await ItemService.takeInv(msg.author.id, args.member.id, msg.guild.id, msg.client.db);
         await msg.client.db.userRepo.modifyCashExact(msg.dbGuild, msg.member, dbUser.bounty);
         await msg.client.db.userRepo.modifyCashExact(msg.dbGuild, msg.member, dbUser.cash);

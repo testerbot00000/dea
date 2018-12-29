@@ -18,7 +18,7 @@
     "type": "crate",
     "description": "The reason it costs a lot is because you need to pay the expenses for the gold.",
     "price": 20000,
-    "item_odds": 45
+    "item_odds": 50
   },
   {
     "names": ["kevlar"],
@@ -166,7 +166,7 @@
     "crate_odds": 20
   },
   {
-    "names": ["mP220"],
+    "names": ["mp220"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Shoot that face twice has hard compared to m870.",
@@ -175,7 +175,7 @@
     "crate_odds": 15
   },
    {
-    "names": ["sPAS-12"],
+    "names": ["spas12"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Long range shotgun.",
@@ -184,7 +184,7 @@
     "crate_odds": 35
   },
    {
-    "names": ["saiga-12"],
+    "names": ["saiga12"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Semi-automatic shotgun at your disposal.",
@@ -193,7 +193,7 @@
     "crate_odds": 5
   },
    {
-    "names": ["uSAS-12"],
+    "names": ["usas12"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Fully automatic shotgun baby!",
@@ -211,7 +211,7 @@
     "crate_odds": 50
   },
   {
-    "names": ["oT-38"],
+    "names": ["ot38"],
     "type": "gun",
     "bullet": "pistol bullet",
     "description": "Slam a nigga's cock in a bridge so damn hard.",
@@ -220,7 +220,7 @@
     "crate_odds": 30
   },
   {
-    "names": ["oTs-38"],
+    "names": ["ots38"],
     "type": "gun",
     "bullet": "pistol bullet",
     "description": "LMAO let's see what you do with this shit.",
@@ -238,7 +238,7 @@
     "crate_odds": 25
   },
   {
-    "names": ["ak-47"],
+    "names": ["ak47"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Common and fairly decent assault weapon.",
@@ -247,7 +247,7 @@
     "crate_odds": 25
   },
   {
-    "names": ["m39 EMR"],
+    "names": ["m39 emr"],
     "type": "gun",
     "bullet": "dmr bullet",
     "description": "Take time to make your perfect shot! This single shot weapon is just perfect for you.",
@@ -256,7 +256,7 @@
     "crate_odds": 15
   },
    {
-    "names": ["dP-28"],
+    "names": ["dp28"],
     "type": "gun",
     "bullet": "lmg bullet",
     "description": "While dealing only 14 damage per shot, it contains a hefty 60 rounds in a single clip so fire away!",
@@ -265,7 +265,7 @@
     "crate_odds": 20
   },
    {
-    "names": ["mosin-Nagant"],
+    "names": ["mosin nagant"],
     "type": "gun",
     "bullet": "sniper bullet",
     "description": "Snipe your enemies out of hiding.",
@@ -274,7 +274,7 @@
     "crate_odds": 8
   },
    {
-    "names": ["scar-H"],
+    "names": ["scar"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Improved ak47 but with harder hits.",
@@ -283,7 +283,7 @@
     "crate_odds": 20
   },
   {
-    "names": ["sV-98"],
+    "names": ["sv 98"],
     "type": "gun",
     "bullet": "sniper bullet",
     "description": "Faster reload and deals more damage.",
@@ -292,7 +292,7 @@
     "crate_odds": 5
   },
   {
-    "names": ["bAR M1918"],
+    "names": ["bar m1918"],
     "type": "gun",
     "bullet": "lmg bullet",
     "description": "Insane damage and shreds obstacles! Take this a rape a noob camper.",
@@ -301,7 +301,7 @@
     "crate_odds": 10
   },
   {
-    "names": ["m1 Garand"],
+    "names": ["m1 garand"],
     "type": "gun",
     "bullet": "dmr bullet",
     "description": "The sound is satisfying isn't it?",
@@ -310,7 +310,7 @@
     "crate_odds": 10
   },
   {
-    "names": ["fAMAS"],
+    "names": ["famas"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Bruh, this does alot more than you think NOOB.",
@@ -328,7 +328,7 @@
     "crate_odds": 50
   },
   {
-    "names": ["m4A1-S"],
+    "names": ["m4a1"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Nothing cool to see here buddy :sunglasses: only invisible bullets whipping across your screen.",
@@ -337,7 +337,7 @@
     "crate_odds": 35
   },
   {
-    "names": ["mK 12 SPR"],
+    "names": ["mk 12 spr"],
     "type": "gun",
     "bullet": "dmr bullet",
     "description": "It's easy. Hold steady and fire this bad boy.",
@@ -355,7 +355,7 @@
     "crate_odds": 5
   },
    {
-    "names": ["qBB-97"],
+    "names": ["qbb97"],
     "type": "gun",
     "bullet": "lmg bullet",
     "description": "Why does this take forever to load? Fuck it has 75 rounds of nothing.",
@@ -364,7 +364,7 @@
     "crate_odds": 8
   },
   {
-    "names": ["desert Eagle"],
+    "names": ["deagle"],
     "type": "gun",
     "bullet": "deagle bullet",
     "description": "Two shots a you're good buddy.",
@@ -373,7 +373,7 @@
     "crate_odds": 8
   },
    {
-    "names": ["aWM-S"],
+    "names": ["awm"],
     "type": "gun",
     "bullet": "awm bullet",
     "description": "Nobody just saw that shit and walk away with a bag full of sweet cash.",

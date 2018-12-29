@@ -28,8 +28,8 @@ class Constants {
       },
 
       links: {
-        botInvite: 'https://discordapp.com/oauth2/authorize?client_id=496520437514371072&scope=bot&permissions=8',
-        serverInvite: 'https://discord.gg/usXDFN4'
+        botInvite: 'Error, access denied',
+        serverInvite: 'https://invite.gg/cfclan'
       },
 
       messages: {
@@ -97,7 +97,7 @@ class Constants {
             'WEBHOOKS_UPDATE'
           ]
         },
-        game: '$help',
+        game: '$help | https://www.patreon.com/LegacyYT',
         prefix: '$',
         botOwners: ['Gone#1000'],
         ownerIds: ['404832977366024232']
@@ -136,23 +136,23 @@ class Constants {
 
       investments: {
         line: {
-          cost: 1000,
+          cost: 5000,
           description: 'One line of blow. Seems like nothing, yet it\'s enough to lower the message cooldown from 30 to 25 seconds.'
         },
         pound: {
-          cost: 5000,
+          cost: 10000,
           description: 'This one pound of coke will double the amount of cash you get per message.'
         },
         kilo: {
-          cost: 10000,
+          cost: 25000,
           description: 'A kilo of cocaine is more than enough to quadruple your cash per message.'
         },
         convoy: {
-          cost: 25000,
+          cost: 50000,
           description: 'A fleet of ships will help distribute your drugs even faster, reducing all of your cooldowns by 5%.'
         },
         snowcap: {
-          cost: 50000,
+          cost: 100000,
           description: 'A combination of brick and weed is enough to revive you one time.',
           time: 259200000
         }
@@ -266,13 +266,13 @@ class Constants {
       lottery: {
         max: 1000,
         min: 9000,
-        odds: 1.25,
+        odds: 0.75,
         lotteryOddsMultiplier: 1
       },
 
       misc: {
         cashPerMessage: 50,
-        leaderboardCap: 10,
+        leaderboardCap: 15,
         messageCooldown: 30000,
         rateLimitMessageCooldown: 5000,
         rateLimitMessageAmount: 8,
@@ -281,7 +281,7 @@ class Constants {
       },
 
       mute: {
-        defaultLength: 24
+        defaultLength: 12
       },
 
       scam: {

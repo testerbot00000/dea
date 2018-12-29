@@ -131,7 +131,7 @@ class Constants {
       double: {
         min: 1000,
         maxWins: 5,
-        odds: 60
+        odds: 40
       },
 
       investments: {
@@ -215,7 +215,7 @@ class Constants {
         cooldown: 28800000,
         max: 0.2,
         min: 500,
-        odds: 60
+        odds: 35
       },
 
       username: {
@@ -236,9 +236,9 @@ class Constants {
       },
 
       clear: {
-        max: 100,
-        min: 2,
-        cooldown: 1000
+        max: 1000,
+        min: 1,
+        cooldown: 10
       },
 
       gambling: {
@@ -256,7 +256,7 @@ class Constants {
         cooldown: 14400000,
         max: 500,
         min: 1000,
-        odds: 85
+        odds: 65
       },
 
       kill: {
@@ -288,14 +288,14 @@ class Constants {
         cooldown: 7200000,
         max: 100,
         min: 500,
-        odds: 90
+        odds: 40
       },
 
       steal: {
         cooldown: 21600000,
         max: 1000,
         min: 2500,
-        odds: 80
+        odds: 50
       },
 
       top50: {
@@ -303,14 +303,14 @@ class Constants {
       },
 
       transfer: {
-        cut: 0.1,
+        cut: 0.2,
         min: 5
       },
 
       rape: {
-        odds: 50,
+        odds: 30,
         cooldown: 14400000,
-        cost: 0.10,
+        cost: 200,
         minimum: 1000
       }
     };

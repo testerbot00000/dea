@@ -58,7 +58,7 @@ class Constants {
           'while you were shopping at {0}, you thought it was a good idea to nut all over the counter. The owner decided to sauce you {1} because he assumed the cum was toxic.'
         ],
         stores: [
-          '7-Eleven', 'Speedway', 'Couche-Tard', 'QuikTrip', 'Kroger', 'Circle K', 'Admiral Petroleum', 'Big Apple', 'Bucky\'s Express'
+          '7-Eleven', 'Speedway', 'Couche-Tard', 'QuikTrip', 'Kroger', 'Circle K', 'Admiral Petroleum', 'Big Apple', 'Bucky\'s Express', 'Target', 'Macy\'s', 'H&M', 'Walmart', 'CVS', 'Walgreens', 'McDonalds'
         ],
         itemBreaking: [
           'you almost fucked up some hobo\'s cock with that broken {0}',

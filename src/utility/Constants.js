@@ -28,8 +28,8 @@ class Constants {
       },
 
       links: {
-        botInvite: 'Error, access denied',
-        serverInvite: 'https://invite.gg/cfclan'
+        botInvite: 'Access denied. Please contact the bot owner.',
+        serverInvite: 'null'
       },
 
       messages: {

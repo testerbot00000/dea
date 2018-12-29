@@ -18,21 +18,35 @@
     "type": "crate",
     "description": "The reason it costs a lot is because you need to pay the expenses for the gold.",
     "price": 20000,
-    "item_odds": 100
+    "item_odds": 50
   },
   {
     "names": ["kevlar"],
     "type": "armour",
     "description": "You won't even feel the bullet wearing this thing.",
-    "damage_reduction": 20,
+    "damage_reduction": 10,
+    "crate_odds": 50
+  },
+  {
+    "names": ["ballistic protection"],
+    "type": "armour",
+    "description": "Won't even come close.",
+    "damage_reduction": 25,
     "crate_odds": 30
   },
   {
-    "names": ["bubble wrap suit", "bubble wrap"],
+    "names": ["edge blade protection"],
+    "type": "armour",
+    "description": "Nothing to worry about.",
+    "damage_reduction": 40,
+    "crate_odds": 15
+  },
+   {
+    "names": ["spike protection"],
     "type": "armour",
     "description": "You'll be untouchable.",
-    "damage_reduction": 5,
-    "crate_odds": 50
+    "damage_reduction": 60,
+    "crate_odds": 5
   },
   {
     "names": ["sardine"],
@@ -63,7 +77,42 @@
     "health": 50
   },
   {
-    "names": ["glock"],
+    "names": ["carp"],
+    "type": "fish",
+    "description": "Flappering in your face.",
+    "acquire_odds": 30,
+    "health": 15
+  },
+  {
+    "names": ["guppy"],
+    "type": "fish",
+    "description": "You just got a small ass guppy for shit!",
+    "acquire_odds": 35,
+    "health": 2
+  },
+  {
+    "names": ["salmon"],
+    "type": "fish",
+    "description": "Fine piece of meat",
+    "acquire_odds": 20,
+    "health": 25
+  },
+  {
+    "names": ["trout"],
+    "type": "fish",
+    "description": "Nothing to worry about, roast it over a nice fire.",
+    "acquire_odds": 60,
+    "health": 10
+  },
+  {
+    "names": ["angler"],
+    "type": "fish",
+    "description": "Dangerous, might attack at the darkness of night.",
+    "acquire_odds": 15,
+    "health": 30
+  },
+  {
+    "names": ["m9"],
     "type": "gun",
     "bullet": "pistol bullet",
     "description": "Weakest gun in town. Man up a bit you puss.",
@@ -72,22 +121,265 @@
     "crate_odds": 40
   },
   {
-    "names": ["revolver"],
+    "names": ["mp5"],
+    "type": "gun",
+    "bullet": "rifle bullet",
+    "description": "Kill that bitch around the corner.",
+    "damage": 30,
+    "accuracy": 15,
+    "crate_odds": 30
+  },
+   {
+    "names": ["mac10"],
+    "type": "gun",
+    "bullet": "rifle bullet",
+    "description": "Oh baby rape those asses with this bitch.",
+    "damage": 32,
+    "accuracy": 10,
+    "crate_odds": 25
+  },
+   {
+    "names": ["vector"],
+    "type": "gun",
+    "bullet": "rifle bullet",
+    "description": "An insane fire power! Now we are talking!",
+    "damage": 33,
+    "accuracy": 30,
+    "crate_odds": 20
+  },
+   {
+    "names": ["ump9"],
+    "type": "gun",
+    "bullet": "rifle bullet",
+    "description": "A weapon full of burst!",
+    "damage": 30,
+    "accuracy": 35,
+    "crate_odds": 40
+  },
+  {
+    "names": ["m870"],
+    "type": "gun",
+    "bullet": "guage bullet",
+    "description": "Who needs pistols when you have the powerful M870 shotgun at your disposal?",
+    "damage": 75,
+    "accuracy": 20,
+    "crate_odds": 20
+  },
+  {
+    "names": ["mp220"],
+    "type": "gun",
+    "bullet": "guage bullet",
+    "description": "Shoot that face twice has hard compared to m870.",
+    "damage": 90,
+    "accuracy": 25,
+    "crate_odds": 15
+  },
+   {
+    "names": ["spas12"],
+    "type": "gun",
+    "bullet": "guage bullet",
+    "description": "Long range shotgun.",
+    "damage": 45,
+    "accuracy": 50,
+    "crate_odds": 35
+  },
+   {
+    "names": ["saiga12"],
+    "type": "gun",
+    "bullet": "guage bullet",
+    "description": "Semi-automatic shotgun at your disposal.",
+    "damage": 95,
+    "accuracy": 35,
+    "crate_odds": 5
+  },
+   {
+    "names": ["usas12"],
+    "type": "gun",
+    "bullet": "guage bullet",
+    "description": "Fully automatic shotgun baby!",
+    "damage": 100,
+    "accuracy": 60,
+    "crate_odds": 1
+  },
+  {
+    "names": ["m1100"],
+    "type": "gun",
+    "bullet": "guage bullet",
+    "description": "Wide spread shotgun but you pussy aint touching me.",
+    "damage": 30,
+    "accuracy": 15,
+    "crate_odds": 50
+  },
+  {
+    "names": ["ot38"],
     "type": "gun",
     "bullet": "pistol bullet",
     "description": "Slam a nigga's cock in a bridge so damn hard.",
-    "damage": 20,
+    "damage": 26,
     "accuracy": 35,
     "crate_odds": 30
+  },
+  {
+    "names": ["ots38"],
+    "type": "gun",
+    "bullet": "pistol bullet",
+    "description": "LMAO let's see what you do with this shit.",
+    "damage": 32,
+    "accuracy": 30,
+    "crate_odds": 10
   },
   {
     "names": ["ar15"],
     "type": "gun",
     "bullet": "rifle bullet",
-    "description": "Assault fire. Assault weapon. Assault feminists. *Oh fuck dude I don't think we are allowed to put that kinda joke.*",
+    "description": "Assault fire. Assault weapon.",
     "damage": 40,
     "accuracy": 50,
     "crate_odds": 25
+  },
+  {
+    "names": ["ak47"],
+    "type": "gun",
+    "bullet": "rifle bullet",
+    "description": "Common and fairly decent assault weapon.",
+    "damage": 13.5,
+    "accuracy": 30,
+    "crate_odds": 25
+  },
+  {
+    "names": ["m39 emr"],
+    "type": "gun",
+    "bullet": "dmr bullet",
+    "description": "Take time to make your perfect shot! This single shot weapon is just perfect for you.",
+    "damage": 24.5,
+    "accuracy": 40,
+    "crate_odds": 15
+  },
+   {
+    "names": ["dp28"],
+    "type": "gun",
+    "bullet": "lmg bullet",
+    "description": "While dealing only 14 damage per shot, it contains a hefty 60 rounds in a single clip so fire away!",
+    "damage": 14,
+    "accuracy": 25,
+    "crate_odds": 20
+  },
+   {
+    "names": ["mosin nagant"],
+    "type": "gun",
+    "bullet": "sniper bullet",
+    "description": "Snipe your enemies out of hiding.",
+    "damage": 72,
+    "accuracy": 55,
+    "crate_odds": 8
+  },
+   {
+    "names": ["scar h"],
+    "type": "gun",
+    "bullet": "rifle bullet",
+    "description": "Improved ak47 but with harder hits.",
+    "damage": 15,
+    "accuracy": 30,
+    "crate_odds": 20
+  },
+  {
+    "names": ["sv 98"],
+    "type": "gun",
+    "bullet": "sniper bullet",
+    "description": "Faster reload and deals more damage.",
+    "damage": 80,
+    "accuracy": 60,
+    "crate_odds": 5
+  },
+  {
+    "names": ["bar m1918"],
+    "type": "gun",
+    "bullet": "lmg bullet",
+    "description": "Insane damage and shreds obstacles! Take this a rape a noob camper.",
+    "damage": 17.75,
+    "accuracy": 35,
+    "crate_odds": 10
+  },
+  {
+    "names": ["m1 garand"],
+    "type": "gun",
+    "bullet": "dmr bullet",
+    "description": "The sound is satisfying isn't it?",
+    "damage": 32,
+    "accuracy": 45,
+    "crate_odds": 10
+  },
+  {
+    "names": ["famas"],
+    "type": "gun",
+    "bullet": "rifle bullet",
+    "description": "Bruh, this does alot more than you think NOOB.",
+    "damage": 51,
+    "accuracy": 40,
+    "crate_odds": 25
+  },
+  {
+    "names": ["m416"],
+    "type": "gun",
+    "bullet": "rifle bullet",
+    "description": "LMFAO deals even less than mp5. Get rekted :joy:",
+    "damage": 11,
+    "accuracy": 35,
+    "crate_odds": 50
+  },
+  {
+    "names": ["m4a1 s"],
+    "type": "gun",
+    "bullet": "rifle bullet",
+    "description": "Nothing cool to see here buddy :sunglasses: only invisible bullets whipping across your screen.",
+    "damage": 14,
+    "accuracy": 50,
+    "crate_odds": 35
+  },
+  {
+    "names": ["mk 12 spr"],
+    "type": "gun",
+    "bullet": "dmr bullet",
+    "description": "It's easy. Hold steady and fire this bad boy.",
+    "damage": 19.5,
+    "accuracy": 55,
+    "crate_odds": 30
+  },
+  {
+    "names": ["m249"],
+    "type": "gun",
+    "bullet": "lmg bullet",
+    "description": "100 rounds of hell approaching....",
+    "damage": 14,
+    "accuracy": 45,
+    "crate_odds": 5
+  },
+   {
+    "names": ["qbb 97"],
+    "type": "gun",
+    "bullet": "lmg bullet",
+    "description": "Why does this take forever to load? Fuck it has 75 rounds of nothing.",
+    "damage": 14,
+    "accuracy": 75,
+    "crate_odds": 8
+  },
+  {
+    "names": ["desert eagle"],
+    "type": "gun",
+    "bullet": "deagle bullet",
+    "description": "Why does this take forever to load? Fuck it has 75 rounds of nothing.",
+    "damage": 35,
+    "accuracy": 55,
+    "crate_odds": 8
+  },
+   {
+    "names": ["awm s"],
+    "type": "gun",
+    "bullet": "awm bullet",
+    "description": "Why does this take forever to load? Fuck it has 75 rounds of nothing.",
+    "damage": 180,
+    "accuracy": 50,
+    "crate_odds": 1
   },
   {
     "names": ["intervention"],
@@ -95,8 +387,8 @@
     "bullet": "sniper bullet",
     "description": "The only weapon that affirms you have a large penis.",
     "damage": 90,
-    "accuracy": 75,
-    "crate_odds": 3
+    "accuracy": 50,
+    "crate_odds": 2
   },
   {
     "names": ["kitchen knife"],
@@ -111,15 +403,15 @@
     "type": "knife",
     "description": "Tell em its to cut the butterflies out of their stomach.",
     "damage": 10,
-    "accuracy": 45,
+    "accuracy": 40,
     "crate_odds": 35
   },
   {
-    "names": ["m9 bayonet", "m9"],
+    "names": ["bowie"],
     "type": "knife",
     "description": "Whip it out quicker than you can bust a nut, which is like 0.002 seconds.",
-    "damage": 20,
-    "accuracy": 55,
+    "damage": 27,
+    "accuracy": 45,
     "crate_odds": 25
   },
   {
@@ -127,15 +419,47 @@
     "type": "knife",
     "description": "Prestige pouring out left and right.",
     "damage": 45,
-    "accuracy": 70,
+    "accuracy": 50,
     "crate_odds": 6
+  },
+  {
+    "names": ["hook"],
+    "type": "melee",
+    "description": "Whiping this out and finishing your enemy in 0.5 seconds. Fast right?",
+    "damage": 18,
+    "accuracy": 55,
+    "crate_odds": 3
+  },
+  {
+    "names": ["pan"],
+    "type": "melee",
+    "description": "Smack this on your goddamn head to bust it open real hard.",
+    "damage": 60,
+    "accuracy": 70,
+    "crate_odds": 1
+  },
+  {
+    "names": ["axe"],
+    "type": "melee",
+    "description": "Become a lumberjack and chop off some enemies on your long ass list and retire.",
+    "damage": 36,
+    "accuracy": 40,
+    "crate_odds": 15
+  },
+  {
+    "names": ["katana"],
+    "type": "melee",
+    "description": "Boi that's long asf. Scare your children with this shit.",
+    "damage": 40,
+    "accuracy": 30,
+    "crate_odds": 5
   },
   {
     "names": ["huntsman knife", "huntsman"],
     "type": "knife",
     "description": "This knife didn't get it's name for cutting pie.",
     "damage": 55,
-    "accuracy": 90,
+    "accuracy": 70,
     "crate_odds": 3
   },
   {
@@ -170,18 +494,48 @@
     "names": ["sniper bullet", "sniper ammo", "sniper ammunition", "sniper bullets"],
     "type": "bullet",
     "description": "You can't shoot a gun without bullets, or **CAN YOU?** No Steve, you fucking can't. Retard.",
-    "crate_odds": 60
+    "crate_odds": 20
+  },
+  {
+    "names": ["guage bullet", "shotgun ammo", "shotgun ammunition", "shotgun bullets"],
+    "type": "bullet",
+    "description": "What's good if you can't even fucking load the shotgun? :joy:",
+    "crate_odds": 40
+  },
+  {
+    "names": ["dmr bullet", "dmr ammo", "dmr ammunition", "dmr bullets"],
+    "type": "bullet",
+    "description": "Take your time taking your sweet shots.",
+    "crate_odds": 25
+  },
+  {
+    "names": ["deagle bullet", "deagle ammo", "deagle ammunition", "deagle bullets"],
+    "type": "bullet",
+    "description": "Rare ammunition for the Desert Eagle weapon. Cannot be found anywhere else.",
+    "crate_odds": 2
+  },
+  {
+    "names": ["awm bullet", "awm ammo", "awm ammunition", "awm bullets"],
+    "type": "bullet",
+    "description": "Rare ammunition for the AWM-S weapon. Cannot be found anywhere else.",
+    "crate_odds": 2
+  },
+   {
+    "names": ["lmg bullet", "lmg ammo", "lmg ammunition", "lmg bullets"],
+    "type": "bullet",
+    "description": "Take this baby out for a spin and destroy everything in a snap.",
+    "crate_odds": 25
   },
   {
     "names": ["pistol bullet", "pistol ammo", "pistol ammunition", "pistol bullets"],
     "type": "bullet",
-    "description": "FFA more like dead server :joy:",
+    "description": "Manual single shot firing ammunition",
     "crate_odds": 90
   },
   {
     "names": ["rifle bullet", "rifle ammo", "rifle ammunition", "rile bullets"],
     "type": "bullet",
-    "description": "Vim2meta more like dead channel",
+    "description": "Automatic firing with these bullets",
     "crate_odds": 70
   }
 ]

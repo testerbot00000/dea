@@ -97,7 +97,7 @@ class Constants {
             'WEBHOOKS_UPDATE'
           ]
         },
-        game: '$help | https://www.patreon.com/LegacyYT',
+        game: '$modules | https://www.patreon.com/LegacyYT',
         prefix: '$',
         botOwners: ['Gone#1000'],
         ownerIds: ['404832977366024232']

@@ -28,21 +28,21 @@
     "crate_odds": 50
   },
   {
-    "names": ["ballistic Protection"],
+    "names": ["ballistic Protection", "ballistic"],
     "type": "armour",
     "description": "Won't even come close.",
     "damage_reduction": 25,
     "crate_odds": 30
   },
   {
-    "names": ["edge Blade Protection"],
+    "names": ["edge Blade Protection", "edge"],
     "type": "armour",
     "description": "Nothing to worry about.",
     "damage_reduction": 40,
     "crate_odds": 15
   },
    {
-    "names": ["spike Protection"],
+    "names": ["spike Protection", "spike"],
     "type": "armour",
     "description": "You'll be untouchable.",
     "damage_reduction": 60,

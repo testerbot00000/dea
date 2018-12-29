@@ -26,7 +26,7 @@ class Stab extends patron.Command {
           key: 'item',
           type: 'item',
           example: 'huntsman knife',
-          preconditionOptions: [{ types: ['knife'] }],
+          preconditionOptions: [{ types: ['knife', 'melee'] }],
           preconditions: ['nottype', 'donthave', 'allied'],
           remainder: true
         })

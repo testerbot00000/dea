@@ -121,7 +121,7 @@
     "crate_odds": 40
   },
   {
-    "names": ["mp5"],
+    "names": ["mP5"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Kill that bitch around the corner.",
@@ -130,7 +130,7 @@
     "crate_odds": 30
   },
    {
-    "names": ["mac10"],
+    "names": ["mAC10"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Oh baby rape those asses with this bitch.",
@@ -148,7 +148,7 @@
     "crate_odds": 20
   },
    {
-    "names": ["ump9"],
+    "names": ["uMP9"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "A weapon full of burst!",
@@ -166,7 +166,7 @@
     "crate_odds": 20
   },
   {
-    "names": ["mp220"],
+    "names": ["mP220"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Shoot that face twice has hard compared to m870.",
@@ -175,7 +175,7 @@
     "crate_odds": 15
   },
    {
-    "names": ["spas12"],
+    "names": ["sPAS12"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Long range shotgun.",
@@ -247,9 +247,9 @@
     "crate_odds": 25
   },
   {
-    "names": ["m39 emr"],
+    "names": ["m39 EMR"],
     "type": "gun",
-    "bullet": "dmr bullet",
+    "bullet": "dMR bullet",
     "description": "Take time to make your perfect shot! This single shot weapon is just perfect for you.",
     "damage": 24.5,
     "accuracy": 40,
@@ -258,14 +258,14 @@
    {
     "names": ["dp28"],
     "type": "gun",
-    "bullet": "lmg bullet",
+    "bullet": "lMG bullet",
     "description": "While dealing only 14 damage per shot, it contains a hefty 60 rounds in a single clip so fire away!",
     "damage": 14,
     "accuracy": 25,
     "crate_odds": 20
   },
    {
-    "names": ["mosin nagant"],
+    "names": ["mosinNagant"],
     "type": "gun",
     "bullet": "sniper bullet",
     "description": "Snipe your enemies out of hiding.",
@@ -274,7 +274,7 @@
     "crate_odds": 8
   },
    {
-    "names": ["scar"],
+    "names": ["sCAR"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Improved ak47 but with harder hits.",
@@ -283,7 +283,7 @@
     "crate_odds": 20
   },
   {
-    "names": ["sv 98"],
+    "names": ["sV98"],
     "type": "gun",
     "bullet": "sniper bullet",
     "description": "Faster reload and deals more damage.",
@@ -292,18 +292,18 @@
     "crate_odds": 5
   },
   {
-    "names": ["bar m1918"],
+    "names": ["bar M1918"],
     "type": "gun",
-    "bullet": "lmg bullet",
+    "bullet": "lMG bullet",
     "description": "Insane damage and shreds obstacles! Take this a rape a noob camper.",
     "damage": 17.75,
     "accuracy": 35,
     "crate_odds": 10
   },
   {
-    "names": ["m1 garand"],
+    "names": ["m1 Garand"],
     "type": "gun",
-    "bullet": "dmr bullet",
+    "bullet": "dMR bullet",
     "description": "The sound is satisfying isn't it?",
     "damage": 32,
     "accuracy": 45,
@@ -328,7 +328,7 @@
     "crate_odds": 50
   },
   {
-    "names": ["m4a1"],
+    "names": ["m4A1"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Nothing cool to see here buddy :sunglasses: only invisible bullets whipping across your screen.",
@@ -337,9 +337,9 @@
     "crate_odds": 35
   },
   {
-    "names": ["mk 12 spr"],
+    "names": ["mK 12 SPR"],
     "type": "gun",
-    "bullet": "dmr bullet",
+    "bullet": "dMR bullet",
     "description": "It's easy. Hold steady and fire this bad boy.",
     "damage": 19.5,
     "accuracy": 55,
@@ -348,16 +348,16 @@
   {
     "names": ["m249"],
     "type": "gun",
-    "bullet": "lmg bullet",
+    "bullet": "lMG bullet",
     "description": "100 rounds of hell approaching....",
     "damage": 14,
     "accuracy": 45,
     "crate_odds": 5
   },
    {
-    "names": ["qbb97"],
+    "names": ["qBB97"],
     "type": "gun",
-    "bullet": "lmg bullet",
+    "bullet": "lMG bullet",
     "description": "Why does this take forever to load? Fuck it has 75 rounds of nothing.",
     "damage": 14,
     "accuracy": 75,
@@ -373,9 +373,9 @@
     "crate_odds": 8
   },
    {
-    "names": ["awm"],
+    "names": ["aWM"],
     "type": "gun",
-    "bullet": "awm bullet",
+    "bullet": "aWM bullet",
     "description": "Nobody just saw that shit and walk away with a bag full of sweet cash.",
     "damage": 180,
     "accuracy": 50,
@@ -503,7 +503,7 @@
     "crate_odds": 40
   },
   {
-    "names": ["dmr bullet", "dmr ammo", "dmr ammunition", "dmr bullets"],
+    "names": ["dMR bullet", "dmr ammo", "dmr ammunition", "dmr bullets"],
     "type": "bullet",
     "description": "Take your time taking your sweet shots.",
     "crate_odds": 25
@@ -515,13 +515,13 @@
     "crate_odds": 2
   },
   {
-    "names": ["awm bullet", "awm ammo", "awm ammunition", "awm bullets"],
+    "names": ["aWM bullet", "awm ammo", "awm ammunition", "awm bullets"],
     "type": "bullet",
     "description": "Rare ammunition for the AWM-S weapon. Cannot be found anywhere else.",
     "crate_odds": 2
   },
    {
-    "names": ["lmg bullet", "lmg ammo", "lmg ammunition", "lmg bullets"],
+    "names": ["lMG bullet", "lmg ammo", "lmg ammunition", "lmg bullets"],
     "type": "bullet",
     "description": "Take this baby out for a spin and destroy everything in a snap.",
     "crate_odds": 25

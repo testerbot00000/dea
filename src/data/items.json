@@ -21,10 +21,10 @@
     "item_odds": 50
   },
   {
-    "names": ["sponsor crate", "sponsor crates", "sponsor", "donator"],
+    "names": ["sponsor crate", "sponsor crates", "sponsor"],
     "type": "crate",
     "description": "Donators and sponsors pay top dollar for platinum.",
-    "price": null,
+    "price": -100,
     "item_odds": 100
   },
   {

@@ -130,7 +130,7 @@
     "crate_odds": 30
   },
    {
-    "names": ["mAC10"],
+    "names": ["mac10"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Oh baby rape those asses with this bitch.",
@@ -148,7 +148,7 @@
     "crate_odds": 20
   },
    {
-    "names": ["uMP9"],
+    "names": ["ump9"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "A weapon full of burst!",
@@ -166,7 +166,7 @@
     "crate_odds": 20
   },
   {
-    "names": ["mP220"],
+    "names": ["mp220"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Shoot that face twice has hard compared to m870.",
@@ -175,7 +175,7 @@
     "crate_odds": 15
   },
    {
-    "names": ["sPAS12"],
+    "names": ["spas12"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Long range shotgun.",
@@ -265,7 +265,7 @@
     "crate_odds": 20
   },
    {
-    "names": ["mosinNagant"],
+    "names": ["mosin nagant"],
     "type": "gun",
     "bullet": "sniper bullet",
     "description": "Snipe your enemies out of hiding.",
@@ -274,7 +274,7 @@
     "crate_odds": 8
   },
    {
-    "names": ["sCAR"],
+    "names": ["scar"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Improved ak47 but with harder hits.",
@@ -283,7 +283,7 @@
     "crate_odds": 20
   },
   {
-    "names": ["sV98"],
+    "names": ["sv98"],
     "type": "gun",
     "bullet": "sniper bullet",
     "description": "Faster reload and deals more damage.",
@@ -292,7 +292,7 @@
     "crate_odds": 5
   },
   {
-    "names": ["bar M1918"],
+    "names": ["bar m1918"],
     "type": "gun",
     "bullet": "lMG bullet",
     "description": "Insane damage and shreds obstacles! Take this a rape a noob camper.",
@@ -301,7 +301,7 @@
     "crate_odds": 10
   },
   {
-    "names": ["m1 Garand"],
+    "names": ["m1 garand"],
     "type": "gun",
     "bullet": "dMR bullet",
     "description": "The sound is satisfying isn't it?",
@@ -328,7 +328,7 @@
     "crate_odds": 50
   },
   {
-    "names": ["m4A1"],
+    "names": ["m4a1"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Nothing cool to see here buddy :sunglasses: only invisible bullets whipping across your screen.",
@@ -337,7 +337,7 @@
     "crate_odds": 35
   },
   {
-    "names": ["mK 12 SPR"],
+    "names": ["mk 12 spr"],
     "type": "gun",
     "bullet": "dMR bullet",
     "description": "It's easy. Hold steady and fire this bad boy.",
@@ -355,7 +355,7 @@
     "crate_odds": 5
   },
    {
-    "names": ["qBB97"],
+    "names": ["qbb97"],
     "type": "gun",
     "bullet": "lMG bullet",
     "description": "Why does this take forever to load? Fuck it has 75 rounds of nothing.",
@@ -373,7 +373,7 @@
     "crate_odds": 8
   },
    {
-    "names": ["aWM"],
+    "names": ["awm"],
     "type": "gun",
     "bullet": "aWM bullet",
     "description": "Nobody just saw that shit and walk away with a bag full of sweet cash.",

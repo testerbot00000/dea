@@ -24,7 +24,7 @@ class Trivia extends patron.Command {
     const question = Random.arrayElement(questions);
     const answer = msg.dbGuild.trivia[question];
 
-    await msg.channel.createMessage(question, { title: 'Trivia!' });
+    await msg.channel.createMessage(question, { title: 'Trivia! [15 seconds to answer]' });
 
     const result = await msg.channel.awaitMessages(m => m.content.toLowerCase().includes(answer.toLowerCase()), { time: 15000, max: 1 });
 
@@ -36,7 +36,7 @@ class Trivia extends patron.Command {
       return msg.channel.createMessage('Congratulations ' + result.first().author.tag.boldify() + ' for winning ' + prize.USD() + ' in trivia!');
     }
 
-    return msg.channel.createMessage('Time\'s up and you failed go find a job.');
+    return msg.channel.createMessage('Time\'s up and you failed! Try finding an actual job.');
   }
 }
 

@@ -164,7 +164,7 @@
     "crate_odds": 25
   },
   {
-    "names": ["m56c", "M56C", "m56C"],
+    "names": ["m56C", "M56c", "m56C", "M56C"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Double Eagle multi-shot spring shotgun.",
@@ -191,7 +191,7 @@
     "crate_odds": 35
   },
    {
-    "names": ["mossberg", "MossBerg", "moss", "mossberg"],
+    "names": ["mossBerg", "MossBerg", "moss", "mossberg"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Single shot gas tatical shotgun, decreased accuracy, increased damage.",
@@ -308,7 +308,7 @@
     "crate_odds": 15
   },
   {
-    "names": ["hk416"],
+    "names": ["hK416", "hk", "hk416"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Rapid fire assault rifle with low damage with high accuracy.",

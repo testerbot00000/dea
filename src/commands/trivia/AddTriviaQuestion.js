@@ -30,7 +30,7 @@ class AddTriviaQuestion extends patron.Command {
   }
 
   async run(msg, args) {
-    if (Object.keys(msg.dbGuild.trivia).length > 200) {
+    if (Object.keys(msg.dbGuild.trivia).length > 1000) {
       return msg.createErrorReply('this server has too many trivia questions.');
     }
 

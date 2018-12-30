@@ -165,10 +165,6 @@ class Constants {
         maxChar: 40
       },
       
-      trivia: {
-        cooldown: 900000
-      },
-    
       stab: {
         cooldown: 14400000
       },

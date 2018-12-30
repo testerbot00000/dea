@@ -5,7 +5,8 @@ class Questions extends patron.Command {
     super({
       names: ['questions', 'trivias'],
       groupName: 'trivia',
-      description: 'See what the trivia questions are.'
+      description: 'See what the trivia questions are.',
+      preconditions: ['botowner']
     });
   }
 

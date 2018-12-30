@@ -121,7 +121,7 @@
     "crate_odds": 40
   },
   {
-    "names": ["mP5", "Mp5"],
+    "names": ["mP5", "Mp5", "mp5"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Kill that bitch around the corner.",

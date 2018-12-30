@@ -189,6 +189,10 @@ class Constants {
         cooldown: 60000,
         maxLength: 32
       },
+      
+      trivia: {
+        cooldown: 900000
+      },
 
       reducedCooldown: 0.1,
 

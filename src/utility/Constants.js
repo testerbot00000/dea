@@ -164,6 +164,11 @@ class Constants {
         maxAnswerChar: 40,
         maxChar: 40
       },
+      
+      trivia: {
+        cooldown: 900000
+      },
+    
 
       stab: {
         cooldown: 14400000
@@ -190,9 +195,6 @@ class Constants {
         maxLength: 32
       },
       
-      trivia: {
-        cooldown: 900000
-      },
 
       reducedCooldown: 0.1,
 
@@ -213,6 +215,11 @@ class Constants {
 
       collect: {
         cooldown: 86400000
+      },
+      
+      
+      trivia: {
+        cooldown: 900000
       },
 
       rob: {

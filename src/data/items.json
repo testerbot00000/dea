@@ -17,8 +17,15 @@
     "names": ["gold crate", "gold crates", "gold"],
     "type": "crate",
     "description": "The reason it costs a lot is because you need to pay the expenses for the gold.",
-    "price": 20000,
+    "price": 15000,
     "item_odds": 50
+  },
+  {
+    "names": ["sponsor crate", "sponsor crates", "sponsor", "donator"],
+    "type": "crate",
+    "description": "Donators and sponsors pay top dollar for platinum.",
+    "price": null,
+    "item_odds": 100
   },
   {
     "names": ["kevlar"],
@@ -537,13 +544,13 @@
   {
     "names": ["pistol bullet", "pistol ammo", "pistol ammunition", "pistol bullets"],
     "type": "bullet",
-    "description": "Manual single shot firing ammunition",
+    "description": "Manual single shot firing ammunition.",
     "crate_odds": 90
   },
   {
     "names": ["rifle bullet", "rifle ammo", "rifle ammunition", "rile bullets"],
     "type": "bullet",
-    "description": "Automatic firing with these bullets",
+    "description": "Automatic firing with these bullets.",
     "crate_odds": 70
   }
 ]

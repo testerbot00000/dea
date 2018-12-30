@@ -130,7 +130,7 @@
     "crate_odds": 30
   },
    {
-    "names": ["mAC10", "Mac10", "mac10", "mac"],
+    "names": ["mAC-10", "Mac10", "mac10", "mac"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Oh baby rape those asses with this bitch.",
@@ -175,7 +175,7 @@
     "crate_odds": 15
   },
    {
-    "names": ["sPAS-12", "Spas12", "SPAS-12", "spas12"],
+    "names": ["sPAS-12", "Spas12", "SPAS-12", "spas12", "spas"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Long range shotgun.",
@@ -355,7 +355,7 @@
     "crate_odds": 5
   },
    {
-    "names": ["qbb97", "QBB-97", "qbb-97", "qbb"],
+    "names": ["qBB-97", "QBB-97", "qbb-97", "qbb", "qbb97"],
     "type": "gun",
     "bullet": "lMG bullet",
     "description": "Why does this take forever to load? Fuck it has 75 rounds of nothing.",

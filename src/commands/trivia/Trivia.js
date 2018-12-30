@@ -11,7 +11,13 @@ class Trivia extends patron.Command {
       groupName: 'trivia',
       description: 'Send a random trivia question.',
       postconditions: ['reducedcooldown'],
-      cooldown: Constants.config.trivia.cooldown
+      cooldown: Constants.config.trivia.cooldown,
+      args: [
+        new patron.Argument({
+   
+          preconditions: ['hasminimumcash']
+        })
+      ]
       
     });
   }

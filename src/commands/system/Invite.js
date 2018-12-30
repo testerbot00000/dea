@@ -12,7 +12,7 @@ class Invite extends patron.Command {
   }
 
   run(msg) {
-    return msg.createReply('Donate at https://patreon.com/LegacyYT to add the bot to your server and fully customize it!');
+    return msg.createReply('donating at https://patreon.com/LegacyYT allowing you to add the bot to your server and fully customize it!');
   }
 }
 

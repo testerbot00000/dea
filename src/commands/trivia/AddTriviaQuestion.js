@@ -13,7 +13,7 @@ class AddTriviaQuestion extends patron.Command {
           key: 'question',
           type: 'string',
           example: '"is john gay"',
-          preconditionOptions: [{ length: 128 }],
+          preconditionOptions: [{ length: 1000 }],
           preconditions: ['maximumlength']
         }),
         new patron.Argument({
@@ -21,7 +21,7 @@ class AddTriviaQuestion extends patron.Command {
           key: 'answer',
           type: 'string',
           example: 'yes he is',
-          preconditionOptions: [{ length: 128 }],
+          preconditionOptions: [{ length: 1000 }],
           preconditions: ['maximumlength'],
           remainder: true
         })

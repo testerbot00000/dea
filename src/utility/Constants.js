@@ -28,8 +28,8 @@ class Constants {
       },
 
       links: {
-        botInvite: 'Access denied. Please contact the bot owner.',
-        serverInvite: 'null'
+        botInvite: 'Donate at https://patreon.com/LegacyYT to add the bot and fully customize it for your server.',
+        serverInvite: 'https://discord.gg/QRGMmnm'
       },
 
       messages: {
@@ -97,7 +97,7 @@ class Constants {
             'WEBHOOKS_UPDATE'
           ]
         },
-        game: '$modules | https://www.patreon.com/LegacyYT',
+        game: '$help | $modules',
         prefix: '$',
         botOwners: ['Gone#1000'],
         ownerIds: ['404832977366024232']
@@ -272,7 +272,7 @@ class Constants {
 
       misc: {
         cashPerMessage: 50,
-        leaderboardCap: 15,
+        leaderboardCap: 10,
         messageCooldown: 30000,
         rateLimitMessageCooldown: 5000,
         rateLimitMessageAmount: 8,

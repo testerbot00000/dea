@@ -130,7 +130,7 @@
     "crate_odds": 30
   },
    {
-    "names": ["mAC10", "Mac10"],
+    "names": ["mAC10", "Mac10", "mac10", "mac"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Oh baby rape those asses with this bitch.",
@@ -148,7 +148,7 @@
     "crate_odds": 20
   },
    {
-    "names": ["uMP9", "Ump9"],
+    "names": ["uMP9", "Ump9", "ump9", "uMP9"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "A weapon full of burst!",
@@ -166,7 +166,7 @@
     "crate_odds": 20
   },
   {
-    "names": ["mP220", "Mp220"],
+    "names": ["mp220", "Mp220", "mP220", "mp"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Shoot that face twice has hard compared to m870.",
@@ -175,7 +175,7 @@
     "crate_odds": 15
   },
    {
-    "names": ["sPAS12", "Spas12", "SPAS-12"],
+    "names": ["sPAS-12", "Spas12", "SPAS-12", "spas12"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Long range shotgun.",
@@ -184,7 +184,7 @@
     "crate_odds": 35
   },
    {
-    "names": ["saiga12", "Saiga-12"],
+    "names": ["saiga-12", "Saiga-12", "saiga", "saiga12"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Semi-automatic shotgun at your disposal.",
@@ -193,7 +193,7 @@
     "crate_odds": 5
   },
    {
-    "names": ["uSAS12", "USAS-12", "usas12"],
+    "names": ["uSAS-12", "USAS-12", "usas12", "usas"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Fully automatic shotgun baby!",
@@ -238,7 +238,7 @@
     "crate_odds": 25
   },
   {
-    "names": ["aK47", "AK-47", "ak47"],
+    "names": ["aK-47", "AK-47", "ak47"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Common and fairly decent assault weapon.",
@@ -256,7 +256,7 @@
     "crate_odds": 15
   },
    {
-    "names": ["dP28", "DP-28", "dp28"],
+    "names": ["dP-28", "DP-28", "dp28", "dp"],
     "type": "gun",
     "bullet": "lMG bullet",
     "description": "While dealing only 14 damage per shot, it contains a hefty 60 rounds in a single clip so fire away!",
@@ -265,7 +265,7 @@
     "crate_odds": 20
   },
    {
-    "names": ["mosin Nagant", "mosin", "Mosin-Nagant"],
+    "names": ["mosin-Nagant", "mosin", "Mosin-Nagant"],
     "type": "gun",
     "bullet": "sniper bullet",
     "description": "Snipe your enemies out of hiding.",
@@ -274,7 +274,7 @@
     "crate_odds": 8
   },
    {
-    "names": ["sCAR", "scarh", "scar"],
+    "names": ["sCAR-H", "scarh", "scar"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Improved ak47 but with harder hits.",
@@ -283,7 +283,7 @@
     "crate_odds": 20
   },
   {
-    "names": ["sV98", "sv", "sv-98"],
+    "names": ["sV-98", "sv", "sv-98"],
     "type": "gun",
     "bullet": "sniper bullet",
     "description": "Faster reload and deals more damage.",
@@ -328,7 +328,7 @@
     "crate_odds": 50
   },
   {
-    "names": ["m4a1", "M4A1"],
+    "names": ["m4A1", "M4A1", "m4a1", "M4A1"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Nothing cool to see here buddy :sunglasses: only invisible bullets whipping across your screen.",
@@ -355,7 +355,7 @@
     "crate_odds": 5
   },
    {
-    "names": ["qbb97", "QBB-97", "qbb-97"],
+    "names": ["qbb97", "QBB-97", "qbb-97", "qbb"],
     "type": "gun",
     "bullet": "lMG bullet",
     "description": "Why does this take forever to load? Fuck it has 75 rounds of nothing.",
@@ -373,7 +373,7 @@
     "crate_odds": 8
   },
    {
-    "names": ["aWM", "AWM", "AWM-S"],
+    "names": ["aWM-S", "AWM", "AWM-S", "awm"],
     "type": "gun",
     "bullet": "aWM bullet",
     "description": "Nobody just saw that shit and walk away with a bag full of sweet cash.",

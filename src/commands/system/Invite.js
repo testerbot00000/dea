@@ -12,7 +12,7 @@ class Invite extends patron.Command {
   }
 
   run(msg) {
-    return msg.createReply('Error, access denied');
+    return msg.createReply('Donate at https://patreon.com/LegacyYT to add the bot to your server and fully customize it!');
   }
 }
 

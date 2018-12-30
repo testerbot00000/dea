@@ -28,7 +28,7 @@ class Constants {
       },
 
       links: {
-        botInvite: 'Donate at https://patreon.com/LegacyYT to add the bot and fully customize it for your server',
+        botInvite: 'donate at https://patreon.com/LegacyYT to add the bot and fully customize it for your server',
         serverInvite: 'https://discord.gg/QRGMmnm'
       },
 

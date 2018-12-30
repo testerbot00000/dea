@@ -119,7 +119,7 @@ class Constants {
         cost: 1500
       },
 
-      types: ['gun', 'knife', 'meat', 'melee', 'fish', 'crate', 'armour', 'ammo'],
+      types: ['gun', 'rpg', 'knife', 'meat', 'melee', 'fish', 'crate', 'armour', 'ammo'],
       props: ['acquire_odds', 'crate_odds', 'item_odds', 'health', 'damage', 'accuracy', 'price', 'bullet']
     };
 

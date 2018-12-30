@@ -382,7 +382,7 @@
    {
     "names": ["aWM-S", "AWM", "AWM-S", "awm"],
     "type": "gun",
-    "bullet": "aWM bullet",
+    "bullet": "subsonic bullet",
     "description": "Nobody just saw that shit and walk away with a bag full of sweet cash.",
     "damage": 180,
     "accuracy": 50,
@@ -530,7 +530,7 @@
     "crate_odds": 2
   },
   {
-    "names": ["aWM bullet", "awm ammo", "awm ammunition", "awm bullets"],
+    "names": ["subsonic bullet", "subsonic ammo", "subsonic ammunition", "subsonic bullets"],
     "type": "bullet",
     "description": "Rare ammunition for the AWM-S weapon. Cannot be found anywhere else.",
     "crate_odds": 2

@@ -169,7 +169,6 @@ class Constants {
         cooldown: 900000
       },
     
-
       stab: {
         cooldown: 14400000
       },
@@ -217,11 +216,6 @@ class Constants {
         cooldown: 86400000
       },
       
-      
-      trivia: {
-        cooldown: 900000
-      },
-
       rob: {
         cooldown: 28800000,
         max: 0.2,

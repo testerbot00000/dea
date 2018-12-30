@@ -6,7 +6,7 @@ class Answers extends patron.Command {
       names: ['answers'],
       groupName: 'trivia',
       description: 'See what the trivia answers are.',
-      preconditions: ['moderator']
+      preconditions: ['botowner']
     });
   }
 

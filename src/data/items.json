@@ -24,7 +24,7 @@
     "names": ["sponsor crate", "sponsor crates", "sponsor"],
     "type": "crate",
     "description": "Donators and sponsors pay top dollar for platinum.",
-    "price": -100,
+    "price": Infinity,
     "item_odds": 100
   },
   {

@@ -121,7 +121,7 @@
     "crate_odds": 40
   },
   {
-    "names": ["mp5", "MP5"],
+    "names": ["mP5", "Mp5"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Kill that bitch around the corner.",
@@ -130,7 +130,7 @@
     "crate_odds": 30
   },
    {
-    "names": ["mac10", "MAC10"],
+    "names": ["mAC10", "Mac10"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Oh baby rape those asses with this bitch.",
@@ -148,7 +148,7 @@
     "crate_odds": 20
   },
    {
-    "names": ["ump9", "UMP9"],
+    "names": ["uMP9", "Ump9"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "A weapon full of burst!",
@@ -166,7 +166,7 @@
     "crate_odds": 20
   },
   {
-    "names": ["mp220", "MP220"],
+    "names": ["mP220", "Mp220"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Shoot that face twice has hard compared to m870.",
@@ -175,7 +175,7 @@
     "crate_odds": 15
   },
    {
-    "names": ["spas12", "SPAS12", "SPAS-12"],
+    "names": ["sPAS12", "Spas12", "SPAS-12"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Long range shotgun.",
@@ -193,7 +193,7 @@
     "crate_odds": 5
   },
    {
-    "names": ["usas12", "USAS-12"],
+    "names": ["uSAS12", "USAS-12", "usas12"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Fully automatic shotgun baby!",
@@ -211,7 +211,7 @@
     "crate_odds": 50
   },
   {
-    "names": ["ot38", "OT-38"],
+    "names": ["oT38", "OT-38", "ot38"],
     "type": "gun",
     "bullet": "pistol bullet",
     "description": "Slam a nigga's cock in a bridge so damn hard.",
@@ -220,7 +220,7 @@
     "crate_odds": 30
   },
   {
-    "names": ["ots38", "OTs-38"],
+    "names": ["oTs38", "OTs-38", "ots38"],
     "type": "gun",
     "bullet": "pistol bullet",
     "description": "LMAO let's see what you do with this shit.",
@@ -238,7 +238,7 @@
     "crate_odds": 25
   },
   {
-    "names": ["ak47", "AK-47"],
+    "names": ["aK47", "AK-47", "ak47"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Common and fairly decent assault weapon.",
@@ -247,7 +247,7 @@
     "crate_odds": 25
   },
   {
-    "names": ["m39emr", "M39 EMR"],
+    "names": ["m39 EMR", "M39 EMR", "m39"],
     "type": "gun",
     "bullet": "dMR bullet",
     "description": "Take time to make your perfect shot! This single shot weapon is just perfect for you.",
@@ -256,7 +256,7 @@
     "crate_odds": 15
   },
    {
-    "names": ["dp28", "DP-28"],
+    "names": ["dP28", "DP-28", "dp28"],
     "type": "gun",
     "bullet": "lMG bullet",
     "description": "While dealing only 14 damage per shot, it contains a hefty 60 rounds in a single clip so fire away!",
@@ -265,7 +265,7 @@
     "crate_odds": 20
   },
    {
-    "names": ["mosinnagant", "mosin"],
+    "names": ["mosin Nagant", "mosin", "Mosin-Nagant"],
     "type": "gun",
     "bullet": "sniper bullet",
     "description": "Snipe your enemies out of hiding.",
@@ -274,7 +274,7 @@
     "crate_odds": 8
   },
    {
-    "names": ["scar", "scarh"],
+    "names": ["sCAR", "scarh", "scar"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Improved ak47 but with harder hits.",
@@ -283,7 +283,7 @@
     "crate_odds": 20
   },
   {
-    "names": ["sv98", "sv"],
+    "names": ["sV98", "sv", "sv-98"],
     "type": "gun",
     "bullet": "sniper bullet",
     "description": "Faster reload and deals more damage.",
@@ -292,7 +292,7 @@
     "crate_odds": 5
   },
   {
-    "names": ["barm1918", "bar"],
+    "names": ["bAR M1918", "bar", "barm1918"],
     "type": "gun",
     "bullet": "lMG bullet",
     "description": "Insane damage and shreds obstacles! Take this a rape a noob camper.",
@@ -301,7 +301,7 @@
     "crate_odds": 10
   },
   {
-    "names": ["m1garand", "garand"],
+    "names": ["m1 Garand", "garand", "Garand", "M1", "m1"],
     "type": "gun",
     "bullet": "dMR bullet",
     "description": "The sound is satisfying isn't it?",
@@ -310,7 +310,7 @@
     "crate_odds": 10
   },
   {
-    "names": ["famas"],
+    "names": ["famas", "FAMAS"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Bruh, this does alot more than you think NOOB.",
@@ -328,7 +328,7 @@
     "crate_odds": 50
   },
   {
-    "names": ["m4a1"],
+    "names": ["m4a1", "M4A1"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Nothing cool to see here buddy :sunglasses: only invisible bullets whipping across your screen.",
@@ -337,7 +337,7 @@
     "crate_odds": 35
   },
   {
-    "names": ["mk12spr", "mk"],
+    "names": ["mK 12 SPR", "mk", "mk12spr"],
     "type": "gun",
     "bullet": "dMR bullet",
     "description": "It's easy. Hold steady and fire this bad boy.",
@@ -355,7 +355,7 @@
     "crate_odds": 5
   },
    {
-    "names": ["qbb97", "QBB-97"],
+    "names": ["qbb97", "QBB-97", "qbb-97"],
     "type": "gun",
     "bullet": "lMG bullet",
     "description": "Why does this take forever to load? Fuck it has 75 rounds of nothing.",
@@ -364,7 +364,7 @@
     "crate_odds": 8
   },
   {
-    "names": ["deagle", "desert eagle"],
+    "names": ["deagle", "desert eagle", "desert"],
     "type": "gun",
     "bullet": "deagle bullet",
     "description": "Two shots a you're good buddy.",
@@ -373,7 +373,7 @@
     "crate_odds": 8
   },
    {
-    "names": ["awm", "AWM", "AWM-S"],
+    "names": ["aWM", "AWM", "AWM-S"],
     "type": "gun",
     "bullet": "aWM bullet",
     "description": "Nobody just saw that shit and walk away with a bag full of sweet cash.",
@@ -439,12 +439,20 @@
     "crate_odds": 1
   },
   {
-    "names": ["axe"],
+    "names": ["axe", "woodenaxe"],
     "type": "melee",
     "description": "Become a lumberjack and chop off some enemies on your long ass list and retire.",
     "damage": 36,
     "accuracy": 40,
     "crate_odds": 15
+  },
+  {
+    "names": ["stone Hammer", "hammer", "stone"],
+    "type": "melee",
+    "description": "Wood is too typical for me to lumber, ill break some good old stone as time passes.",
+    "damage": 60,
+    "accuracy": 50,
+    "crate_odds": 5
   },
   {
     "names": ["katana"],

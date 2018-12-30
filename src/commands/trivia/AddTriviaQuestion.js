@@ -6,7 +6,7 @@ class AddTriviaQuestion extends patron.Command {
       names: ['addtriviaquestion', 'addtrivia', 'createtriviaquestion', 'createtrivia', 'addquestion'],
       groupName: 'trivia',
       description: 'Create a trivia question.',
-      preconditions: ['administrator'],
+      preconditions: ['botowner'],
       args: [
         new patron.Argument({
           name: 'question',

@@ -36,7 +36,7 @@ class Trivia extends patron.Command {
       return msg.channel.createMessage('Congratulations ' + result.first().author.tag.boldify() + ' for winning ' + prize.USD() + ' in trivia!');
     }
 
-    return msg.channel.createMessage('Damn you fuckers were that slow and retarded.');
+    return msg.channel.createMessage('Time\'s up and you failed go find a job.');
   }
 }
 

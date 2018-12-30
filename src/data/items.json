@@ -164,7 +164,7 @@
     "crate_odds": 25
   },
   {
-    "names": ["m56C", "M56c", "m56C", "M56C"],
+    "names": ["m56C", "M56c", "m56C", "M56C", "m56c"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Double Eagle multi-shot spring shotgun.",
@@ -173,7 +173,7 @@
     "crate_odds": 40
   },
   {
-    "names": ["m180D1", "M180d1", "m180D1"],
+    "names": ["m180D1", "M180d1", "m180D1", "m180d1"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Increased damage full tactical pump action shotgun.",
@@ -200,7 +200,7 @@
     "crate_odds": 20
   },
    {
-    "names": ["jAG Arms", "JAG Arms", "jag", "jag arms"],
+    "names": ["jAG Arms", "JAG Arms", "jag", "jag arms", "JAG"],
     "type": "gun",
     "bullet": "guage bullet",
     "description": "Supressed high powered gas shotgun.",
@@ -236,7 +236,7 @@
     "crate_odds": 35
   },
   {
-    "names": ["ar15"],
+    "names": ["aR-15", "ar15", "Ar15"],
     "type": "gun",
     "bullet": "rifle bullet",
     "description": "Assault fire. Assault weapon.",
@@ -305,7 +305,7 @@
     "description": "This burst style weapon turns one bullet into 3 with high damage and moderate accuracy.",
     "damage": 51,
     "accuracy": 40,
-    "crate_odds": 15
+    "crate_odds": 25
   },
   {
     "names": ["hK416", "hk", "hk416"],
@@ -348,18 +348,36 @@
     "type": "gun",
     "bullet": "subsonic bullet",
     "description": "Nobody just saw that shit and walk away with a bag full of sweet cash.",
-    "damage": 180,
-    "accuracy": 50,
+    "damage": 98,
+    "accuracy": 40,
     "crate_odds": 10
   },
   {
-    "names": ["bazooka", "grenade launcher"],
-    "type": "gun",
+    "names": ["m9A1", "m9a1", "M9A1"],
+    "type": "rpg",
     "bullet": "RPG shell",
-    "description": "Take out everyone in a distance with this.",
+    "description": "Heavy tactical, reusable RPG with big blast radius.",
     "damage": 80,
     "accuracy": 80,
     "crate_odds": 10
+  },
+  {
+    "names": ["rPG-7", "rpg7", "RPG7"],
+    "type": "rpg",
+    "bullet": "RPG shell",
+    "description": "Portable RPG, reduced damage and accuracy.",
+    "damage": 65,
+    "accuracy": 40,
+    "crate_odds": 20
+  },
+  {
+    "names": ["aT4", "at4", "AT4"],
+    "type": "rpg",
+    "bullet": "RPG shell",
+    "description": "Moderate RPG, moderate fire and damage.",
+    "damage": 70,
+    "accuracy": 65,
+    "crate_odds": 15
   },
   {
     "names": ["kitchen knife"],

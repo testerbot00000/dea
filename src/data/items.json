@@ -25,7 +25,7 @@
     "type": "crate",
     "description": "Donators and sponsors pay top dollar for platinum. Only bot owners may add this to sponsors and donators.",
     "price": 99999999999999999999999999999,
-    "item_odds": 100
+    "item_odds": 1000
   },
   {
     "names": ["kevlar"],

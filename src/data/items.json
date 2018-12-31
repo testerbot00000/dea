@@ -31,7 +31,7 @@
     "names": ["sponsor crate", "sponsor crates", "sponsor"],
     "type": "crate",
     "description": "Multiply your odds by 10x to obtain a rare weapon or item.",
-    "price": 1000000,
+    "price": 100000,
     "item_odds": 1000
   },
   {

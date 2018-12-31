@@ -97,7 +97,7 @@ class Constants {
             'WEBHOOKS_UPDATE'
           ]
         },
-        game: '$help | $modules',
+        game: '$help | $jump | $scam | $steal | $rob | $rape | $bully | $stab | $shoot | $hunt | $investments | $items | $store | $buy | $opencrate',
         prefix: '$',
         botOwners: ['Gone#1000'],
         ownerIds: ['404832977366024232']

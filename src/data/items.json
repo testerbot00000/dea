@@ -23,16 +23,9 @@
    {
     "names": ["platinum crate", "platinum crates", "platinum"],
     "type": "crate",
-    "description": "So rare that you can't even get a whole crate.",
+    "description": "So rare that you can't even get a whole platinum ore.",
     "price": 60000,
     "item_odds": 100
-  },
-  {
-    "names": ["sponsor crate", "sponsor crates", "sponsor"],
-    "type": "crate",
-    "description": "Donators and sponsors pay top dollar for platinum. Only bot owners may add this to sponsors and donators.",
-    "price": "100 coins",
-    "item_odds": 1000
   },
   {
     "names": ["kevlar"],
@@ -546,6 +539,6 @@
     "names": ["coin", "coins"],
     "type": "coins",
     "description": "Used to purchase sponsor crates.",
-    "crate_odds": 0
+    "crate_odds": 1
   }
 ]

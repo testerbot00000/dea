@@ -3,14 +3,14 @@
     "names": ["bronze crate", "bronze crates", "bronze"],
     "type": "crate",
     "description": "The standard stuff.",
-    "price": 10000,
+    "price": 5000,
     "item_odds":  5
   },
   {
     "names": ["silver crate", "silver crates", "silver"],
     "type": "crate",
     "description": "Shiny silvery, real good.",
-    "price": 20000,
+    "price": 15000,
     "item_odds": 25
   },
   {

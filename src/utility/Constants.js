@@ -121,7 +121,7 @@ class Constants {
       },
 
       types: ['gun', 'rpg', 'knife', 'meat', 'melee', 'fish', 'crate', 'armour', 'ammo'],
-      props: ['acquire_odds', 'crate_odds', 'item_odds', 'health', 'damage', 'accuracy', 'price', 'bullet']
+      props: ['acquire_odds', 'crate_odds', 'item_odds', 'health', 'damage', 'accuracy', 'price', 'price_type' 'bullet']
     };
 
     this.config = {

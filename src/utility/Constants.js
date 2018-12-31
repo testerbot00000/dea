@@ -56,7 +56,8 @@ class Constants {
         steal: [
           'you and a couple of buddies decide to go bust out the fake nerf guns, stroll over to your local {0}, and rob their asses. You got {1} for your share.',
           'while you were shopping at {0}, you thought it was a good idea to nut all over the counter. The owner decided to sauce you {1} because he assumed the cum was toxic.',
-          'you were strolling around at {0} until you pulled out knife. The cashier gave you {1} because she thought you were gonna stab her ass.'
+          'you were strolling around at {0} until you pulled out knife. The cashier gave you {1} because she thought you were gonna stab her ass.',
+          'you were called over to a stranger\'s house to buy some pop from {0} and set up a fucking party. Instead you decided to clean the house out and cash in {1}'
         ],
         stores: [
           '7-Eleven', 'Speedway', 'Couche-Tard', 'QuikTrip', 'Kroger', 'Circle K', 'Admiral Petroleum', 'Big Apple', 'Bucky\'s Express', 'Target', 'Macy\'s', 'H&M', 'Walmart', 'CVS', 'Walgreens', 'McDonalds'

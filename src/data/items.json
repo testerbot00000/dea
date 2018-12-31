@@ -31,14 +31,13 @@
     "names": ["sponsor crate", "sponsor crates", "sponsor"],
     "type": "crate",
     "description": "Multiply your odds by 10x to obtain a rare weapon or item.",
-    "price": 100000,
+    "price": 1000000,
     "item_odds": 1000
   },
   {
     "names": ["kevlar"],
     "type": "armour",
     "description": "You won't even feel the bullet wearing this thing.",
-    "price": 15000,
     "damage_reduction": 10,
     "crate_odds": 50
   },
@@ -499,13 +498,13 @@
     "names": ["sniper bullet", "sniper ammo", "sniper ammunition", "sniper bullets"],
     "type": "bullet",
     "description": "You can't shoot a gun without bullets, or **CAN YOU?** No Steve, you fucking can't. Retard.",
-    "crate_odds": 20
+    "crate_odds": 40
   },
   {
     "names": ["guage bullet", "shotgun ammo", "shotgun ammunition", "shotgun bullets"],
     "type": "bullet",
     "description": "What's good if you can't even fucking load the shotgun? :joy:",
-    "crate_odds": 40
+    "crate_odds": 50
   },
   {
     "names": ["50AE bullet", "50AE ammo", "50AE ammunition", "50AE bullets", "50ae"],
@@ -529,13 +528,13 @@
     "names": ["lMG bullet", "lmg ammo", "lmg ammunition", "lmg bullets"],
     "type": "bullet",
     "description": "Take this baby out for a spin and destroy everything in a snap.",
-    "crate_odds": 25
+    "crate_odds": 35
   },
   {
     "names": ["pistol bullet", "pistol ammo", "pistol ammunition", "pistol bullets"],
     "type": "bullet",
     "description": "Manual single shot firing ammunition.",
-    "crate_odds": 90
+    "crate_odds": 80
   },
   {
     "names": ["rifle bullet", "rifle ammo", "rifle ammunition", "rile bullets"],

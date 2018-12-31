@@ -25,7 +25,7 @@ class Trivia extends patron.Command {
     const question = Random.arrayElement(questions);
     const answer = msg.dbGuild.trivia[question];
 
-    await msg.channel.createMessage(question, { title: 'Trivia! [25 seconds to answer]' });
+    await msg.channel.createMessage(question, { title: 'Trivia!' });
 
     const result = await msg.channel.awaitMessages(m => m.content.toLowerCase().includes(answer.toLowerCase()), { time: 25000, max: 1 });
 

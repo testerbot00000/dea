@@ -4,7 +4,7 @@
     "type": "crate",
     "description": "The standard stuff.",
     "price": 5000,
-    "item_odds":  5
+    "item_odds":  10
   },
   {
     "names": ["silver crate", "silver crates", "silver"],

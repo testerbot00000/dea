@@ -31,12 +31,14 @@
     "names": ["sponsor crate", "sponsor crates", "sponsor"],
     "type": "crate",
     "description": "Multiply your odds by 10x to obtain a rare weapon or item.",
+    "price": 100000,
     "item_odds": 1000
   },
   {
     "names": ["kevlar"],
     "type": "armour",
     "description": "You won't even feel the bullet wearing this thing.",
+    "price": 15000,
     "damage_reduction": 10,
     "crate_odds": 50
   },
@@ -540,11 +542,5 @@
     "type": "bullet",
     "description": "Automatic firing with these bullets.",
     "crate_odds": 70
-  },
-  {
-    "names": ["coin", "coins"],
-    "type": "coins",
-    "description": "Used to purchase sponsor crates.",
-    "crate_odds": 1
   }
 ]

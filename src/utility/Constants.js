@@ -55,7 +55,8 @@ class Constants {
         ],
         steal: [
           'you and a couple of buddies decide to go bust out the fake nerf guns, stroll over to your local {0}, and rob their asses. You got {1} for your share.',
-          'while you were shopping at {0}, you thought it was a good idea to nut all over the counter. The owner decided to sauce you {1} because he assumed the cum was toxic.'
+          'while you were shopping at {0}, you thought it was a good idea to nut all over the counter. The owner decided to sauce you {1} because he assumed the cum was toxic.',
+          'you were strolling around at {0} until you pulled out knife. The cashier gave you {1} because she thought you were gonna stab her ass.'
         ],
         stores: [
           '7-Eleven', 'Speedway', 'Couche-Tard', 'QuikTrip', 'Kroger', 'Circle K', 'Admiral Petroleum', 'Big Apple', 'Bucky\'s Express', 'Target', 'Macy\'s', 'H&M', 'Walmart', 'CVS', 'Walgreens', 'McDonalds'
@@ -97,7 +98,7 @@ class Constants {
             'WEBHOOKS_UPDATE'
           ]
         },
-        game: '$help | $jump | $scam | $steal | $rob | $rape | $bully | $stab | $shoot | $hunt | $fish | $investments | $items | $store | $buy | $opencrate',
+        game: '$help | https://patreon.com/LegacyYT',
         prefix: '$',
         botOwners: ['Gone#1000'],
         ownerIds: ['404832977366024232']

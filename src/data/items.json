@@ -500,7 +500,7 @@
     "crate_odds": 40
   },
   {
-    "names": ["50AE bullet", "50AE ammo", "50AE ammunition", "50AE bullets"],
+    "names": ["50AE bullet", "50AE ammo", "50AE ammunition", "50AE bullets", "50ae"],
     "type": "bullet",
     "description": "Rare ammunition for the Desert Eagle weapon. Cannot be found anywhere else.",
     "crate_odds": 5
@@ -508,7 +508,7 @@
   {
     "names": ["subsonic bullet", "subsonic ammo", "subsonic ammunition", "subsonic bullets"],
     "type": "bullet",
-    "description": "Rare ammunition for the AWM-S weapon. Cannot be found anywhere else.",
+    "description": "Rare ammunition for the AWM weapon. Cannot be found anywhere else.",
     "crate_odds": 5
   },
   {

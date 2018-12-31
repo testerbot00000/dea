@@ -4,7 +4,7 @@ const NumberUtil = require('../utility/NumberUtil.js');
 
 class CashTypeReader extends patron.TypeReader {
   constructor() {
-    super({ type: 'cash', 'coins' });
+    super({ type: 'cash' });
 
     this.inputtedAll = null;
   }

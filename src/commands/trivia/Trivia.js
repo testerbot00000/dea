@@ -37,7 +37,7 @@ class Trivia extends patron.Command {
       return msg.channel.createMessage('Congratulations ' + result.first().author.tag.boldify() + ' for winning ' + prize.USD() + ' in trivia!');
     }
 
-    return msg.channel.createMessage('Time\'s up and you failed! Try finding an actual job.');
+    return msg.channel.createMessage('Time\'s up and you failed! Maybe better luck next time around.');
   }
 }
 

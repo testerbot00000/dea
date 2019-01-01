@@ -386,6 +386,15 @@
     "accuracy": 65,
     "crate_odds": 15
   },
+   {
+    "names": ["lG 440", "lg", "LG", "lg440", "LG440"],
+    "type": "rpg",
+    "bullet": "RPG shell",
+    "description": "The most painful experience you encounter with this badass.",
+    "damage": 100,
+    "accuracy": 85,
+    "crate_odds": 5
+  },
   {
     "names": ["kitchen knife"],
     "type": "knife",

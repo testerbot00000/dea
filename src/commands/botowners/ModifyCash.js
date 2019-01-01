@@ -7,7 +7,7 @@ class ModifyCash extends patron.Command {
       names: ['modifycash', 'modcash'],
       groupName: 'botowners',
       description: 'Allows you to modify the cash of any member.',
-      preconsitions: ['botowner'],
+      preconditions: ['botowner'],
       args: [
         new patron.Argument({
           name: 'amount',

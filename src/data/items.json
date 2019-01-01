@@ -73,35 +73,35 @@
     "names": ["shrimp"],
     "type": "fish",
     "description": "Dip in some fancy sauce to look fancy.",
-    "acquire_odds": 20,
+    "acquire_odds": 25,
     "health": 20
   },
   {
     "names": ["swordfish"],
     "type": "fish",
     "description": "Pointy nose, might kill.",
-    "acquire_odds": 10,
+    "acquire_odds": 20,
     "health": 30
   },
   {
     "names": ["shark"],
     "type": "fish",
     "description": "Better be careful when eating this.",
-    "acquire_odds": 5,
+    "acquire_odds": 15,
     "health": 50
   },
   {
     "names": ["carp"],
     "type": "fish",
     "description": "Flappering in your face.",
-    "acquire_odds": 30,
+    "acquire_odds": 40,
     "health": 15
   },
   {
     "names": ["guppy"],
     "type": "fish",
     "description": "You just got a small ass guppy for shit!",
-    "acquire_odds": 35,
+    "acquire_odds": 70,
     "health": 2
   },
   {
@@ -115,14 +115,14 @@
     "names": ["trout"],
     "type": "fish",
     "description": "Nothing to worry about, roast it over a nice fire.",
-    "acquire_odds": 60,
+    "acquire_odds": 50,
     "health": 10
   },
   {
     "names": ["angler"],
     "type": "fish",
     "description": "Dangerous, might attack at the darkness of night.",
-    "acquire_odds": 15,
+    "acquire_odds": 25,
     "health": 30
   },
   {

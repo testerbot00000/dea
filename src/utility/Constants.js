@@ -314,7 +314,7 @@ class Constants {
         odds: 50
       },
 
-      top50: {
+      top10: {
         messageMultiplier: 1.5
       },
 

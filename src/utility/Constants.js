@@ -37,7 +37,12 @@ class Constants {
           'you were walking down the street when some homeless guy walked up to you, and then as you were giving him 17 cents you see the cracker has {0} worth of extra large socks stacked up behind him, so you jacked them.',
           'after a nice bust at the local strip club, you were walking home when you spotted Judge Woody, the cracker who busted you last week, sitting on a bench. You decided to jump his fatass, snipe {0} from his wallet, and walk away unharmed.',
           'you jump some dick that got you in court last month, stole his pants and ran. Turns out those pants were worth {0}.',
-          'you decide to waltz over to Compton to show your strength. Fortunately, you found some wallet some guy dropped in a gang fight. The wallet didn\'t have jack inside of it, but the it turns out the leather it was made of was worth {0}.'
+          'you decide to waltz over to Compton to show your strength. Fortunately, you found some wallet some guy dropped in a gang fight. The wallet didn\'t have jack inside of it, but the it turns out the leather it was made of was worth {0}.',
+          'while begging for food around the corner bend of some old ass neighborhood, you found a rich pussy and decided to bust his nuts and walk away with {0}',
+          'at the local CVS you find a blind old man walking carelessly around the store and dropped his gold chain. You snipe it and cash it in for {0}',
+          'during a meeting with a gang member instead of becoming friends you mug him and jump him and take everything he\'s got including his goddamn underwear! You leave with {0}',
+          'on Friday you see two couples kissing in the ally way. You walk up to them and jump their clothes leaving them exposed, selling their clothes and earning {0}'
+
         ],
         lottery: [
           'CONGRATS MY MAN, you just won {0} in the goddamn lottery! Use `$info` for more information.',
@@ -51,16 +56,24 @@ class Constants {
           'you ripped some grass off the ground, went up to some gangster and sold it to him as weed. He gave you {0} for it, and you got out of there before he noticed anything.',
           'you knocked on your neighbor\'s door, asked for some flour to bake a cake, and you sold it to your other neighbor as cocaine. You managed to make {0}.',
           'you bought a Monopoly board game, took the fake cash, went to the bank and traded it for USD. You walked away with {0}, moved to Cuba, while the US government was chasing you down.',
-          'you waited in line for some new Adidas Yeezys, bought 10 pairs and sold them to your idiot friends for {0}. Hopefully they won\'t notice your scam.'
+          'you waited in line for some new Adidas Yeezys, bought 10 pairs and sold them to your idiot friends for {0}. Hopefully they won\'t notice your scam.',
+          'during the holiday season you sold some fake giftcards to strangers on the street for {0}, not noticing they were scammed.',
+          'after conterfeiting some Supreme merch you sell it online for {0} to some unsuspecting idiots.',
+          'you just broke your goddamn computer and you decide to sell it on Ebay with a squeaky clean picture of the computer for {0}. Hopefully those dumbasses don\'t notice they\'ve been scammed.',
+          'today you dress up in some ass costume and go to the airport selling fake tickets to some dumb shits. They purchase the tickets and you run off making {0} as profit.'
         ],
         steal: [
           'you and a couple of buddies decide to go bust out the fake nerf guns, stroll over to your local {0}, and rob their asses. You got {1} for your share.',
           'while you were shopping at {0}, you thought it was a good idea to nut all over the counter. The owner decided to sauce you {1} because he assumed the cum was toxic.',
           'you were strolling around at {0} until you pulled out knife. The cashier gave you {1} because she thought you were gonna stab her ass.',
-          'you were called over to a stranger\'s house to buy some pop from {0} and set up a fucking party. Instead you decided to clean the house out and cash in {1}'
+          'you were called over to a stranger\'s house to buy some pop from {0} and set up a fucking party. Instead you decided to clean the house out and cash in {1}',
+          'you saw a guy carelessly putting his wallet on the table outside of {0} to orientate his belongings, so you went up to steal it. He chased you in hot pursuit, but he was as slow as a turtle, so you manage to get away with {1}.',
+          'at {0} an employee wasn\'t looking at you and you clean out the whole shelf and run off with {1} worth in merch.',
+          'during your lunch break you walk over to {0} to buy some soda, instead you walked in with a crowbar and smashed their fridge and sniped {1} worth in pops.',
+          'while driving on your roadtrip you noticed you didn\'t bring any cash but brought your fucking guns instead. You to {0} and rob everything from them including the store pet totaling in {1}.'
         ],
         stores: [
-          '7-Eleven', 'Speedway', 'Couche-Tard', 'QuikTrip', 'Kroger', 'Circle K', 'Admiral Petroleum', 'Big Apple', 'Bucky\'s Express', 'Target', 'Macy\'s', 'H&M', 'Walmart', 'CVS', 'Walgreens', 'McDonalds'
+          '7-Eleven', 'Speedway', 'Couche-Tard', 'QuikTrip', 'Kroger', 'Circle K', 'Admiral Petroleum', 'Big Apple', 'Bucky\'s Express', 'Target', 'Macy\'s', 'H&M', 'Walmart', 'CVS', 'Walgreens', 'McDonalds', 'Wendy\'s', 'Gap', 'TJ Max'
         ],
         itemBreaking: [
           'you almost fucked up some hobo\'s cock with that broken {0}',
@@ -184,12 +197,12 @@ class Constants {
       },
 
       opencrate: {
-        cooldown: 60000
+        cooldown: 900000
       },
 
       bully: {
-        cooldown: 60000,
-        maxLength: 32
+        cooldown: 600000,
+        maxLength: 50
       },
       
 
@@ -235,13 +248,13 @@ class Constants {
       chill: {
         max: 3600,
         min: 5,
-        defaultValue: 30
+        defaultValue: 15
       },
 
       clear: {
         max: 1000,
         min: 1,
-        cooldown: 10
+        cooldown: 5
       },
 
       gambling: {
@@ -284,18 +297,18 @@ class Constants {
       },
 
       mute: {
-        defaultLength: 12
+        defaultLength: 2
       },
 
       scam: {
-        cooldown: 7200000,
+        cooldown: 14400000,
         max: 100,
         min: 500,
         odds: 40
       },
 
       steal: {
-        cooldown: 21600000,
+        cooldown: 14400000,
         max: 1000,
         min: 2500,
         odds: 50

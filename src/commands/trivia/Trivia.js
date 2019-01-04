@@ -30,7 +30,7 @@ class Trivia extends patron.Command {
     const result = await msg.channel.awaitMessages(m => m.content.toLowerCase().includes(answer.toLowerCase()), { time: 15000, max: 1 });
 
     if (result.size >= 1) {
-      const prize = Random.nextFloat(500, 3000);
+      const prize = Random.nextFloat(50, 500);
 
       await msg.client.db.userRepo.modifyCash(msg.dbGuild, result.first().member, prize);
 

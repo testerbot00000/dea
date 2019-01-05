@@ -9,7 +9,8 @@ class Trivia extends patron.Command {
     super({
       names: ['trivia'],
       groupName: 'trivia',
-      description: 'Send a random trivia question.'
+      description: 'Send a random trivia question.',
+      preconditions: ['moderator']
      
       
     });

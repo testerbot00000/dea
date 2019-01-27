@@ -112,9 +112,9 @@ class Constants {
             'WEBHOOKS_UPDATE'
           ]
         },
-        game: '$help | https://patreon.com/LegacyYT',
+        game: '$help | New updated bot in progress',
         prefix: '$',
-        botOwners: ['Gone#1000'],
+        botOwners: ['Legacy#2643'],
         ownerIds: ['404832977366024232']
       },
 

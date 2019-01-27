@@ -12,7 +12,7 @@ class Invite extends patron.Command {
   }
 
   run(msg) {
-    return msg.createReply('https://discordapp.com/oauth2/authorize?client_id=528623646239883264&scope=bot&permissions=8');
+    return msg.createReply('add the bot to your server with this link https://discordapp.com/oauth2/authorize?client_id=528623646239883264&scope=bot&permissions=8');
   }
 }
 

@@ -10,29 +10,22 @@
     "names": ["silver crate", "silver crates", "silver"],
     "type": "crate",
     "description": "Shiny silvery, real good.",
-    "price": 15000,
+    "price": 10000,
     "item_odds": 25
   },
   {
     "names": ["gold crate", "gold crates", "gold"],
     "type": "crate",
     "description": "The reason it costs a lot is because you need to pay the expenses for the gold.",
-    "price": 40000,
+    "price": 20000,
     "item_odds": 75
   },
    {
     "names": ["platinum crate", "platinum crates", "platinum"],
     "type": "crate",
     "description": "So rare that you can't even get a whole platinum ore.",
-    "price": 60000,
+    "price": 30000,
     "item_odds": 100
-  },
-  {
-    "names": ["sponsor crate", "sponsor crates", "sponsor"],
-    "type": "crate",
-    "description": "Multiply your odds by 10x to obtain a rare weapon or item.",
-    "price": 100000,
-    "item_odds": 1000
   },
   {
     "names": ["kevlar"],

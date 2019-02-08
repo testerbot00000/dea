@@ -29,7 +29,7 @@ class Constants {
 
       links: {
         botInvite: 'https://discordapp.com/oauth2/authorize?client_id=528623646239883264&scope=bot&permissions=8',
-        serverInvite: 'https://discord.gg/QRGMmnm'
+        serverInvite: 'https://discord.gg/ZsA7z8B'
       },
 
       messages: {
@@ -270,8 +270,8 @@ class Constants {
 
       jump: {
         cooldown: 14400000,
-        max: 500,
-        min: 1000,
+        max: 50,
+        min: 200,
         odds: 65
       },
 
@@ -280,9 +280,9 @@ class Constants {
       },
 
       lottery: {
-        max: 1000,
-        min: 9000,
-        odds: 0.75,
+        max: 1500,
+        min: 500,
+        odds: 0.2,
         lotteryOddsMultiplier: 1
       },
 
@@ -303,14 +303,14 @@ class Constants {
       scam: {
         cooldown: 14400000,
         max: 100,
-        min: 500,
+        min: 150,
         odds: 40
       },
 
       steal: {
         cooldown: 14400000,
-        max: 1000,
-        min: 2500,
+        max: 100,
+        min: 200,
         odds: 50
       },
 
